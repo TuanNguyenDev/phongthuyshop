@@ -1,5 +1,5 @@
 @extends('layouts.users.main')
-@section('title', 'Tin Tức')
+@section('title','Giới thiệu về chúng tôi')
 @section('content')
 
 	<div class="page-container" id="PageContainer">

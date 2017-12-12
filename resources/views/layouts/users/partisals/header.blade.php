@@ -8,7 +8,7 @@
 	<meta name="theme-color" content="#7796A8">
 	<meta name="description" content="" />
 	<title>
-	Sarahmarket 1
+	Phong Thủy Shop | @yield('title')
 	</title>
 	
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">

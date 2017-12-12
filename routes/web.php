@@ -12,46 +12,42 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.users.main');
-});
-
-Route::get('/home',function(){
-	return view('layouts.users.home.index');
+    return view('user.index');
 });
 
 Route::get('/product',function(){
-	return view('layouts.users.product.product_detail');
+	return view('user.product_detail');
 });
 
 Route::get('/cart',function(){
-	return view('layouts.users.cart.cart_detail');
+	return view('user.cart_detail');
 });
 
-Route::get('/customer/account',function(){
-	return view('layouts.users.customers.account');
+Route::get('/customer',function(){
+	return view('user.customer');
 });
 
-Route::get('/customer/login',function(){
-	return view('layouts.users.customers.login');
+Route::get('/login',function(){
+	return view('user.login');
 });
 
-Route::get('/customer/register',function(){
-	return view('layouts.users.customers.register');
+Route::get('register',function(){
+	return view('user.register');
 });
 
 Route::get('/about_us',function(){
-	return view('layouts.users.more_infomation.policy');
+	return view('user.about_us');
 });
 
-Route::get('/knowledge',function(){
-	return view('layouts.users.more_infomation.knowledge');
+Route::get('/news',function(){
+	return view('user.news');
 });
 
 Route::get('/contact',function(){
-	return view('layouts.users.more_infomation.contact');
+	return view('user.contact');
 });
 
-Route::get('/collections',function(){
-	return view('layouts.users.product.collections_products');
+Route::get('category',function(){
+	return view('user.category');
 });
 //gdyagshdas   
