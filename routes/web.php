@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
-});
+Route::get('/','IndexController@getIndex')->name('index');
 
 Route::get('/product',function(){
 	return view('user.product_detail');

@@ -348,7 +348,7 @@
 	</div>
 	
 	<!-- Modal Newsletter-->
-	<div id="newsletter-popup" class="modal fade in" style="display: block; padding-right: 15px;" tabindex="-1" role="dialog" aria-hidden="false">
+	{{-- <div id="newsletter-popup" class="modal fade in" style="display: block; padding-right: 15px;" tabindex="-1" role="dialog" aria-hidden="false">
 		<div class="nl-wraper-popup bounceInDown animated">
 			<div class="nl-wraper-popup-inner"> 
 				<div class="popup-image">
@@ -367,7 +367,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	
 	<!-- Float right icon -->
 	<div class="float-right-icon">

@@ -17,8 +17,9 @@
 														<li data-target="#home_main-slider" data-slide-to="1" class="carousel-2 active"></li>
 													</ol>
 													<div class="carousel-inner">
+														
 														<div class="item image active">
-															<img src="{{ asset('images/demo.png') }}" alt="" title="Image Slideshow">
+															<img src="{{$slide_first->anh}}">
 															<div class="slideshow-caption position-right">
 																<div class="slide-caption">
 																	<div class="group-caption">
@@ -38,8 +39,9 @@
 																</div>
 															</div>
 														</div>
-														<div class="item image">
-															<img src="{{ asset('images/demo.png') }}" alt="" title="Image slideshow">
+														@foreach ($slides as  $s)
+														<div class="item image ">
+															<img src="{{$s->anh}}">
 															<div class="slideshow-caption position-middle">
 																<div class="slide-caption">
 																	<div class="group-caption">
@@ -59,6 +61,7 @@
 																</div>
 															</div>
 														</div>
+														@endforeach
 													</div>
 													<a class="left carousel-control" href="#home_main-slider" data-slide="prev">
 														<span class="icon-prev"></span>
