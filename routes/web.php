@@ -54,3 +54,4 @@ Route::get('/contact',function(){
 Route::get('/collections',function(){
 	return view('layouts.users.product.collections_products');
 });
+//gdyagshdas   
