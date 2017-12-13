@@ -13,9 +13,8 @@
 
 Route::get('/','IndexController@getIndex')->name('index');
 
-Route::get('/product',function(){
-	return view('user.product_detail');
-});
+
+Route::get('/product/{id}','IndexController@getProductDetail')->name('product');
 
 Route::get('/cart',function(){
 	return view('user.cart_detail');
