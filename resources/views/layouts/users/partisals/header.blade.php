@@ -183,11 +183,11 @@
 														<i class="sub-dropdown visible-sm visible-md visible-lg"></i> 
 														<div class="num-items-in-cart">
 															<div class="items-cart-left">
-																<img class="cart_img" src="./assets/images/bg-cart.png" alt="Image Cart" title="Image Cart">
+																<img class="cart_img" src="{{ asset('images/bg-cart.png') }}" alt="Image Cart" title="Image Cart">
 																<span class="cart_text icon"><span class="number">2</span></span>       
 															</div>
 															<div class="items-cart-right">
-																<span class="title_cart">My Cart</span>        
+																<span class="title_cart">Giỏ hàng</span>        
 															</div>
 														</div>
 													</a>
