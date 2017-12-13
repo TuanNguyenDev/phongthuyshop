@@ -145,7 +145,8 @@
 																		</div>
 																	</li>
 																	<li class="wishlist hidden-xs">
-																		<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
+																		
+																		<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
 																	</li>
 																</ul>
 															</div>
