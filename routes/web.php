@@ -44,7 +44,5 @@ Route::get('/contact',function(){
 	return view('user.contact');
 });
 
-Route::get('category',function(){
-	return view('user.category');
-});
+Route::get('category/{id}', 'IndexController@getAllCate')->name('category');
 //gdyagshdas   

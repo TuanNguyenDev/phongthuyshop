@@ -103,7 +103,7 @@
 						<div class="prosli_group">
 							<div class="page-title">
 								<h2>{{$cate->ten_danh_muc}}</h2>
-								<a href="/collections/maybe-you-prefer" class="prosli_action">Xem tất cả</a>
+								<a href="{{route('category',$cate->id)}}" class="prosli_action">Xem tất cả</a>
 							</div>
 							<div class="home_prosli_inner">
 								<div class="home_prosli_content">
