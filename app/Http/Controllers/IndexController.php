@@ -21,4 +21,9 @@ class IndexController extends Controller
     	$product = Product::find($id);
     	return view('user.product_detail', compact('product'));
     }
+    public function getAllProduct($id){
+    	$count = Product::where('id_danh_muc',$id);
+    	$product = Product::where('id_danh_muc',$id)->paginate(12);
+    	return view('user.category', compact('product','count'));
+    }
 }

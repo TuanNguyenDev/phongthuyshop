@@ -1,7 +1,6 @@
 @extends('layouts.users.main')
 @section('title','Product')
 @section('content')
-	
 	<div class="page-container" id="PageContainer">
 		<main class="main-content" id="MainContent" role="main">
 			<section class="collection-heading heading-content ">
@@ -22,7 +21,7 @@
 										<a href="./collections-all.html" title="All Products" itemprop="url"><span itemprop="title">Products</span></a>
 									</span>
 									<span class="arrow-space">></span>
-									<strong>Today's trending</strong>
+									<strong>{{$product->ten_san_pham}}</strong>
 								</div>
 							</div>
 						</div>
@@ -49,7 +48,7 @@
 												<div id="featuted-image" class="image featured">
 													<div class="image-item">
 														<a href="#" class="thumbnail" id="thumbnail-product-1" data-toggle="modal" data-target="#lightbox"> 
-															<img src="./assets/images/demo_471×544.png" alt="Today's trending" data-item="1">
+															<img src="{{$product->anh}}" alt="Today's trending" data-item="1">
 														</a>
 														<span class="image-title-zoom" data-zoom="thumbnail-product-1">
 															<i class="fa fa-search-plus"></i>
@@ -86,25 +85,30 @@
 												</div>
 											</div>
 											<div class="col-md-7" id="product-information">
-												<h1 itemprop="name" class="title">Today's trending</h1>
+												<h1 itemprop="name" class="title">{{$product->ten_san_pham}}</h1>
 												<div class="description" itemprop="description">
-													Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.
+													{{$product->mo_ta}}
 												</div>
 												<form id="add-item-form" action="./cart.html" method="post" class="variants">
 													<div class="product-options " itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
 														<meta itemprop="priceCurrency" content="USD">
 														<link itemprop="availability" href="http://schema.org/InStock">
 														<div class="vendor-type">
-															<span class="product_vendor"><span class="_title">Vendor:</span> Vendor 3</span>
-															<span class="product_type"><span class="_title">Type:</span> Dressing</span>
-															<span class="product_sku"><span class="_title">SKU: </span>CA78963</span>
+															<span class="product_vendor"><span class="_title">Size:</span> {{$product->size}}</span>
+															<span class="product_type"><span class="_title">Trọng lượng:</span> {{$product->trong_luong}}</span>
+															<span class="product_sku"><span class="_title">Màu sắc: </span>{{$product->mau_sac}}</span>
+															<span class="product_sku"><span class="_title">Chất liệu: </span>{{$product->chat_lieu}}</span>
+															<span class="product_sku"><span class="_title">Ý nghĩa: </span>{{$product->y_nghia}}</span>
+															<span class="product_sku"><span class="_title">Kích thước: </span>{{$product->kich_thuoc}}</span>
+															<span class="product_sku"><span class="_title">Mệnh: </span>{{$product->getMenh()}}</span>
+															<span class="product_sku"><span class="_title">Danh mục: </span>{{$product->getMenh()}}</span>
 														</div>
-														<div class="rating-star">
+														{{-- <div class="rating-star">
 															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i></span><span class="spr-badge-caption">2 reviews</span>
 															</span>
-														</div>
+														</div> --}}
 														<div class="product-type">
-															<div class="swatch swatch clearfix" data-option-index="0">
+															{{-- <div class="swatch swatch clearfix" data-option-index="0">
 																<div class="header">Size</div>
 																<div data-value="L" class="swatch-element l available">
 																	<input id="swatch-0-l" type="radio" name="option-0" value="L" checked="">
@@ -127,7 +131,7 @@
 																		<img class="crossed-out" src="./assets/images/soldout.png" alt="">
 																	</label>
 																</div>
-															</div>
+															</div> --}}
 															<div class="swatch swatch color clearfix" data-option-index="1">
 																<div class="header">Color</div>
 																<div data-value="red" class="swatch-element color red available">
