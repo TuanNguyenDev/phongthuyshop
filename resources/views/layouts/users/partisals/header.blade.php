@@ -39,10 +39,7 @@
 	<script type="text/javascript" src="{{ url('js/javascripts/jquery.touchSwipe.min.js')}}"></script>
 
 </head>
-{{-- @php
 
-	dd(count($_COOKIE['cart']));
-@endphp --}}
 <body class="index-template sarahmarket_1">
 
 	<!--Header-->
@@ -181,7 +178,9 @@
 														<div class="num-items-in-cart">
 															<div class="items-cart-left">
 																<img class="cart_img" src="{{ asset('images/bg-cart.png') }}" alt="Image Cart" title="Image Cart">
-																<span class="cart_text icon"><span class="number">2</span></span>       
+																<span class="cart_text icon"><span class="number">
+
+																</span></span>       
 															</div>
 															<div class="items-cart-right">
 																<span class="title_cart">Giỏ hàng</span>        
@@ -682,7 +681,7 @@
 													</ul>
 												</li>
 												<li class="nav-item active">
-													<a href="{{route('index')}}">
+													<a href="{{route('news')}}">
 														<span>Tin Tức</span>
 													</a>
 												</li>

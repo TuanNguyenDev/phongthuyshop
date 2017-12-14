@@ -66,8 +66,9 @@ class IndexController extends Controller
 					"total_item" => (int)$product->gia * $sl
     			);
     		}
-            $json = json_encode($cart, true);
-    		setcookie("cart",$json,time()+36000);
+    		setcookie('cart',serialize($cart),time()+36000);
+            // $newarray = unserialize($_COOKIE['cart']);
+            // dd(count($newarray))
     	}else{
     		echo "No id to add cart";
     	}

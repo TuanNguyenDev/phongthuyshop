@@ -40,7 +40,7 @@ Route::get('/about_us',function(){
 });
 
 Route::get('/news',function(){
-	return view('user.news');
+	return view('user.news')->name('news');
 });
 
 Route::get('/contact',function(){
