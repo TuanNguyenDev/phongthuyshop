@@ -30,6 +30,7 @@ class IndexController extends Controller
     	return view('user.category', compact('product','count'));
     }
     public function addCart($id){
+
     	if (isset($id)) {
     		$sl = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
     		$product = Product::find($id);
@@ -65,7 +66,8 @@ class IndexController extends Controller
 					"total_item" => (int)$product->gia * $sl
     			);
     		}
-    		$COOKIE['cart'] = $cart;
+            $json = json_encode($cart, true);
+    		setcookie("cart",$json,time()+36000);
     	}else{
     		echo "No id to add cart";
     	}
@@ -73,7 +75,19 @@ class IndexController extends Controller
     	foreach ($cart as $key => $value) {
     		$tong +=$value['total_item'];
     	}
-    	$COOKIE['total'] = $tong;
-    	return redirect('user.index');
+        setcookie('total',$tong,time()+36000);
+    	return redirect()->route('index');
+    }
+
+    public function getSearchResult(Request $rq){
+        $key = $rq->key;
+        $cate = $rq->cate;
+        if($cate=0){
+        $result = Product::where('ten_san_pham','like', "%$key%")->paginate(20);
+        }else{
+            
+            $result = Product::where('ten_san_pham','like',"%$key%")->orWhere('id_danh_muc',$cate)->paginate(20);
+        }
+        return view('user.search',compact('result','key'));
     }
 }

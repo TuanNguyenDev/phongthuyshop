@@ -39,7 +39,10 @@
 	<script type="text/javascript" src="{{ url('js/javascripts/jquery.touchSwipe.min.js')}}"></script>
 
 </head>
+{{-- @php
 
+	dd(count($_COOKIE['cart']));
+@endphp --}}
 <body class="index-template sarahmarket_1">
 
 	<!--Header-->
@@ -154,21 +157,15 @@
 										</div>
 										<div class="group-search-cart">
 											<div class="nav-search">
-												<form class="search" action="./search.html">
+												<form class="search" action="{{route('search_normal')}}" method="get">
 													<input type="hidden" name="type" value="product">
-													<input type="text" name="q" class="search_box" placeholder="Enter your keyword ..." value="">
+													<input type="text" name="key" class="search_box" placeholder="Enter your keyword ..." value="">
 													<div class="collections-selector">
-														<select class="single-option-selector" data-option="collection-option" id="collection-option" name="collection">
-															<option value="all">All Categories</option>
-															<option value="best-sellers">Best Sellers</option>
-															<option value="digital">Digital</option>
-															<option value="electronic">Electronic</option>
-															<option value="fashions">Fashions</option>
-															<option value="furniture">Furniture</option>
-															<option value="maybe-you-prefer">Maybe You Prefer</option>
-															<option value="new-products">New Products</option>
-															<option value="sport">Sport</option>
-															<option value="todays-trending">Today's Trending</option>
+														<select class="single-option-selector" data-option="collection-option" id="collection-option" name="cate">
+														<option value="0">Tất cả danh mục</option>
+														@foreach ($cates as $cate)
+															<option value="{{$cate->id}}">{{$cate->ten_danh_muc}}</option>
+														@endforeach
 														</select>
 													</div>
 													<button class="search_submit" type="submit">
@@ -244,7 +241,14 @@
 													<div class="num-items-in-cart">
 														<div class="items-cart-left">
 															<img class="cart_img" src="./assets/images/bg-cart.png" alt="Image Cart" title="Image Cart">
-															<span class="cart_text icon"><span class="number">2</span></span>       
+															<span class="cart_text icon"><span class="number">
+																{{-- @php
+																	if (isset($_COOKIE['cart']))
+																	{$c = count($_COOKIE['cart']);
+																		dd($c); }
+																
+																@endphp --}}
+															</span></span>       
 														</div>
 													</div>
 												</a>

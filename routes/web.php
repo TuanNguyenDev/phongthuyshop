@@ -21,6 +21,7 @@ Route::get('/add_cart/{id}','IndexController@addCart')->name('addCart');
 Route::get('/cart',function(){
 	return view('user.cart_detail');
 });
+Route::get('/search/key/cate','IndexController@getSearchResult')->name('search_normal');
 
 Route::get('/customer',function(){
 	return view('user.customer');
