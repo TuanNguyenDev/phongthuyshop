@@ -190,37 +190,33 @@
 													<div class="dropdown-menu cart-info" style="display: none;">
 														<div class="cart-content">
 															<div class="items control-container">
-																<div class="row">
-																	<a class="cart-close" title="Remove" href="javascript:void(0);">
-																		<i class="fa fa-times"></i>
-																	</a>
-																	<div class="cart-left">
-																		<a class="cart-image" href="./product.html">
-																			<img src="./assets/images/demo_139×160.png" alt="" title="">
+																@if (count($cart)>0)
+																	@foreach ($cart as $key => $element)
+																	<div class="row">
+																		<a class="cart-close" title="Remove" href="{{route('removeCart',$element->rowId)}}">
+																			<i class="fa fa-times"></i>
 																		</a>
+																		@foreach ($element as $k => $img)
+																		<div class="cart-left">
+																			<a class="cart-image" href="./product.html">
+																				<img src="{{$img}}" alt="" title="">
+																			</a>
+																		</div>
+																		@endforeach
+																		<div class="cart-right">
+																			<div class="cart-title"><a href="./product.html">{{$element->name}}</a></div>
+																			<div class="cart-price"><span class="money" data-currency-usd="$200.00" data-currency="USD">{{$element->price}}</span><span class="x"> x{{$element->qty}}</span></div>
+																		</div>
 																	</div>
-																	<div class="cart-right">
-																		<div class="cart-title"><a href="./product.html">Electronic equipment - L / red</a></div>
-																		<div class="cart-price"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span><span class="x"> x1</span></div>
-																	</div>
-																</div>
-																<div class="row">
-																	<a class="cart-close" title="Remove" href="javascript:void(0);">
-																		<i class="fa fa-times"></i>
-																	</a>
-																	<div class="cart-left">
-																		<a class="cart-image" href="./product.html">
-																			<img src="./assets/images/demo_139×160.png" alt="" title="">
-																		</a>
-																	</div>
-																	<div class="cart-right">
-																		<div class="cart-title"><a href="./product.html">Electronic equipment - L / red</a></div>
-																		<div class="cart-price"><span class="money" data-currency-usd="$400.00" data-currency="USD">$400.00</span><span class="x"> x1</span></div>
-																	</div>
-																</div>
+																		
+																	@endforeach
+																@else
+																	{{-- false expr --}}
+																@endif
+																
 															</div>
-															<div class="subtotal"><span>Subtotal:</span><span class="cart-total-right money" data-currency-usd="$600.00" data-currency="USD">$600.00</span></div>
-															<div class="action"><button class="btn" onclick="window.location='./cart.html'">View Cart<i class="fa fa-caret-right"></i></button><button class="btn float-right" onclick="window.location='./cart.html'">CHECKOUT<i class="fa fa-caret-right"></i></button></div>
+															<div class="subtotal"><span>Subtotal:</span><span class="cart-total-right money" data-currency-usd="$600.00" data-currency="USD">{{$total}}</span></div>
+															<div class="action"><button class="btn" onclick="window.location='{{route('showCart')}}'">View Cart<i class="fa fa-caret-right"></i></button><button class="btn float-right" onclick="window.location='./cart.html'">CHECKOUT<i class="fa fa-caret-right"></i></button></div>
 														</div>
 													</div>
 												</div>
@@ -241,12 +237,10 @@
 														<div class="items-cart-left">
 															<img class="cart_img" src="./assets/images/bg-cart.png" alt="Image Cart" title="Image Cart">
 															<span class="cart_text icon"><span class="number">
-																{{-- @php
-																	if (isset($_COOKIE['cart']))
-																	{$c = count($_COOKIE['cart']);
-																		dd($c); }
-																
-																@endphp --}}
+																@php
+																	$total = count($cart);
+																@endphp
+																{{$total}}
 															</span></span>       
 														</div>
 													</div>
@@ -681,7 +675,7 @@
 													</ul>
 												</li>
 												<li class="nav-item active">
-													<a href="{{route('news')}}">
+													<a href="">
 														<span>Tin Tức</span>
 													</a>
 												</li>
@@ -713,44 +707,40 @@
 															<div class="num-items-in-cart">
 																<div class="items-cart-left">
 																	<img class="cart_img" src="./assets/images/bg-cart.png" alt="Image Cart" title="Image Cart">
-																	<span class="cart_text icon"><span class="number">2</span></span>       
+																	<span class="cart_text icon"><span class="number">
+																		@php
+																			$countCart = count($cart);
+																			echo $countCart;
+																		@endphp
+																	</span></span>       
 																</div>
 															</div>
 														</a>
 														<div class="dropdown-menu cart-info">
 															<div class="cart-content">
 																<div class="items control-container">
-																	<div class="row">
-																		<a class="cart-close" title="Remove" href="javascript:void(0);">
-																			<i class="fa fa-times"></i>
-																		</a>
-																		<div class="cart-left">
-																			<a class="cart-image" href="./product.html">
-																				<img src="./assets/images/demo_139×160.png" alt="" title="">
+																	@if (count($cart))
+																		@foreach ($cart as $key => $item)
+																		<div class="row">
+																			<a class="cart-close" title="Remove" href="{{route('removeCart',$item->rowId)}}">
+																				<i class="fa fa-times"></i>
 																			</a>
+																			<div class="cart-left">
+																				<a class="cart-image" href="./product.html">
+																					<img src="" alt="" title="">
+																				</a>
+																			</div>
+																			<div class="cart-right">
+																				<div class="cart-title"><a href="./product.html">{{$item->name}}</a></div>
+																				<div class="cart-price"><span class="money" data-currency-usd="$200.00" data-currency="USD">{{$item->price}}</span><span class="x"> x{{$item->qty}}</span></div>
+																			</div>
 																		</div>
-																		<div class="cart-right">
-																			<div class="cart-title"><a href="./product.html">Electronic equipment - L / red</a></div>
-																			<div class="cart-price"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span><span class="x"> x1</span></div>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<a class="cart-close" title="Remove" href="javascript:void(0);">
-																			<i class="fa fa-times"></i>
-																		</a>
-																		<div class="cart-left">
-																			<a class="cart-image" href="./product.html">
-																				<img src="./assets/images/demo_139×160.png" alt="" title="">
-																			</a>
-																		</div>
-																		<div class="cart-right">
-																			<div class="cart-title"><a href="./product.html">Electronic equipment - L / red</a></div>
-																			<div class="cart-price"><span class="money" data-currency-usd="$400.00" data-currency="USD">$400.00</span><span class="x"> x1</span></div>
-																		</div>
-																	</div>
+																		@endforeach
+																	@endif
+																	
 																</div>
 																<div class="subtotal"><span>Subtotal:</span><span class="cart-total-right money" data-currency-usd="$600.00" data-currency="USD">$600.00</span></div>
-																<div class="action"><button class="btn" onclick="window.location='./cart.html'">View Cart<i class="fa fa-caret-right"></i></button><button class="btn float-right" onclick="window.location='./cart.html'">CHECKOUT<i class="fa fa-caret-right"></i></button></div>
+																<div class="action"><button class="btn" onclick="window.location='{{route('showCart')}}'">View Cart<i class="fa fa-caret-right"></i></button><button class="btn float-right" onclick="window.location='./cart.html'">CHECKOUT<i class="fa fa-caret-right"></i></button></div>
 															</div>
 														</div>
 													</div>

@@ -89,7 +89,6 @@
 												<div class="description" itemprop="description">
 													{{$product->mo_ta}}
 												</div>
-												<form id="add-item-form" action="./cart.html" method="post" class="variants">
 													<div class="product-options " itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
 														<meta itemprop="priceCurrency" content="USD">
 														<link itemprop="availability" href="http://schema.org/InStock">
@@ -107,90 +106,26 @@
 															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i></span><span class="spr-badge-caption">2 reviews</span>
 															</span>
 														</div> --}}
-														<div class="product-type">
-															{{-- <div class="swatch swatch clearfix" data-option-index="0">
-																<div class="header">Size</div>
-																<div data-value="L" class="swatch-element l available">
-																	<input id="swatch-0-l" type="radio" name="option-0" value="L" checked="">
-																	<label for="swatch-0-l">
-																		L
-																		<img class="crossed-out" src="./assets/images/soldout.png" alt="">
-																	</label>
-																</div>
-																<div data-value="M" class="swatch-element m available">
-																	<input id="swatch-0-m" type="radio" name="option-0" value="M">
-																	<label for="swatch-0-m">
-																		M
-																		<img class="crossed-out" src="./assets/images/soldout.png" alt="">
-																	</label>
-																</div>
-																<div data-value="S" class="swatch-element s available">
-																	<input id="swatch-0-s" type="radio" name="option-0" value="S">
-																	<label for="swatch-0-s">
-																		S
-																		<img class="crossed-out" src="./assets/images/soldout.png" alt="">
-																	</label>
-																</div>
-															</div> --}}
-															<div class="swatch swatch color clearfix" data-option-index="1">
-																<div class="header">Color</div>
-																<div data-value="red" class="swatch-element color red available">
-																	<input id="swatch-1-red" type="radio" name="option-1" value="red" checked="">
-																	<label data-toggle="tooltip" data-placement="top" data-original-title="Red" for="swatch-1-red" style="background-color: red; border-color: red; background-image: url(./assets/images/red.png)">
-																		<img class="crossed-out" src="./assets/images/soldout.png" alt="">
-																	</label>
-																</div>
-																<div data-value="blue" class="swatch-element color blue available">
-																	<input id="swatch-1-blue" type="radio" name="option-1" value="blue">
-																	<label data-toggle="tooltip" data-placement="top" data-original-title="Blue" for="swatch-1-blue" style="background-color: blue; border-color: blue; background-image: url(./assets/images/blue.png)">
-																		<img class="crossed-out" src="./assets/images/soldout.png" alt="">
-																	</label>
-																</div>
-																<div data-value="black" class="swatch-element color black available">
-																	<input id="swatch-1-black" type="radio" name="option-1" value="black">
-																	<label data-toggle="tooltip" data-placement="top" data-original-title="Black" for="swatch-1-black" style="background-color: black; border-color: black; background-image: url(./assets/images/black.png)">
-																		<img class="crossed-out" src="./assets/images/soldout.png" alt="">
-																	</label>
-																</div>
-																<div data-value="Gray" class="swatch-element color gray available">
-																	<input id="swatch-1-gray" type="radio" name="option-1" value="Gray">
-																	<label data-toggle="tooltip" data-placement="top" data-original-title="Gray" for="swatch-1-gray" style="background-color: gray; border-color: gray; background-image: url(./assets/images/gray.png)">
-																		<img class="crossed-out" src="./assets/images/soldout.png" alt="">
-																	</label>
-																</div>
-																<script>
-																	$(function() {
-																		$(".swatch-element").click(function() {
-																			if (!$(this).hasClass('active')) {
-																				$(".swatch-element.active").removeClass("active");
-																				$(this).addClass("active");
-																			}
-																		});
-																	});
-																</script>
-															</div>
-														</div>
+														
 														<div class="product-price">
 															<meta itemprop="price" content="200.00">
-															<h2 class="price" id="price-preview"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span></h2>
+															<h2 class="price" id="price-preview"><span class="money" data-currency-usd="$200.00" data-currency="USD">{{$product->gia}}</span></h2>
 														</div>
 														<div class="purchase-section multiple">
-															<div class="quantity-wrapper clearfix">
-																<div class="wrapper">
-																	<input id="quantity" type="text" name="quantity" value="1" maxlength="5" size="5" class="item-quantity">
+															<form method="POST" action="{{route('updateCart')}}" accept-charset="utf-8">
+																{{csrf_field()}}
+																<div class="quantity-wrapper clearfix">
+																	<div class="wrapper">
+																		<input id="quantity" type="text" name="quantity" value="1" maxlength="3" size="5" class="item-quantity">
+																		<input type="hidden" name="id" value="{{$product->id}}">
+																	</div>
 																</div>
-															</div>
-															<div class="purchase">
-																<button id="add-to-cart" class="btn add-to-cart" type="submit" name="add"><i class="fa fa-shopping-bag"></i>Buy Now</button>
-															</div>
+																<div class="purchase">
+																	<button type="submit" class="btn add-to-cart"><span class="hidden-xs"><i class="fa fa-shopping-bag"></i>Mua ngay</button>
+																</div>
+														</form>
 														</div>
 													</div>
-												</form>
-												<div class="add-to-wishlist">
-													<form method="post" action="./wish-list.html" id="contact_form" class="contact-form" accept-charset="UTF-8">
-														<button type="submit" class="wish-list" title="wish list"><i class="fa fa-heart"></i></button>
-													</form>
-												</div>
 												<div class="supports-fontface">
 													<div class="social-sharing is-clean">
 														<a target="_blank" href="./product.html" class="share-facebook">

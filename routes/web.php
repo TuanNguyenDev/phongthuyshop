@@ -18,9 +18,13 @@ Route::get('/product/{id}','IndexController@getProductDetail')->name('product');
 
 Route::get('/add_cart/{id}','IndexController@addCart')->name('addCart');
 
+Route::post('/updatecart','IndexController@updateCart')->name('updateCart');
+
 Route::get('/cart',function(){
 	return view('user.cart_detail');
 });
+
+Route::get('/cart','IndexController@showCart')->name('showCart');
 Route::get('/search/key/cate','IndexController@getSearchResult')->name('search_normal');
 
 Route::get('/customer',function(){
@@ -40,12 +44,13 @@ Route::get('/about_us',function(){
 });
 
 Route::get('/news',function(){
-	return view('user.news')->name('news');
+	return view('user.news')->name('tintuc');
 });
 
 Route::get('/contact',function(){
 	return view('user.contact');
 });
+Route::get('remove/{rowId}', 'IndexController@removeCart')->name('removeCart');
 
 Route::get('category/{id}', 'IndexController@getAllProduct')->name('category');
 //gdyagshdas   

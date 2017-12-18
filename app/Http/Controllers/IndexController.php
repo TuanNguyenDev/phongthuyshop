@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\TrinhChieu;
+use Illuminate\Http\Response;
 use Log;
 use DB;
+use Cart;
 class IndexController extends Controller
 {
 	/*
@@ -34,50 +36,32 @@ class IndexController extends Controller
     	if (isset($id)) {
     		$sl = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
     		$product = Product::find($id);
-    		if(!empty($COOKIE['cart'])){
-    			$cart = $_COOKIE['cart'];
-    			if(array_key_exists($id, $cart)){
-    				$cart[$id] = array(
-    					"id" => $id,
-    					"sl" => (int)$cart[$id]["sl"]+$sl,
-    					"ten" => $product->ten_san_pham,
-    					"gia" => $product->gia,
-    					"anh" => $product->anh,
-    					"total_item" => (int) $cart[$id]["total_item"] + $product->gia
+            if(isset($product)){
+            Cart::add($id, $product->ten_san_pham,$sl,$product->gia,['anh' => $product->anh]);
+            $cart = Cart::content();
+            return redirect(route('index'));
+                
+            }
+    }
+}
+    public function updateCart(Request $rq){
+        $id = $rq->id;
+        $sl = $rq->quantity;
+        $product = Product::find($id);
+        if(isset($product)){
+        Cart::add($id, $product->ten_san_pham,$sl,$product->gia,['anh' => $product->anh]);
+        $cart = Cart::content();
+        return back()->withInput();
+    }
 
-    				);
-    			}else{
-    				$cart[$id] = array(
-    					"id" => $id,
-    					"sl" => $sl,
-    					"ten" => $product->ten_san_pham,
-    					"gia" => $product->gia,
-    					"anh" => $product->anh,
-    					"total_item" => (int)$product->gia
-    				);
-    			}
-    		}else{
-    			$cart[$id] = array(
-    				"id"=> $id,
-					"sl"=>$sl,
-					"ten" => $product->ten_san_pham,
-					"gia" => $product->gia,
-					"anh" => $product->anh,
-					"total_item" => (int)$product->gia * $sl
-    			);
-    		}
-    		setcookie('cart',serialize($cart),time()+36000);
-            // $newarray = unserialize($_COOKIE['cart']);
-            // dd(count($newarray))
-    	}else{
-    		echo "No id to add cart";
-    	}
-    	$tong = 0;
-    	foreach ($cart as $key => $value) {
-    		$tong +=$value['total_item'];
-    	}
-        setcookie('total',$tong,time()+36000);
-    	return redirect()->route('index');
+}
+    public function removeCart($rowId){
+        if(isset($rowId)){
+            Cart::remove($rowId);
+            return redirect(route('index'));
+        }else{
+            echo "Bạn vừa truy cập vào đường dẫn không tồn tại";
+        }
     }
 
     public function getSearchResult(Request $rq){
@@ -90,5 +74,11 @@ class IndexController extends Controller
             $result = Product::where('ten_san_pham','like',"%$key%")->orWhere('id_danh_muc',$cate)->paginate(20);
         }
         return view('user.search',compact('result','key'));
+    }
+
+    public function showCart(){
+        $cart = Cart::content();
+        $total = Cart::subtotal();
+        return view('user.cart_detail',compact('cart','total'));
     }
 }

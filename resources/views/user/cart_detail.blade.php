@@ -42,6 +42,7 @@
 														</tr>
 													</thead>
 													<tbody>
+														@foreach ($cart as $key => $value)
 														<tr>
 															<td class="title text-left">
 																<ul class="list-inline">
@@ -52,88 +53,31 @@
 																	</li>
 																	<li class="link">
 																		<a href="./product.html">
-																			<p>Electronic equipment</p>
+																			<p>{{$value->name}}</p>
 																			<span class="variant_title">L / red</span>
 																		</a>
 																	</li>
 																</ul>
 															</td>
-															<td class="price"><span class="money" data-currency-usd="$200.00">$200.00</span></td>
+															<td class="price"><span class="money" data-currency-usd="$200.00">{{$value->price}}</span></td>
 															<td class="qty">
 																<div class="quantity-wrapper">
 																	<div class="wrapper">
-																		<input type="text" size="4" name="updates[]" value="1" class="tc item-quantity">
+																		<input type="text" size="4" name="updates[]" value="{{$value->qty}}" class="tc item-quantity">
 																	</div>
 																	<!--End wrapper-->
 																</div>
 																<!--End quantily wrapper-->
 															</td>
-															<td class="total title-1"><span class="money" data-currency-usd="$200.00">$200.00</span></td>
+															<td class="total title-1"><span class="money" data-currency-usd="$200.00">{{($value->qty * $value->price)}}</span></td>
 															<td class="remove"><a href="./cart.html" class="cart"><i class="fa fa-trash"></i></a></td>
 														</tr>
-														<tr>
-															<td class="title text-left">
-																<ul class="list-inline">
-																	<li class="image">
-																		<a href="./product.html">
-																			<img src="./assets/images/demo_139×160.png" alt="Electronic equipment">
-																		</a>
-																	</li>
-																	<li class="link">
-																		<a href="./product.html">
-																			<p>Electronic equipment</p>
-																			<span class="variant_title">L / white</span>
-																		</a>
-																	</li>
-																</ul>
-															</td>
-															<td class="price"><span class="money" data-currency-usd="$200.00">$200.00</span></td>
-															<td class="qty">
-																<div class="quantity-wrapper">
-																	<div class="wrapper">
-																		<input type="text" size="4" name="updates[]" value="1" class="tc item-quantity">
-																	</div>
-																	<!--End wrapper-->
-																</div>
-																<!--End quantily wrapper-->
-															</td>
-															<td class="total title-1"><span class="money" data-currency-usd="$200.00">$200.00</span></td>
-															<td class="remove"><a href="./cart.html" class="cart"><i class="fa fa-trash"></i></a></td>
-														</tr>
-														<tr>
-															<td class="title text-left">
-																<ul class="list-inline">
-																	<li class="image">
-																		<a href="./product.html">
-																			<img src="./assets/images/demo_139×160.png" alt="Electronic equipment">
-																		</a>
-																	</li>
-																	<li class="link">
-																		<a href="./product.html">
-																			<p>Electronic equipment</p>
-																			<span class="variant_title">L / white</span>
-																		</a>
-																	</li>
-																</ul>
-															</td>
-															<td class="price"><span class="money" data-currency-usd="$110.00">$110.00</span></td>
-															<td class="qty">
-																<div class="quantity-wrapper">
-																	<div class="wrapper">
-																		<input type="text" size="4" name="updates[]" value="1" class="tc item-quantity">
-																	</div>
-																	<!--End wrapper-->
-																</div>
-																<!--End quantily wrapper-->
-															</td>
-															<td class="total title-1"><span class="money" data-currency-usd="$110.00">$110.00</span></td>
-															<td class="remove"><a href="./cart.html" class="cart"><i class="fa fa-trash"></i></a></td>
-														</tr>
+														@endforeach
 													</tbody>
 													<tfoot>
 														<tr class="summary">
 															<td class="total-action" colspan="4"><input type="submit" id="update-cart" class="btn" name="update" value="Update cart"></td>
-															<td class="price" colspan="1"><span class="total"><strong><span class="money" data-currency-usd="$510.00">$510.00</span></strong>
+															<td class="price" colspan="1"><span class="total"><strong><span class="money" data-currency-usd="$510.00">{{$total}}</span></strong>
 																</span>
 															</td>
 														</tr>
