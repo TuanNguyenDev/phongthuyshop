@@ -30,7 +30,7 @@
 								<div class="cart-inner">
 									<div id="cart">
 										<div class="cart-form">
-											<form action="./cart.html" method="post" id="cartform">
+											<form action="{{route('updateCart')}}" method="post" id="cartform">
 												<table class="cart-items">
 													<thead>
 														<tr>
@@ -64,6 +64,7 @@
 																<div class="quantity-wrapper">
 																	<div class="wrapper">
 																		<input type="text" size="4" name="updates[]" value="{{$value->qty}}" class="tc item-quantity">
+																		<input type="hidden" name="rowId" value="{{$value->rowId}}">
 																	</div>
 																	<!--End wrapper-->
 																</div>
@@ -88,7 +89,7 @@
 														<label for="note">Add special instructions for your order...</label>
 														<textarea id="note" name="note" rows="10" cols="50"></textarea>
 													</div>
-													<div class="shipping-calculator col-sm-6 col-xs-12 ">
+													{{-- <div class="shipping-calculator col-sm-6 col-xs-12 ">
 														<div id="shipping-calculator">
 															<h3>Get shipping estimates</h3>
 															<div>
@@ -352,7 +353,7 @@
 																</p>
 															</div>
 														</div>
-													</div>
+													</div> --}}
 												</div>
 												<div class=" cart-buttons">
 													<div class="buttons clearfix">

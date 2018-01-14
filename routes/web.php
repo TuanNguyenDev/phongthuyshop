@@ -53,4 +53,6 @@ Route::get('/contact',function(){
 Route::get('remove/{rowId}', 'IndexController@removeCart')->name('removeCart');
 
 Route::get('category/{id}', 'IndexController@getAllProduct')->name('category');
+
+
 //gdyagshdas   
