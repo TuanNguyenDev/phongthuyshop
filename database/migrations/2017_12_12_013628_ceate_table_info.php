@@ -13,12 +13,12 @@ class CeateTableInfo extends Migration
      */
     public function up()
     {
-        Schema::create('info', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('danh_muc');
-            $table->text('noi_dung');
-            $table->timestamps();
-        });
+        // Schema::create('info', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('danh_muc');
+        //     $table->text('noi_dung');
+        //     $table->timestamps();
+        // });
     }
 
     /**

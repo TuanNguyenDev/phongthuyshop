@@ -3,7 +3,7 @@
 @section('config_title', 'Chào Mừng đến trang danh sách sản phẩm')
 @section('content')
 @php
-	$pageSize = [20, 30, 40, 50, 60]
+	$pageSize = [10, 20, 25, 30, 40]
 @endphp
 <div class="col-sm-12">
 	<form action="{{route('product.list')}}" method="get" accept-charset="utf-8" class="form-inline col-sm-10">
@@ -47,20 +47,26 @@
 			<th>Kích thước</th>
 			<th>Giá nhập</th>
 			<th>Người tạo</th>
-			<th><a href="" class="btn btn-xs btn-success" title="">Tạo mới</a></th>
+			<th><a href="{{route('product.create')}}" class="btn btn-xs btn-success" title="">Tạo mới</a></th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach ($products as $p)
 			<tr>
 				<td>{{++$loop->index}}</td>
+				<td>{{$p->ten_san_pham}}</td>
 				<td>{{$p->anh}}</td>
 				<td>{{$p->size}}</td>
 				<td>{{$p->gia}}</td>
 				<td>{{$p->trong_luong}}</td>
 				<td>{{$p->mau_sac}}</td>
-				{{-- <td>{{$p->getMenh->ten_menh}}</td> --}}
-				{{-- <td>{{$p->getDanhMuc->ten_danh_muc}}</td> --}}
+				<td>
+					{{-- @php
+						$menh = $p->Menh();
+					@endphp --}}
+					{{$p->Menh()['ten_menh']}}
+				</td>
+				<td>{{$p->Category()['ten_danh_muc']}}</td>
 				<td>{{$p->so_luong}}</td>
 				<td>{{$p->chat_lieu}}</td>
 				<td>{{$p->y_nghia}}</td>
@@ -71,6 +77,9 @@
 				<td>{{$p->nguoi_tao}}</td>
 			</tr>
 		@endforeach
+		<tr>
+			<td colspan="7" rowspan="" class="text-center" headers="">{{$products->links()}}</td>
+		</tr>
 	</tbody>
 </table>
 @endsection

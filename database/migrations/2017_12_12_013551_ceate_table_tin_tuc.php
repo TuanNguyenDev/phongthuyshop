@@ -13,14 +13,14 @@ class CeateTableTinTuc extends Migration
      */
     public function up()
     {
-        Schema::create('tin_tuc', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('tieu_de');
-            $table->string('anh',500);
-            $table->text('noi_dung');
-            $table->integer('id_tac_gia');
-            $table->timestamps();
-        });
+        // Schema::create('tin_tuc', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('tieu_de');
+        //     $table->string('anh',500);
+        //     $table->text('noi_dung');
+        //     $table->integer('id_tac_gia');
+        //     $table->timestamps();
+        // });
     }
 
     /**

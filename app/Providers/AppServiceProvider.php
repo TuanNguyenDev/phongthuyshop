@@ -5,6 +5,7 @@ use App\Models\Category;
 use App\Models\Menh;
 use Cart;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {

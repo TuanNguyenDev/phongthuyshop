@@ -13,17 +13,17 @@ class CeateTableCustomers extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('ten');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('sdt');
-            $table->string('dia_chi');
-            $table->integer('trang_thai');
-            $table->integer('isLogin');
-            $table->timestamps();
-        });
+        // Schema::create('customers', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('ten');
+        //     $table->string('email')->unique();
+        //     $table->string('password');
+        //     $table->string('sdt');
+        //     $table->string('dia_chi');
+        //     $table->integer('trang_thai');
+        //     $table->integer('isLogin');
+        //     $table->timestamps();
+        // });
     }
 
     /**

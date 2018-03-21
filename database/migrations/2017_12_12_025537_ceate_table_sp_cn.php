@@ -13,12 +13,12 @@ class CeateTableSpCn extends Migration
      */
     public function up()
     {
-        Schema::create('sp_cn', function (Blueprint $table) {
-            $table->integer('id_san_pham');
-            $table->integer('sl');
-            $table->integer('id_chi_nhanh');
-            $table->timestamps();
-        });
+        // Schema::create('sp_cn', function (Blueprint $table) {
+        //     $table->integer('id_san_pham');
+        //     $table->integer('sl');
+        //     $table->integer('id_chi_nhanh');
+        //     $table->timestamps();
+        // });
     }
 
     /**

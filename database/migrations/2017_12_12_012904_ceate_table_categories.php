@@ -13,14 +13,14 @@ class CeateTableCategories extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('ten_danh_muc');
-            $table->string('anh',500);
-            $table->text('mo_ta');
-            $table->integer('nguoi_tao');
-            $table->timestamps();
-        });
+        // Schema::create('categories', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('ten_danh_muc');
+        //     $table->string('anh',500);
+        //     $table->text('mo_ta');
+        //     $table->integer('nguoi_tao');
+        //     $table->timestamps();
+        // });
     }
 
     /**

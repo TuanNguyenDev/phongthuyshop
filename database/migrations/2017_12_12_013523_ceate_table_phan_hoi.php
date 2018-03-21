@@ -13,13 +13,13 @@ class CeateTablePhanHoi extends Migration
      */
     public function up()
     {
-        Schema::create('phan_hoi', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('sdt');
-            $table->string('noi_dung');
-            $table->string('ten');
-            $table->timestamps();
-        });
+        // Schema::create('phan_hoi', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('sdt');
+        //     $table->string('noi_dung');
+        //     $table->string('ten');
+        //     $table->timestamps();
+        // });
     }
 
     /**

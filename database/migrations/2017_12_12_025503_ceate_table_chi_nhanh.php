@@ -13,14 +13,14 @@ class CeateTableChiNhanh extends Migration
      */
     public function up()
     {
-        Schema::create('chi_nhanh', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('ten');
-            $table->string('sdt');
-            $table->string('email');
-            $table->string('dia_chi');
-            $table->timestamps();
-        });
+        // Schema::create('chi_nhanh', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('ten');
+        //     $table->string('sdt');
+        //     $table->string('email');
+        //     $table->string('dia_chi');
+        //     $table->timestamps();
+        // });
     }
 
     /**

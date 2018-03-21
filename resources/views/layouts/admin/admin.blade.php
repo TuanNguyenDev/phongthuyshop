@@ -624,5 +624,9 @@
 <script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+{{--TinyMCE--}}
+<script type="text/javascript" src="{{asset('tinymce/tinymce.min.js')}}"></script>
+<script>tinymce.init({ selector:'textarea#editor' });</script>
+@yield('js')
 </body>
 </html>

@@ -13,11 +13,11 @@ class CeateTableUserRole extends Migration
      */
     public function up()
     {
-        Schema::create('user_role', function (Blueprint $table) {
-            $table->integer('id_user');
-            $table->integer('id_chi_nhanh');
-            $table->timestamps();
-        });
+        // Schema::create('user_role', function (Blueprint $table) {
+        //     $table->integer('id_user');
+        //     $table->integer('id_chi_nhanh');
+        //     $table->timestamps();
+        // });
     }
 
     /**

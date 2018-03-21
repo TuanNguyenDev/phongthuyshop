@@ -13,12 +13,12 @@ class CeateTableMenh extends Migration
      */
     public function up()
     {
-        Schema::create('menh', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('ten_menh');
-            $table->string('trang_thai');
-            $table->timestamps();
-        });
+        // Schema::create('menh', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('ten_menh');
+        //     $table->string('trang_thai');
+        //     $table->timestamps();
+        // });
     }
 
     /**

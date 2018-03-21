@@ -18,14 +18,14 @@ class ProductRepository{
 		if($rq->input('keyword') != "" || $rq->input('pageSize') != ""){
 			$keyword = $rq->input("keyword");
 			$pageSize = $rq->input('pageSize');
-			$productList = Product::where('name','like', "%$keyword%")->paginate($pageSize)->withPath("keyword=$keyword&pageSize=$pageSize");
+			$productList = Product::where('ten_san_pham','like', "%$keyword%")->paginate($pageSize)->withPath("keyword=$keyword&pageSize=$pageSize");
 		Log::info('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
 		return $productList;
 		}else{
 			Log::info('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
-			$productList = Product::paginate(20);
+			$productList = Product::paginate(10);
 			return $productList;
 		}
 	}

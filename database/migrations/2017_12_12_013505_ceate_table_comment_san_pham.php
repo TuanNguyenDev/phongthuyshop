@@ -13,12 +13,12 @@ class CeateTableCommentSanPham extends Migration
      */
     public function up()
     {
-        Schema::create('comment_san_pham', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('id_khach');
-            $table->text('noi_dung');
-            $table->timestamps();
-        });
+        // Schema::create('comment_san_pham', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('id_khach');
+        //     $table->text('noi_dung');
+        //     $table->timestamps();
+        // });
     }
 
     /**

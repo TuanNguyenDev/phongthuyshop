@@ -13,12 +13,12 @@ class CeateTableTrinhChieu extends Migration
      */
     public function up()
     {
-        Schema::create('trinh_chieu', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('mo_ta');
-            $table->string('anh',500);
-            $table->timestamps();
-        });
+        // Schema::create('trinh_chieu', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('mo_ta');
+        //     $table->string('anh',500);
+        //     $table->timestamps();
+        // });
     }
 
     /**

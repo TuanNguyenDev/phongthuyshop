@@ -13,13 +13,13 @@ class CeateTableBillDetail extends Migration
      */
     public function up()
     {
-        Schema::create('bill_detail', function (Blueprint $table) {
-            $table->integer('id');
-            $table->integer('id_san_pham');
-            $table->integer('so_luong');
-            $table->integer('thanhtien');
-            $table->timestamps();
-        });
+        // Schema::create('bill_detail', function (Blueprint $table) {
+        //     $table->integer('id');
+        //     $table->integer('id_san_pham');
+        //     $table->integer('so_luong');
+        //     $table->integer('thanhtien');
+        //     $table->timestamps();
+        // });
     }
 
     /**

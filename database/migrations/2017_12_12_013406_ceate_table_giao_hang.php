@@ -13,14 +13,14 @@ class CeateTableGiaoHang extends Migration
      */
     public function up()
     {
-        Schema::create('giao_hang', function (Blueprint $table) {
-            $table->integer('id_don_hang');
-            $table->integer('id_don_vi_van_chuyen');
-            $table->date('ngay_giao_hang');
-            $table->integer('chi_phi');
-            $table->string('trang_thai');
-            $table->timestamps();
-        });
+        // Schema::create('giao_hang', function (Blueprint $table) {
+        //     $table->integer('id_don_hang');
+        //     $table->integer('id_don_vi_van_chuyen');
+        //     $table->date('ngay_giao_hang');
+        //     $table->integer('chi_phi');
+        //     $table->string('trang_thai');
+        //     $table->timestamps();
+        // });
     }
 
     /**

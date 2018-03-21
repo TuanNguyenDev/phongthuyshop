@@ -5,6 +5,7 @@ Route::get('/dashboard', function(){
 
 Route::get('product', 'Admin\ProductController@getList')->name('product.list');
 
+Route::get('product/create','Admin\ProductController@createProduct')->name('product.create');
 
 
  ?>

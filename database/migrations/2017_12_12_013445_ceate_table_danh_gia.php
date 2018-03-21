@@ -13,12 +13,12 @@ class CeateTableDanhGia extends Migration
      */
     public function up()
     {
-        Schema::create('danh_gia', function (Blueprint $table) {
-            $table->integer('id_user');
-            $table->integer('id_san_pham');
-            $table->string('noi_dung');
-            $table->timestamps();
-        });
+        // Schema::create('danh_gia', function (Blueprint $table) {
+        //     $table->integer('id_user');
+        //     $table->integer('id_san_pham');
+        //     $table->string('noi_dung');
+        //     $table->timestamps();
+        // });
     }
 
     /**

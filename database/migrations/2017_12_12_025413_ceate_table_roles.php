@@ -13,12 +13,12 @@ class CeateTableRoles extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('ten_role');
-            $table->string('mo_ta');
-            $table->timestamps();
-        });
+        // Schema::create('roles', function (Blueprint $table) {
+        //     $table->integer('id');
+        //     $table->string('ten_role');
+        //     $table->string('mo_ta');
+        //     $table->timestamps();
+        // });
     }
 
     /**

@@ -13,13 +13,13 @@ class CeateTableMaKM extends Migration
      */
     public function up()
     {
-        Schema::create('ma_km', function (Blueprint $table) {
-            $table->string('ma_khuyen_mai');
-            $table->date('ngay_het_han');
-            $table->integer('chiet_khau');
-            $table->string('trang_thai');
-            $table->timestamps();
-        });
+        // Schema::create('ma_km', function (Blueprint $table) {
+        //     $table->string('ma_khuyen_mai');
+        //     $table->date('ngay_het_han');
+        //     $table->integer('chiet_khau');
+        //     $table->string('trang_thai');
+        //     $table->timestamps();
+        // });
     }
 
     /**
