@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Http\Requests\SaveProductRequest;
 use App\Models\Category;
 use App\Models\Menh;
 use App\Models\Slug;
@@ -38,5 +39,16 @@ class ProductController extends Controller
         $listMenh = Menh::all();
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         return view('admin.product.form', compact('model','listType','listMenh','modelSlug'));
+    }
+    public function saveProduct(SaveProductRequest $rq){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        $result = ProductRepository::Save($rq);
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        if($result){
+            return redirect(route('product.list'));
+        }else{
+            return 'Error';
+        }
+
     }
 }

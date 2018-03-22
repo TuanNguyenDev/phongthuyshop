@@ -47,7 +47,10 @@
 			<th>Kích thước</th>
 			<th>Giá nhập</th>
 			<th>Người tạo</th>
-			<th><a href="{{route('product.create')}}" class="btn btn-xs btn-success" title="">Tạo mới</a></th>
+			<th>
+				<a href="{{route('product.create')}}" class="btn btn-xs btn-success" title="">Tạo mới</a>
+				<a href="{{-- {{route('product.update')}} --}}" class="btn btn-xs btn-success" title="">Cập nhập</a>
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -55,17 +58,12 @@
 			<tr>
 				<td>{{++$loop->index}}</td>
 				<td>{{$p->ten_san_pham}}</td>
-				<td>{{$p->anh}}</td>
+				<td><img src="{{asset($p->anh)}}" alt=""></td>
 				<td>{{$p->size}}</td>
 				<td>{{$p->gia}}</td>
 				<td>{{$p->trong_luong}}</td>
 				<td>{{$p->mau_sac}}</td>
-				<td>
-					{{-- @php
-						$menh = $p->Menh();
-					@endphp --}}
-					{{$p->Menh()['ten_menh']}}
-				</td>
+				<td>{{$p->Menh()['ten_menh']}}</td>
 				<td>{{$p->Category()['ten_danh_muc']}}</td>
 				<td>{{$p->so_luong}}</td>
 				<td>{{$p->chat_lieu}}</td>
