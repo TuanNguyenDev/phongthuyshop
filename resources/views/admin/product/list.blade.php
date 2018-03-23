@@ -41,15 +41,13 @@
 			<th>Danh mục</th>
 			<th>Số lượng</th>
 			<th>Chất liệu</th>
-			<th>Ý nghĩa</th>
 			<th>Mô tả</th>
 			<th>Trạng thái</th>
-			<th>Kích thước</th>
 			<th>Giá nhập</th>
 			<th>Người tạo</th>
 			<th>
 				<a href="{{route('product.create')}}" class="btn btn-xs btn-success" title="">Tạo mới</a>
-				<a href="{{-- {{route('product.update')}} --}}" class="btn btn-xs btn-success" title="">Cập nhập</a>
+				
 			</th>
 		</tr>
 	</thead>
@@ -58,7 +56,7 @@
 			<tr>
 				<td>{{++$loop->index}}</td>
 				<td>{{$p->ten_san_pham}}</td>
-				<td><img src="{{asset($p->anh)}}" alt=""></td>
+				<td ><img width="70" src="{{asset($p->anh)}}" alt=""></td>
 				<td>{{$p->size}}</td>
 				<td>{{$p->gia}}</td>
 				<td>{{$p->trong_luong}}</td>
@@ -67,16 +65,29 @@
 				<td>{{$p->Category()['ten_danh_muc']}}</td>
 				<td>{{$p->so_luong}}</td>
 				<td>{{$p->chat_lieu}}</td>
-				<td>{{$p->y_nghia}}</td>
 				<td>{{$p->mo_ta}}</td>
-				<td>{{$p->trang_thai}}</td>
-				<td>{{$p->kich_thuoc}}</td>
-				<td>{{$p->gia_nhap}}</td>
+				<td>
+					@if ($p->trang_thai==1)
+						Enable
+					@else
+						Disable
+					@endif
+				</td>
+					<td>{{$p->gia_nhap}}</td>
 				<td>{{$p->nguoi_tao}}</td>
+				<td>
+					<a href="{{route('product.update',['id' => $p->id])}}" class="btn btn-xs btn-success" title="">Cập nhập</a>
+					@if ($p->trang_thai ==1)
+						<a href="{{route('product.status',['id' => $p->id])}}" class="btn btn-xs btn-success" title="">Ẩn sản phẩm</a>
+					@else
+						<a href="{{route('product.status',['id' => $p->id])}}" class="btn btn-xs btn-success" title="">Hiện sản phẩm</a>
+					@endif
+					<a href="{{route('product.delete',['id' => $p->id])}}" class="btn btn-xs btn-success" title="">Xóa</a>
+				</td>
 			</tr>
 		@endforeach
 		<tr>
-			<td colspan="7" rowspan="" class="text-center" headers="">{{$products->links()}}</td>
+			<td colspan="10" rowspan="" class="text-center" headers="">{{$products->links()}}</td>
 		</tr>
 	</tbody>
 </table>

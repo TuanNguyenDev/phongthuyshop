@@ -37,8 +37,9 @@ class ProductController extends Controller
         $modelSlug->entity_id = $model->id;
         $listType = Category::all();
         $listMenh = Menh::all();
+        $title = 'Thêm mới sản phẩm';
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-        return view('admin.product.form', compact('model','listType','listMenh','modelSlug'));
+        return view('admin.product.form', compact('model','listType','listMenh','modelSlug','title'));
     }
     public function saveProduct(SaveProductRequest $rq){
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
@@ -50,5 +51,51 @@ class ProductController extends Controller
             return 'Error';
         }
 
+    }
+    public function updateProduct($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        $model = Product::find($id);
+        if(!$model){
+            return 'Error';
+        }
+        $modelSlug = Slug::where([
+            'entity_type' => $model->entityType,
+            'entity_id' => $model->id
+        ])->first();
+        if(!$modelSlug){
+            $modelSlug = new Slug();
+            $modelSlug->entity_type = $model->entityType;
+            $modelSlug->entity_id = $model->id;
+        }
+        $listType = Category::all();
+        $listMenh = Menh::all();
+        $title = 'Sửa thông tin sản phẩm'. " " . $model->ten_san_pham;
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('admin.product.form', compact('model','listType','listMenh','modelSlug','title'));
+    }
+    public function statusProduct($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        $model = Product::find($id);
+        if(!$model){
+            return 'Error';
+        }
+        if($model->trang_thai == 1){
+            $model->trang_thai = 0;
+        }else{
+            $model->trang_thai = 1;
+        }
+        $model->save();
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return redirect(route('product.list'));
+    }
+    public function deleteProduct($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        $result = ProductRepository::Destroy($id);
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        if($result){
+            return redirect(route('product.list'));
+        }else{
+            return 'Error';
+        }
     }
 }

@@ -13,8 +13,7 @@ class ProductRepository{
 	@date 14/01/2017 - create new
 	 */
 	public static function getAll(Request $rq){
-		Log::info('BEGIN ' 
-			. get_class() . ' => ' . __FUNCTION__ . '()');
+		Log::info('BEGIN ' . get_class() . ' => ' . __FUNCTION__ . '()');
 		if($rq->input('keyword') != "" || $rq->input('pageSize') != ""){
 			$keyword = $rq->input("keyword");
 			$pageSize = $rq->input('pageSize');
@@ -23,15 +22,13 @@ class ProductRepository{
 			. get_class() . ' => ' . __FUNCTION__ . '()');
 		return $productList;
 		}else{
-			Log::info('END ' 
-			. get_class() . ' => ' . __FUNCTION__ . '()');
+			Log::info('END ' . get_class() . ' => ' . __FUNCTION__ . '()');
 			$productList = Product::paginate(10);
 			return $productList;
 		}
 	}
 	public static function Save(Request $rq){
-		Log::info('BEGIN ' 
-			. get_class() . ' => ' . __FUNCTION__ . '()');
+		Log::info('BEGIN ' . get_class() . ' => ' . __FUNCTION__ . '()');
 		DB::beginTransaction();
 		try{
 			if($rq->id == null){
@@ -62,13 +59,30 @@ class ProductRepository{
 				]
 			);
 			DB::commit();
-			Log::info('END ' 
-			. get_class() . ' => ' . __FUNCTION__ . '()');
+			Log::info('END '  . get_class() . ' => ' . __FUNCTION__ . '()');
 			return true;
 		}catch(\Exception $ex){
-			dd($ex->getMessage());
-			Log::error('END ' 
-			. get_class() . ' => ' . __FUNCTION__ . '() - ' . $ex->getMessage());
+			Log::error('END '  . get_class() . ' => ' . __FUNCTION__ . '() - ' . $ex->getMessage());
+			DB::rollback();
+			return false;
+		}
+	}
+	public static function Destroy($id){
+		Log::info('BEGIN ' 
+			. get_class() . ' => ' . __FUNCTION__ . '()');
+		$model = Product::find($id);
+		if(!$model){
+			Log::info('END ' . get_class() . ' => ' . __FUNCTION__ . '()');
+			return false;
+		}
+		DB::beginTransaction();
+		try{
+			$model->delete();
+			DB::commit();
+			Log::info('END ' . get_class() . ' => ' . __FUNCTION__ . '()');
+			return true;
+		}catch(\Exception $ex){
+			Log::error('END '  . get_class() . ' => ' . __FUNCTION__ . '() - ' . $ex->getMessage());
 			DB::rollback();
 			return false;
 		}

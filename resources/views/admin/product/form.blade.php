@@ -1,6 +1,6 @@
 @extends('layouts.admin.admin')
-@section('title', 'Thêm sản phẩm')
-@section('config_title', 'Thêm sản phẩm')
+@section('title', $title)
+@section('config_title', $title)
 @section('content')
 <div class="col-sm-12">
 	
