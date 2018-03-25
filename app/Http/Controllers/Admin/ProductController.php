@@ -18,7 +18,7 @@ class ProductController extends Controller
 	Lấy danh sách sản phẩm
 	@author TuanNguyen
 	@return view
-	@date 14/01/2017 - create new
+	@date 14/01/2018 - create new
 	 */
     public function getList(Request $rq){
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
