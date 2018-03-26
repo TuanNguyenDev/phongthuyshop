@@ -21,5 +21,10 @@ Route::get('product/delete/{id}','Admin\ProductController@deleteProduct')->name(
 
 /*Begin Category Route*/
 Route::get('category','Admin\CategoryController@getList')->name('category.list');
+Route::get('category/create','Admin\CategoryController@createCategory')->name('category.create');
+Route::post('category/save','Admin\CategoryController@saveCate')->name('category.save');
+Route::get('category/update/{id}','Admin\CategoryController@updateCategory')->name('category.update');
+Route::get('category/status/{id}','Admin\CategoryController@statusCategory')->name('category.status');
+Route::get('category/delete/{id}','Admin\CategoryController@deleteCategory')->name('category.delete');
 /*End Category Route*/
  ?>

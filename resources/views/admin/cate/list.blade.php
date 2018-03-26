@@ -37,7 +37,7 @@
 			<th>Trạng thái</th>
 			<th>Người tạo</th>
 			<th>
-				<a href="" class="btn btn-xs btn-success" title="">Tạo mới</a>
+				<a href="{{route('category.create')}}" class="btn btn-xs btn-success" title="">Tạo mới</a>
 			</th>
 		</tr>
 	</thead>
@@ -56,8 +56,20 @@
 				@endif
 			</td>
 			<td>{{$c->nguoi_tao}}</td>
+			<td>
+				<a href="{{route('category.update',['id' => $c->id])}}" class="btn btn-xs btn-success" title="">Cập nhập</a>
+				@if ($c->trang_thai ==1)
+					<a href="{{route('category.status',['id' => $c->id])}}" class="btn btn-xs btn-success" title="">Ẩn danh mục</a>
+				@else
+					<a href="{{route('category.status',['id' => $c->id])}}" class="btn btn-xs btn-success" title="">Hiện danh mục</a>
+				@endif
+				<a href="{{route('category.delete',['id' => $c->id])}}" class="btn btn-xs btn-success" title="">Xóa</a>
+			</td>
 		</tr>
 		@endforeach
+		<tr>
+			<td colspan="7" class="text-center">{{$cates->links()}}</td>
+		</tr>
 	</tbody>
 </table>
 
