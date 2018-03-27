@@ -120,7 +120,7 @@ class CategoryController extends Controller
         	return redirect(route('category.list'));
     }
     /*
-    Xóa danh mục danh mục, đồng thời xóa cả những sản phẩm thuộc danh mục đó
+    Xóa danh mục , đồng thời xóa cả những sản phẩm thuộc danh mục đó
     @author TuanNguyen
     @return view
     @date 27/03/2018 - create new

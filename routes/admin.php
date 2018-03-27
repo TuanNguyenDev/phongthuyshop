@@ -27,4 +27,15 @@ Route::get('category/update/{id}','Admin\CategoryController@updateCategory')->na
 Route::get('category/status/{id}','Admin\CategoryController@statusCategory')->name('category.status');
 Route::get('category/delete/{id}','Admin\CategoryController@deleteCategory')->name('category.delete');
 /*End Category Route*/
+
+
+/*Begin Menh Route*/
+Route::get('menh','Admin\MenhController@getList')->name('menh.list');
+Route::get('menh/create','Admin\MenhController@createMenh')->name('menh.create');
+Route::post('menh/save','Admin\MenhController@saveMenh')->name('menh.save');
+Route::get('menh/update/{id}','Admin\MenhController@updateMenh')->name('menh.update');
+Route::get('menh/status/{id}','Admin\MenhController@statusMenh')->name('menh.status');
+Route::get('menh/delete/{id}','Admin\MenhController@deleteMenh')->name('menh.delete');
+/*End Menh Route*/
+
  ?>
