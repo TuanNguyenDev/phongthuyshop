@@ -9,7 +9,7 @@ class Category extends Model
 {
     protected $table = "categories";
     public $entityType = ENTITY_TYPE_TYPE;
-    public $fillable = ['ten_danh_muc','mo_ta'];
+    public $fillable = ['ten_danh_muc','mo_ta', 'nguoi_tao'];
 
     public function Product(){
     	return $this->hasMany('App\Models\Product','id_danh_muc','id');

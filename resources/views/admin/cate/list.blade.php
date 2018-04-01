@@ -55,7 +55,7 @@
 					Disable
 				@endif
 			</td>
-			<td>{{$c->nguoi_tao}}</td>
+			<td>{{get_admin_name($c->nguoi_tao)}}</td>
 			<td>
 				<a href="{{route('category.update',['id' => $c->id])}}" class="btn btn-xs btn-success" title="">Cập nhập</a>
 				@if ($c->trang_thai ==1)

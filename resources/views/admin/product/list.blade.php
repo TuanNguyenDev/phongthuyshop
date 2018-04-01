@@ -74,7 +74,7 @@
 					@endif
 				</td>
 					<td>{{$p->gia_nhap}}</td>
-				<td>{{$p->nguoi_tao}}</td>
+				<td>{{get_admin_name($p->nguoi_tao)}}</td>
 				<td>
 					<a href="{{route('product.update',['id' => $p->id])}}" class="btn btn-xs btn-success" title="">Cập nhập</a>
 					@if ($p->trang_thai ==1)

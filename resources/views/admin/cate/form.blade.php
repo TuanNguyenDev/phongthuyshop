@@ -7,6 +7,7 @@
 		{{csrf_field()}}
 		<input type="hidden" name="id" value="{{old('id', $model->id)}}">
 		<input type="hidden" name="entity_type" value="{{$modelSlug->entity_type}}">
+		<input type="hidden" name="nguoi_tao" value="{{\Auth::user()->id}}">
 		<div class="form-group">
 			<label for="ten_danh_muc">Tên danh mục</label>
 			<input type="text" value="{{old('ten_danh_muc',$model->ten_danh_muc)}}" name="ten_danh_muc" id="ten_danh_muc" class="form-control" placeholder="Điền tên danh mục">
