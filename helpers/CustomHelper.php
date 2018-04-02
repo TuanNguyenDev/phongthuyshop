@@ -8,7 +8,8 @@ Slug constant
  */
 define('ENTITY_TYPE_TYPE', 100);
 define('ENTITY_TYPE_PRODUCT', 500);
-define('ENTITY_TYPE_MENH', 500);
+define('ENTITY_TYPE_MENH', 600);
+define('ENTITY_TYPE_NEW', 700);
 
 if(!function_exists('slug_generate')){
 

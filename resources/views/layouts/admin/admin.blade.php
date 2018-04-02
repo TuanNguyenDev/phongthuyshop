@@ -29,6 +29,9 @@
   <link rel="stylesheet" href="{{asset('admin/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+  <script src="{{asset('admin/plugins/ckeditor/ckeditor/ckeditor.js')}}"></script>
+  <script src="{{asset('admin/plugins/ckeditor/ckfinder/ckfinder.js')}}"></script>
+  <script src="{{asset('admin/plugins/ckeditor/func_ckfinder.js')}}"></script>
   <script type="text/javascript">
     var baseURL = "{{url('/')}}";
   </script>

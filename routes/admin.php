@@ -41,6 +41,15 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::post('profile','Admin\ProfileController@save');
 	Route::get('change-pass','Admin\ProfileController@changePwdForm')->name('password.change');
 	Route::post('change-pass','Admin\ProfileController@saveChangePwd');
+	/*End Profile Route*/
+
+	/*Tin tức Route*/
+	Route::get('/news','Admin\TinTucController@getList')->name('tintuc.list');
+	Route::get('news/create', 'Admin\TinTucController@createNew')->name('news.create');
+	Route::post('news/save','Admin\TinTucController@saveNew')->name('news.save');
+	Route::get('news/update/{id}','Admin\TinTucController@updateNew')->name('news.update');
+	Route::get('news/delete/{id}','Admin\TinTucController@deleteNew')->name('news.remove');
+	/*Emd Tin tức route*/
 });
 
 

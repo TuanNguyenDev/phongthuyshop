@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TinTuc extends Model
 {
-    protected $table = 'tintuc';
+    protected $table = 'tin_tuc';
+    public $fillable = ['tieu_de','noi_dung', 'description'];
+    public $entityType = ENTITY_TYPE_NEW;
+
 }
