@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\UserRole;
 
 class Admin extends Authenticatable
 {
@@ -27,4 +28,21 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    /*
+    check current user has Mod_role
+     @return boolean
+     author TuanNguyen
+     3/4/2018 - create new
+     */
+    public function checkMod(){
+        $listRole = UserRole::where('id_user', $this->id)->get();
+        $flag = false;
+        for ($i=0; $i < count($listRole) ; $i++) { 
+            if($listRole[$i]->id_role >= ROLE_MOD){
+                $flag = true;
+                break;
+            }
+        }
+        return $flag;
+    }
 }

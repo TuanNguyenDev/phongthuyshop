@@ -1,6 +1,7 @@
 <?php 
 use App\Admin;
 define('ROLE_STAFF', 100);
+define('ROLE_MOD', 500);
 define('ROLE_ADMIN', 900);
 
 /*
