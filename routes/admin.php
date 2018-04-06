@@ -50,6 +50,12 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::post('news/save','Admin\TinTucController@saveNew')->name('news.save');
 	Route::get('news/update/{id}','Admin\TinTucController@updateNew')->name('news.update');
 	/*Emd Tin tức route*/
+
+	/*Route quản lí User*/
+	Route::get('/user','Admin\UserController@getList')->name('user.list');
+	Route::get('/user/create','Admin\UserController@create')->name('user.create');
+	Route::post('user/save','Admin\UserController@save')->name('user.save');
+	/*End Route quản lí User*/
 });
 
 
