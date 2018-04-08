@@ -55,4 +55,40 @@ class UserController extends Controller
             return 'Error';
         }
     }
+    /*
+	Xóa user
+	@author TuanNguyen
+	@return view
+	@date 7/04/2018 - create new
+	 */
+    public function deleteUser($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        $result = UserRepository::Destroy($id);
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        if($result){
+            return redirect(route('user.list'));
+        }else{
+            return 'Error';
+        }
+    }/*
+	Xóa user
+	@author TuanNguyen
+	@return view
+	@date 7/04/2018 - create new
+	 */
+    public function statusUser($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        $model = Admin::find($id);
+        if(!$model){
+            return 'Error';
+        }
+        if($model->trang_thai == 1){
+            $model->trang_thai = 0;
+        }else{
+            $model->trang_thai = 1;
+        }
+        $model->save();
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return redirect(route('user.list'));
+    }
 }

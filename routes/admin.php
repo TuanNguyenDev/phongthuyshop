@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth:admin'],function(){
 		Route::get('category/delete/{id}','Admin\CategoryController@deleteCategory')->name('category.delete');
 		Route::get('menh/delete/{id}','Admin\MenhController@deleteMenh')->name('menh.delete');
 		Route::get('news/delete/{id}','Admin\TinTucController@deleteNew')->name('news.remove');
+		Route::get('user/delete/{id}','Admin\UserController@deleteUser')->name('user.delete');
 
 	});
 	/*Begin Category Route*/
@@ -55,6 +56,8 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('/user','Admin\UserController@getList')->name('user.list');
 	Route::get('/user/create','Admin\UserController@create')->name('user.create');
 	Route::post('user/save','Admin\UserController@save')->name('user.save');
+	Route::get('user/delete/{id}','Admin\UserController@deleteUser')->name('user.delete');
+	Route::get('user/status/{id}','Admin\UserController@statusUser')->name('user.status');
 	/*End Route quản lí User*/
 });
 

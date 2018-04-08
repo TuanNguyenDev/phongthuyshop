@@ -74,7 +74,12 @@
 				
 			</td>
 			<td>
-				<a href="{{-- {{route('user.remove',['id' => $element->id])}} --}}" class="btn btn-xs btn-info" title="">Remove</a>
+				<a href="{{route('user.delete',['id' => $element->id])}}" class="btn btn-xs btn-info" title="">Remove</a>
+				@if ($element->trang_thai ==1)
+					<a href="{{route('user.status',['id' => $element->id])}}" class="btn btn-xs btn-success" title="">Khóa người dùng</a>
+				@else
+					<a href="{{route('user.status',['id' => $element->id])}}" class="btn btn-xs btn-success" title="">Mở khóa người dùng</a>
+				@endif
 			</td>
 		</tr>
 	@endforeach

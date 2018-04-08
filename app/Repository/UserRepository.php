@@ -2,6 +2,7 @@
 namespace App\Repository;
 use Log;
 use App\Admin;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use DB;
 use Hash;
@@ -68,6 +69,37 @@ class UserRepository
 			Log::info('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
 	        return true;
+		}catch(\Exception $ex){
+			Log::error('END ' 
+			. get_class() . ' => ' . __FUNCTION__ . '() - ' . $ex->getMessage());
+			DB::rollback();
+			return false;
+		}
+	}
+	/*
+	@author TuanNguyen
+	@return bool
+	@date 7/04/2018 - create new
+	 */
+	public static function Destroy($id){
+		Log::info('BEGIN ' 
+			. get_class() . ' => ' . __FUNCTION__ . '()');
+		$model = Admin::find($id);
+		if(!$model)
+		{
+			Log::info('END ' 
+			. get_class() . ' => ' . __FUNCTION__ . '()');
+			return false;
+		}
+		DB::beginTransaction();
+		try{
+			$role = UserRole::where('id_user',$id);
+			$role->delete();
+			$model->delete();
+			DB::commit();
+			Log::info('END ' 
+			. get_class() . ' => ' . __FUNCTION__ . '()');
+			return true;
 		}catch(\Exception $ex){
 			Log::error('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '() - ' . $ex->getMessage());

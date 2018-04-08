@@ -21,7 +21,12 @@ class AdminLoginController extends Controller
     		'password' => 'required|min:6'
     	]);
     	//attempt to log the user
-    	if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
+    	if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password, 'trang_thai' => 1], $request->remember)){
+            // dd(Auth::guard('admin')['user']);
+            // if(Auth::guard('admin')->trang_thai != 1){
+            //     Auth::guard('admin')->logout();
+            //     return redirect('mod/login');
+            // }
     	//if successfull, then redirect to their intended location
     		return redirect()->intended(route('dashboard'));	
     	}
