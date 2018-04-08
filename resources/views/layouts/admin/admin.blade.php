@@ -357,8 +357,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Danh sách</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+            <li><a href="{{route('category.list')}}ml"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+            <li><a href="{{route('category.create')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -370,8 +370,34 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Danh sách</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+            <li><a href="{{route('menh.list')}}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+            <li><a href="{{route('menh.create')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>User</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('user.list')}}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+            <li><a href="{{route('user.create')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>TinTức</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('tintuc.list')}}"><i class="fa fa-circle-o"></i> Danh sách tin tức</a></li>
+            <li><a href="{{route('news.create')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
           </ul>
         </li>
       </ul>

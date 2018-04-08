@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\TinTuc;
 use App\Models\TrinhChieu;
 use Illuminate\Http\Response;
 use Log;
@@ -17,9 +18,11 @@ class IndexController extends Controller
 	 */
     public function getIndex(){
     	$slide_first = TrinhChieu::first();
-    	$slides = TrinhChieu::where('id','<>',$slide_first->id)->get();
+    	$slides = TrinhChieu::all();
     	$cates = Category::all();
-    	return view('user.index',compact('slides','slide_first','cates'));
+        $new_pro = Product::where('trang_thai', 1)->orderBy('created_at','DESC')->take(6)->get();
+        $random = Product::all()->random(6);
+    	return view('user.index',compact('slides','slide_first','cates','new_pro','random'));
     }
 
     public function getProductDetail($id){
@@ -80,5 +83,23 @@ class IndexController extends Controller
         $cart = Cart::content();
         $total = Cart::subtotal();
         return view('user.cart_detail',compact('cart','total'));
+    }
+    public function getNew(){
+        $tintuc = TinTuc::orderBy('created_at','DESC')->paginate(10);
+        return view('user.tintuc', compact('tintuc'));
+    }
+    /*lấy thông tin chi tiết của bài viết
+    author TuanNguyen
+    return bool
+    08/04/2018 create new*/
+    public function chitietTin($id){
+        $tin = TinTuc::find($id);
+
+        if(!$tin){
+            return 'Error';
+        }
+        else{
+            return view('user.chitiettin',compact('tin'));
+        }
     }
 }

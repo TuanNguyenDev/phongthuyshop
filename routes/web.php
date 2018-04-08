@@ -30,7 +30,8 @@ Route::get('/search/key/cate','IndexController@getSearchResult')->name('search_n
 Route::get('/customer',function(){
 	return view('user.customer');
 });
-
+Route::get('/tin_tuc_bo_ich', 'IndexController@getNew')->name('tin.tuc.bo.ich');
+Route::get('/tin_tuc_chi_tiet/{id}','IndexController@chitietTin')->name('tintuc.chitiet');
 // Route::get('/login',function(){
 // 	return view('user.login');
 // });

@@ -45,7 +45,7 @@
 			<td>{{++$loop->index}}</td>
 			<td>{{$n->tieu_de}}</td>
 			<td>
-				<img src="{{asset($n->image)}}" alt="">
+				<img width="70px" src="{{asset($n->anh)}}" alt="">
 			</td>
 			<td>{{$n->description}}</td>
 			<td>{{get_admin_name($n->id_tac_gia)}}</td>

@@ -36,9 +36,9 @@ class ProfileController extends Controller
 		$model = Admin::find(Auth::user()->id);
 		$model->fill($rq->all());
 		if($rq->hasFile('anh')){
-			$fileName = uniqid() . "." . $rq->image->extension();
-			$rq->image->storeAs('uploads', $fileName);
-			$model->image = 'uploads/'.$fileName;
+			$fileName = uniqid() . "." . $rq->anh->extension();
+			$rq->anh->storeAs('uploads', $fileName);
+			$model->avatar = 'uploads/'.$fileName;
 		}
 		$model->save();
 		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");

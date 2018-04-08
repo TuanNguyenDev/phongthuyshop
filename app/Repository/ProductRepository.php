@@ -62,6 +62,7 @@ class ProductRepository{
 			Log::info('END '  . get_class() . ' => ' . __FUNCTION__ . '()');
 			return true;
 		}catch(\Exception $ex){
+			dd($ex->getMessage());
 			Log::error('END '  . get_class() . ' => ' . __FUNCTION__ . '() - ' . $ex->getMessage());
 			DB::rollback();
 			return false;
