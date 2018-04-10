@@ -59,6 +59,20 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('user/delete/{id}','Admin\UserController@deleteUser')->name('user.delete');
 	Route::get('user/status/{id}','Admin\UserController@statusUser')->name('user.status');
 	/*End Route quản lí User*/
+
+	/* Thông tin của cửa hàng*/
+	Route::get('/info','Admin\InfoController@getList')->name('info.list');
+	Route::get('/info/update/{id}','Admin\InfoController@updateInfo')->name('info.update');
+	Route::post('/info/save','Admin\InfoController@saveInfo')->name('info.save');
+	/*end thông tin cửa hàng*/
+
+	/*route slide trang chủ*/
+	Route::get('/slide','Admin\SlideController@getList')->name('slide.list');
+	Route::get('/slide/create','Admin\SlideController@create')->name('slide.create');
+	Route::post('slide/save','Admin\SlideController@save')->name('slide.save');
+	Route::get('slide/update/{id}','Admin\SlideController@update')->name('slide.update');
+	Route::get('slide/delete/{id}','Admin\SlideController@delete')->name('slide.delete');
+	/*end slide trang chủ*/
 });
 
 

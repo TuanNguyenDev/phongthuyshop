@@ -7,7 +7,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="collection-wrapper">
-							<h1 class="collection-title"><span>Tìm thấy {{count($result)}} sản phẩm</span></h1>
+							<h1 class="collection-title"><span>Tìm thấy {{count($total)}} sản phẩm</span></h1>
 							<div class="breadcrumb-group">
 								<div class="breadcrumb clearfix">
 									<span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="./index.html" title="Bridal 1" itemprop="url"><span itemprop="title">Home</span></a>
@@ -88,6 +88,11 @@
 											</div>
 										</div>
 										@endforeach
+									</div>
+									<div class="pager">
+										<div class="col-md-12">
+											{{$result->links()}}
+										</div>
 									</div>
 									<!-- /#search -->
 								</div>

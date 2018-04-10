@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SaveNewsRequest extends FormRequest
+class SaveInfoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class SaveNewsRequest extends FormRequest
     public function rules()
     {
         return [
-            'tieu_de' => 'required',
             'noi_dung' => 'required',
-            'nguoi_tao' => 'required'
         ];
     }
 }

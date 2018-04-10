@@ -675,11 +675,18 @@
 													</ul>
 												</li>
 												<li class="nav-item active">
-													<a href="">
+													<a href="{{route('tin.tuc.bo.ich')}}">
 														<span>Tin Tức</span>
 													</a>
 												</li>
-												<li class="nav-item active">
+												@foreach ($info as $i)
+													<li class="nav-item active">
+													<a href="{{route('index')}}">
+														<span>{{$i->danh_muc}}</span>
+													</a>
+												</li>
+												@endforeach
+												{{-- <li class="nav-item active">
 													<a href="{{route('index')}}">
 														<span>Chính Sách</span>
 													</a>
@@ -693,7 +700,7 @@
 													<a href="{{route('index')}}">
 														<span>Liên Hệ</span>
 													</a>
-												</li>
+												</li> --}}
 												
 											</ul>
 										</div>

@@ -8,7 +8,7 @@
 				<div class="post-item col-md-4">
 					<a href="{{route('tintuc.chitiet',['id' => $p->id])}}" title="">{{$p->tieu_de}}</a>
 					<div class="bg-success">
-						<a href="{{-- {{$p->getSlug()}} --}}" class="thumbnail" title="">
+						<a href="{{route('tintuc.chitiet',['id' => $p->id])}}" class="thumbnail" title="">
 							<img src="{{asset($p->anh)}}" alt="">
 						</a>
 						{!!$p->description!!}

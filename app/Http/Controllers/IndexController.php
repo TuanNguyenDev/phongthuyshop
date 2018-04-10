@@ -71,12 +71,13 @@ class IndexController extends Controller
         $key = $rq->key;
         $cate = $rq->cate;
         if($cate=0){
-        $result = Product::where('ten_san_pham','like', "%$key%")->paginate(20);
+            $total = Product::where('ten_san_pham','like', "%$key%")->get();
+            $result = Product::where('ten_san_pham','like', "%$key%")->paginate(20);
         }else{
-            
+            $total = Product::where('ten_san_pham','like',"%$key%")->orWhere('id_danh_muc',$cate)->get();
             $result = Product::where('ten_san_pham','like',"%$key%")->orWhere('id_danh_muc',$cate)->paginate(20);
         }
-        return view('user.search',compact('result','key'));
+        return view('user.search',compact('result','key','total'));
     }
 
     public function showCart(){
