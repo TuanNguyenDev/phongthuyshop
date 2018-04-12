@@ -49,13 +49,9 @@ class IndexController extends Controller
 }
     public function updateCart(Request $rq){
         $id = $rq->id;
-        $sl = $rq->quantity;
-        $product = Product::find($id);
-        if(isset($product)){
-        Cart::add($id, $product->ten_san_pham,$sl,$product->gia,['anh' => $product->anh]);
-        $cart = Cart::content();
-        return back()->withInput();
-    }
+        $qty = $rq->qty;
+        Cart::update($id, $qty);
+        return "ok";
 
 }
     public function removeCart($rowId){

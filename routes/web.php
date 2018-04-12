@@ -18,7 +18,7 @@ Route::get('/product/{id}','IndexController@getProductDetail')->name('product');
 
 Route::get('/add_cart/{id}','IndexController@addCart')->name('addCart');
 
-Route::post('/updatecart','IndexController@updateCart')->name('updateCart');
+Route::post('updatecart/{id}/{quantity}','IndexController@updateCart')->name('updateCart');
 
 Route::get('/cart',function(){
 	return view('user.cart_detail');
