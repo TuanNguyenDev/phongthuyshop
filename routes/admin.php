@@ -73,6 +73,13 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('slide/update/{id}','Admin\SlideController@update')->name('slide.update');
 	Route::get('slide/delete/{id}','Admin\SlideController@delete')->name('slide.delete');
 	/*end slide trang chủ*/
+	/*tạo mã khuyến mãi*/
+	Route::get('/promotion/create','Admin\PromotionController@createPromotion')->name('promotion.create');
+	Route::post('/promotion/save','Admin\PromotionController@savePromotion')->name('promotion.save');
+	Route::get('/promotion','Admin\PromotionController@getList')->name('promotion.list');
+	Route::get('promotion/status/{id}','Admin\PromotionController@statusPromotion')->name('promotion.status');
+	Route::get('promotion/delete/{id}','Admin\PromotionController@delete')->name('promotion.delete');
+	/*end mã khuyến mãi*/
 });
 
 
