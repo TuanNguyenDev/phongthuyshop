@@ -30,7 +30,7 @@
 								<div class="cart-inner">
 									<div id="cart">
 										<div class="cart-form">
-											<form action="{{-- {{route('updateCart')}} --}}" method="post" id="cartform">
+											<form action="" method="post" id="cartform">
 												<input type="hidden" name="_token" value="{{csrf_token()}}">
 												<table class="cart-items">
 													<thead>
@@ -92,11 +92,16 @@
 													</tfoot>
 												</table>
 											</form>
-												<div class=" cart-buttons">
-													<div class="buttons clearfix">
-														<input {{-- type="submit" --}} id="checkout" class="btn" name="checkout" value="Check Out">
-													</div>
+											{{-- <div class=" cart-buttons">
+												<div class="buttons clearfix">
+													<input type="submit" id="checkout" class="btn" name="checkout" value="Check Out">
 												</div>
+											</div> --}}
+											<div class=" cart-buttons">
+												<div class="buttons clearfix">
+													<a href="{{route('checkout')}}" class="btn btn-success" title="">Check Out</a>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>

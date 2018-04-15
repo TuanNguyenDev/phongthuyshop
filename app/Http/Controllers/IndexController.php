@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\TinTuc;
 use App\Models\TrinhChieu;
 use Illuminate\Http\Response;
+use Auth;
 use Log;
 use DB;
 use Cart;
@@ -61,6 +62,17 @@ class IndexController extends Controller
         }else{
             echo "Bạn vừa truy cập vào đường dẫn không tồn tại";
         }
+    }
+    /*chuyển đến trang thanh toán thanh toan
+    return view
+    author TuanNguyen
+    15/04/2018 create new*/
+
+    public function checkOut(){
+        $cart = Cart::content();
+        $total = Cart::subtotal();
+        $user = Auth::user();
+        return view('user.checkout',compact('cart','total','user'));
     }
 
     public function getSearchResult(Request $rq){

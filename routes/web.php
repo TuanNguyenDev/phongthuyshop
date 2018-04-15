@@ -39,7 +39,9 @@ Route::get('/tin_tuc_chi_tiet/{id}','IndexController@chitietTin')->name('tintuc.
 // Route::get('register',function(){
 // 	return view('user.register');
 // });
-
+Route::get('login',function(){
+dd('login view');
+});
 Route::get('/about_us',function(){
 	return view('user.about_us');
 });
@@ -56,6 +58,7 @@ Route::get('remove/{rowId}', 'IndexController@removeCart')->name('removeCart');
 Route::get('category/{id}', 'IndexController@getAllProduct')->name('category');
 
 Route::get('test', 'HomeController@index')->name('home');
+Route::get('/checkout','IndexController@checkOut')->name('checkout');
 //gdyagshdas   
 Auth::routes();
 

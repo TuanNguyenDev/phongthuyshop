@@ -74,36 +74,13 @@
 											</a>
 										</li>
 										<!-- Customer Links -->
-										<li class="toolbar-customer my-wishlist"><a href="./wish-list.html">Wishlist</a></li>
-										<li class="toolbar-customer login-account">
-											<span id="loginButton" class="dropdown-toggle" data-toggle="dropdown">
-												<i class="sub-dropdown1 visible-sm visible-md visible-lg"></i>
-												<i class="sub-dropdown visible-sm visible-md visible-lg"></i>  
-												<a href="./login.html">Login</a>
-											</span>
-											<div id="loginBox" class="dropdown-menu text-left" style="display: none;">
-												<form method="post" action="./login.html" id="customer_login" accept-charset="UTF-8"><input type="hidden" value="customer_login" name="form_type"><input type="hidden" name="utf8" value="✓">
-													<div id="bodyBox">
-														<ul class="control-container customer-accounts list-unstyled">
-															<li class="clearfix">
-																<input type="email" value="" placeholder="Email Address" name="customer[email]" id="customer_email_box" class="form-control">
-															</li>
-															<li class="clearfix">
-																<input type="password" value="" placeholder="Password" name="customer[password]" id="customer_password_box" class="form-control password">
-															</li>
-															<li class="clearfix">
-																<button class="btn btn-1" type="submit">Login</button>
-															</li>
-															<li class="clearfix">
-																<a href="./login.html"><span>&gt; Forgot your password ?</span></a>
-																<a href="./register.html"><span>&gt; Register new account</span></a>
-															</li>
-														</ul>
-													</div>
-												</form>
-											</div>
-										</li>
-										<li class="toolbar-customer log-out"><a href="./register.html"><span>/</span> Register</a></li>
+										@if (isset(Auth::user()->name))
+											<li class="toolbar-customer my-wishlist">{{Auth::user()->name}}</li>
+											{{-- true expr --}}
+										@else
+											<li class="toolbar-customer my-wishlist"><a href="{{route('login')}}">Login</a></li>
+											<li class="toolbar-customer log-out"><a href="{{route('register')}}"><span>/</span> Register</a></li>
+										@endif
 										<li class="currency_group hidden-xs">
 											<div class="currencies-switcher">
 												<div class="currency btn-group uppercase">
