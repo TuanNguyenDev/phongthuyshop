@@ -73,14 +73,109 @@
 										<input type="submit" id="checkout" class="btn" name="checkout" value="Check Out">
 									</div>
 								</div> --}}
-								<form action="" method="post" accept-charset="utf-8" novalidate="">
-									
-s								</form>
-								<div class=" cart-buttons">
+								<div class="col-sm-12">
+									@if (isset(Auth::user()->name))
+									<form action="{{-- {{route('checkout.complete')}} --}}" method="post" accept-charset="utf-8" novalidate="">
+										{{csrf_field()}}
+										<input type="hidden" name="id" value="{{Auth::id()}}">
+										<div class="form-group">
+											<label for="name">Tên khách hàng</label>
+											<input type="text" name="name" id="name" value="{{Auth::user()->name}}" disabled="true">
+										</div>
+										<div class="form-group">
+											<label for="dia_chi">Địa chỉ giao hàng</label>
+											<input type="text" name="dia_chi" id="dia_chi" value="{{Auth::user()->dia_chi}}">
+										</div>
+										<div class="form-group">
+											<label for="sdt">Số điện thoại</label>
+											<input type="number" name="sdt" id="sdt" value="{{Auth::user()->sdt}}">
+										</div>
+										<div class="form-group">
+											<label for="email">Email</label>
+											<input type="email" name="email" id="email" value="{{Auth::user()->email}}">
+										</div>
+										<div class="form-group">
+											<label for="ma_khuyen_mai">Mời nhập mã khuyến mãi</label>
+											<input type="text" name="ma_khuyen_mai" id="ma_khuyen_mai" >
+										</div>
+										<div class="form-group">
+											<label for="phuong_thuc_thanh_toan">Phương thức thanh toán</label>
+											<select name="phuong_thuc_thanh_toan" >
+												<option value="COD">COD</option>
+												<option value="ATM">ATM</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<p id="COD" class="COD">Cửa hàng sẽ gửi hàng đến địa chỉ của bạn, bạn xem hàng rồi thanh toán tiền cho nhân viên giao hàng.</p>
+											<p id="ATM" class="ATM">
+												Chuyển tiền đến tài khoản sau:
+												<br>- Số tài khoản: 123 456 789
+												<br>- Chủ TK: Nguyễn Anh Tuấn
+												<br>- Ngân hàng Vietcombank, chi nhánh Hà Nội
+											</p>
+										</div>
+										<div class="form-group">
+											<label for="ghi_chu">Ghi chú</label>
+											<textarea name="ghi_chu" id="ghi_chu"></textarea> 
+										</div>
+										<div class="text-center">
+											<button type="submit" class="btn btn-success">Thanh toán</button>
+										</div>
+									</form>
+								@else
+									<form action="{{-- {{route('checkout.complete')}} --}}" method="post" accept-charset="utf-8" novalidate="">
+										{{csrf_field()}}
+										<div class="form-group">
+											<label for="name">Tên khách hàng</label>
+											<input type="text" name="name" id="name" >
+										</div>
+										<div class="form-group">
+											<label for="dia_chi">Địa chỉ giao hàng</label>
+											<input type="text" name="dia_chi" id="dia_chi" >
+										</div>
+										<div class="form-group">
+											<label for="sdt">Số điện thoại</label>
+											<input type="number" name="sdt" id="sdt">
+										</div>
+										<div class="form-group">
+											<label for="email">Email</label>
+											<input type="email" name="email" id="email" >
+										</div>
+										<div class="form-group">
+											<label for="ma_khuyen_mai">Mời nhập mã khuyến mãi</label>
+											<input type="text" name="ma_khuyen_mai" id="ma_khuyen_mai" >
+										</div>
+										<div class="form-group">
+											<label for="phuong_thuc_thanh_toan">Phương thức thanh toán</label>
+											<select name="phuong_thuc_thanh_toan" id="phuong_thuc_thanh_toan">
+												<option value="COD">COD</option>
+												<option value="ATM">ATM</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<p id="COD" class="COD" >Cửa hàng sẽ gửi hàng đến địa chỉ của bạn, bạn xem hàng rồi thanh toán tiền cho nhân viên giao hàng.</p>
+											<p id="ATM" class="ATM" style="display: none">
+												Chuyển tiền đến tài khoản sau:
+												<br>- Số tài khoản: 123 456 789
+												<br>- Chủ TK: Nguyễn Anh Tuấn
+												<br>- Ngân hàng Vietcombank, chi nhánh Hà Nội
+											</p>
+										</div>
+										<div class="form-group">
+											<label for="ghi_chu">Ghi chú</label>
+											<textarea name="ghi_chu" id="ghi_chu"></textarea> 
+										</div>
+										<div class="text-center">
+											<button type="submit" class="btn btn-success">Thanh toán</button>
+										</div>
+									</form>
+								@endif
+								</div>
+								{{-- <div class=" cart-buttons">
 									<div class="buttons clearfix">
 										<a href="{{route('checkout')}}" class="btn btn-success" title="">Thanh Toán</a>
 									</div>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
@@ -89,4 +184,20 @@ s								</form>
 		</div>
 	</div>
 </section>
+@endsection
+@section('user_js')
+<script type="text/javascript">
+	document.getElementById("phuong_thuc_thanh_toan").onclick = function(){
+		var e = document.getElementById("phuong_thuc_thanh_toan");
+		var select = e.options[e.selectedIndex].value;
+		if(select == 'COD'){
+			document.getElementById("COD").style.display = "block"; 
+			document.getElementById("ATM").style.display = "none";
+		}
+		if(select == 'ATM'){
+			document.getElementById("ATM").style.display = "block"; 
+			document.getElementById("COD").style.display = "none";
+		}
+	}
+</script>
 @endsection

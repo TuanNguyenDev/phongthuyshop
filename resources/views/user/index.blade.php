@@ -136,13 +136,13 @@
 																	<img src="{{$p->anh}}" class="rotation img-responsive" alt="Sport machine">
 																</div>
 															</a>
-															@foreach ($p->getKM() as $km)
+															{{-- @foreach ($p->getKM() as $km)
 															@if ($km->ngay_ket_thuc >= date('d/m/Y'))
 															<span class="sale_banner">
 																<span class="sale_text">-{{$km->chiet_khau}}</span>
 															</span>
 															@endif
-															@endforeach
+															@endforeach --}}
 															<div class="hover-mask">
 																<div class="group-mask">
 																	<div class="inner-mask">
@@ -230,13 +230,13 @@
 																	<img src="{{$p->anh}}" class="rotation img-responsive" alt="Sport machine">
 																</div>
 															</a>
-															@foreach ($p->getKM() as $km)
+															{{-- @foreach ($p->getKM() as $km)
 															@if ($km->ngay_ket_thuc >= date('d/m/Y'))
 															<span class="sale_banner">
 																<span class="sale_text">-{{$km->chiet_khau}}</span>
 															</span>
 															@endif
-															@endforeach
+															@endforeach --}}
 															<div class="hover-mask">
 																<div class="group-mask">
 																	<div class="inner-mask">
@@ -325,13 +325,13 @@
 																	<img src="{{$p->anh}}" class="rotation img-responsive" alt="Sport machine">
 																</div>
 															</a>
-															@foreach ($p->getKM() as $km)
+															{{-- @foreach ($p->getKM() as $km)
 															@if ($km->ngay_ket_thuc >= date('d/m/Y'))
 															<span class="sale_banner">
 																<span class="sale_text">-{{$km->chiet_khau}}</span>
 															</span>
 															@endif
-															@endforeach
+															@endforeach --}}
 															<div class="hover-mask">
 																<div class="group-mask">
 																	<div class="inner-mask">
