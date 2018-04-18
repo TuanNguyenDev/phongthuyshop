@@ -59,6 +59,14 @@ Route::get('category/{id}', 'IndexController@getAllProduct')->name('category');
 
 Route::get('test', 'HomeController@index')->name('home');
 Route::get('/checkout','IndexController@checkOut')->name('checkout');
+Route::post('/checkout/complete','IndexController@checkoutComplete')->name('checkout.complete');
+
+Route::get('testday', function(){
+	$total = Cart::subtotal();
+	$int = (float)$total;
+	dd($int);
+
+});
 //gdyagshdas   
 Auth::routes();
 

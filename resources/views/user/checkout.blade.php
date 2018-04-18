@@ -75,7 +75,7 @@
 								</div> --}}
 								<div class="col-sm-12">
 									@if (isset(Auth::user()->name))
-									<form action="{{-- {{route('checkout.complete')}} --}}" method="post" accept-charset="utf-8" novalidate="">
+									<form action="{{route('checkout.complete')}}" method="post" accept-charset="utf-8" novalidate="">
 										{{csrf_field()}}
 										<input type="hidden" name="id" value="{{Auth::id()}}">
 										<div class="form-group">
@@ -123,7 +123,7 @@
 										</div>
 									</form>
 								@else
-									<form action="{{-- {{route('checkout.complete')}} --}}" method="post" accept-charset="utf-8" novalidate="">
+									<form action="{{route('checkout.complete')}}" method="post" accept-charset="utf-8" novalidate="">
 										{{csrf_field()}}
 										<div class="form-group">
 											<label for="name">Tên khách hàng</label>
