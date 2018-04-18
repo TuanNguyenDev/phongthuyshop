@@ -8,8 +8,11 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\TinTuc;
 use App\Models\Bill;
+use App\Models\BillDetail;
 use App\Models\TrinhChieu;
 use App\Models\KhuyenMai;
+use App\Models\Customer;
+use App\User;
 use Illuminate\Http\Response;
 use Auth;
 use Log;
@@ -86,14 +89,33 @@ class IndexController extends Controller
         $total = Cart::subtotal();
         $bill = new Bill();
         if(isset(Auth::user()->name)){
-            $bill->id_khach_hang = Auth::id();
+            $bill->id_khach_hang = $rq->id;
+            /*$bill->trang_thai = 0;
+            $bill->dia_chi = $rq->dia_chi;
+            $bill->phuong_thuc_thanh_toan = $rq->phuong_thuc_thanh_toan;
+            $bill->tong_tien = $total;
+            $bill->tien_thanh_toan = $total;
+            $bill->ghi_chu = $rq->ghi_chu;*/
+        }
+        else
+        {
+            $customer = new User();
+            $customer->name = $rq->name;
+            $customer->dia_chi = $rq->dia_chi;
+            $customer->sdt = $rq->sdt;
+            $customer->email = $rq->email;
+            $customer->isLogin = 0;
+            $customer->trang_thai = 0;
+            $customer->save();
+            $bill->id_khach_hang = $customer->id;
+        }
             $bill->trang_thai = 0;
             $bill->dia_chi = $rq->dia_chi;
             $bill->phuong_thuc_thanh_toan = $rq->phuong_thuc_thanh_toan;
             $bill->tong_tien = $total;
             $bill->tien_thanh_toan = $total;
             $bill->ghi_chu = $rq->ghi_chu;
-            if(isset($rq->ma_khuyen_mai)){
+        if(isset($rq->ma_khuyen_mai)){
                 $result = KhuyenMai::where('ma_khuyen_mai',$rq->ma_khuyen_mai)->first();
                 if(isset($result)){
                     $today = date("Y/m/d");
@@ -103,19 +125,27 @@ class IndexController extends Controller
                     $trang_thai = $result->trang_thai;
                     $chiet_khau = $result->chiet_khau;
                     $bill->chiet_khau = $result->chiet_khau;
-                    $bill->ma_khuyen_mai = $rq->ma_khuyen_mai;
+                    $bill->maKM = $rq->ma_khuyen_mai;
                     if ((strtotime($today) >= strtotime($start_date)) && (strtotime($today) <= strtotime($end_date)) && ($sl > 0) && $trang_thai ==1) {
                         $cvr_total = (float)$total;
                         $bill->tien_thanh_toan = ($total * (100- $chiet_khau))/100;
                         $result->so_luong_con_lai = $result->so_luong_con_lai - 1;
                         $result->save();
-                        $bill->save();
                     }
                 }
             }
-        }else{
-            
-        }
+            $bill->save();
+            foreach ($cart as $key => $value) {
+                $bill_detail = new BillDetail();
+                $bill_detail->id_san_pham = $value->id;
+                $bill_detail->so_luong = $value->qty;
+                $tt = (float)($value->price);
+                $bill_detail->thanhtien =  $tt;
+                $bill_detail->id_bill =  $bill->id;
+                $bill_detail->save();
+            }
+            Cart::destroy();
+            return redirect(route('index'));
     }
 
     public function getSearchResult(Request $rq){
