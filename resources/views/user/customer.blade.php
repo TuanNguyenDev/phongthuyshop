@@ -35,16 +35,15 @@
 							<div class="account-content-inner">
 								<div id="customer-account">
 									<div id="customer_sidebar" class="col-sm-3 col-md-3">
-										<h3 class="sb-title">ACCOUNT DETAILS</h3>
+										<h3 class="sb-title">Thông tin tài khoản</h3>
 										<div class="sb-group">
-											<p class="customer-name">Jin Alkaid</p>
-											<p class="email note">jin@gmail.com</p>
+											<p class="customer-name">{{$user->name}}</p>
+											<p class="email note">{{$user->email}}</p>
 											<div class="address note">
-												<p>Ung Van Khiem</p>
-												<p>Ho Chi Minh city, Vietnam</p>
-												<p>123</p>
-												<p></p>
-												<a id="view_address" href="./addresses.html"><i class="fa fa-bookmark-o"></i><span>View Addresses</span></a>
+												<p>{{$user->dia_chi}}</p>
+												<p>{{$user->sdt}}</p>
+												<p>Tham gia ngày{{$user->created_at}}</p>
+												<a id="view_address" href="./addresses.html"><i class="fa fa-bookmark-o"></i><span>Sửa thông tin</span></a>
 											</div>
 										</div>
 										<!--End sb-group-account -->
@@ -53,24 +52,53 @@
 										<table>
 											<thead>
 												<tr>
-													<th class="order_number">Order</th>
-													<th class="date">Date</th>
-													<th class="payment_status">Payment Status</th>
-													<th class="fulfillment_status">Fulfillment Status</th>
-													<th class="total">Total</th>
+													<th class="date">#</th>
+													<th class="date">Thời gian đặt hàng</th>
+													<th class="payment_status">Hình thức thanh toán</th>
+													<th class="payment_status">Địa chỉ giao hàng</th>
+													<th class="fulfillment_status">Trạng thái đơn hàng</th>
+													<th class="total">Tổng tiền</th>
+													<th class="total">Chi Tiết</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr class="odd ">
+												@foreach ($bills as $b)
+													<tr class="odd ">
+														<td class="td-name"><a href="./order.html" title="">{{++$loop->index}}</a></td>
+														<td class="td-note"><span class="note">{{$b->created_at}}</span></td>
+														<td class="td-authorized"><span class="status_authorized">{{$b->phuong_thuc_thanh_toan}}</span></td>
+														<td class="td-unfulfilled"><span class="status_unfulfilled">{{$b->dia_chi}}</span></td>
+														<td class="td-unfulfilled"><span class="status_unfulfilled">
+															@if ($b->trang_thai == 0)
+																Đang chờ xác nhận
+															@endif
+															@if ($b->trang_thai == 1)
+																Đang giao hàng
+															@endif
+															@if ($b->trang_thai == 2)
+																Đã hoàn thành
+															@endif
+														</span></td>
+														<td class="td-total"><span class="total" style="font-family:'currencies'"><span class="money" data-currency-usd="$292.90">{{$b->tien_thanh_toan}}</span></span>
+														<td class=""><a href="{{route('customer.bill.detail',['id'=> $b->id])}}" title="Xem chi tiết đơn hàng này" class="btn btn-success">Detail</a>
+														</td>
+
+													</tr>
+												@endforeach
+												{{-- <tr class="odd ">
 													<td class="td-name"><a href="./order.html" title="">#1001</a></td>
 													<td class="td-note"><span class="note">07 Jun 00:14</span></td>
 													<td class="td-authorized"><span class="status_authorized">Authorized</span></td>
 													<td class="td-unfulfilled"><span class="status_unfulfilled">Unfulfilled</span></td>
 													<td class="td-total"><span class="total" style="font-family:'currencies'"><span class="money" data-currency-usd="$292.90">$292.90</span></span>
 													</td>
+												</tr> --}}
+												<tr>
+													<td colspan="6" class="text-center">{{$bills->links()}}</td>
 												</tr>
 											</tbody>
 										</table>
+
 									</div>
 								</div>
 							</div>

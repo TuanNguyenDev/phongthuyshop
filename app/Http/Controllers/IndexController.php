@@ -147,7 +147,28 @@ class IndexController extends Controller
             Cart::destroy();
             return redirect(route('index'));
     }
-
+     /* trang thông tin cá nhân của khách hàng đã đăng nhập
+    return view
+    author TuanNguyen
+    19/04/2018 create new*/
+    public function getProfile($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        $user = User::find($id);
+        if(!isset($user)){
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            return '403';
+        }
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            $bills = Bill::where('id_khach_hang',$user->id)->paginate(10);
+            return view('user.customer',compact('user','bills'));
+    }
+    /* lấy thông tin chi tiết của đơn hàng
+    return view
+    author TuanNguyen
+    19/04/2018 create new*/
+    public function getBillDetail($id){
+        dd($id);
+    }
     public function getSearchResult(Request $rq){
         $key = $rq->key;
         $cate = $rq->cate;

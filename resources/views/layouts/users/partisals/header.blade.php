@@ -75,7 +75,7 @@
 										</li>
 										<!-- Customer Links -->
 										@if (isset(Auth::user()->name))
-											<li class="toolbar-customer my-wishlist">{{Auth::user()->name}}</li>
+											<li class="toolbar-customer my-wishlist"><a href="{{route('customer.profile',['id' => Auth::id()])}}">{{Auth::user()->name}}</a></li>
 											<li class="toolbar-customer log-out"><a href="{{route('user.logout')}}"><span>/</span> Logout</a></li>
 											{{-- true expr --}}
 										@else
