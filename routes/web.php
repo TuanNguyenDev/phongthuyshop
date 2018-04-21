@@ -64,6 +64,7 @@ Route::get('test', 'HomeController@index')->name('home');
 Route::get('/checkout','IndexController@checkOut')->name('checkout');
 Route::post('/checkout/complete','IndexController@checkoutComplete')->name('checkout.complete');
 
+Route::post('/send/contact','IndexController@sendContact')->name('send.contact');
 Route::get('testday', function(){
 	$total = Cart::subtotal();
 	$int = (float)$total;

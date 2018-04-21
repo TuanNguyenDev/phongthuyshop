@@ -11,6 +11,7 @@ use App\Models\Bill;
 use App\Models\BillDetail;
 use App\Models\TrinhChieu;
 use App\Models\KhuyenMai;
+use App\Models\PhanHoi;
 use App\Models\Customer;
 use App\User;
 use Illuminate\Http\Response;
@@ -162,12 +163,30 @@ class IndexController extends Controller
             $bills = Bill::where('id_khach_hang',$user->id)->paginate(10);
             return view('user.customer',compact('user','bills'));
     }
+    /* Gửi phản hồi
+    return view
+    author TuanNguyen
+    22/04/2018 create new*/
+    public function sendContact(Request $rq){
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        $contact = new PhanHoi();
+        $contact->fill($rq->all());
+        $contact->save();
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return redirect(route('index'));
+    }
     /* lấy thông tin chi tiết của đơn hàng
     return view
     author TuanNguyen
-    19/04/2018 create new*/
+    22/04/2018 create new*/
     public function getBillDetail($id){
-        dd($id);
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        if(!isset($id)){
+            return '403';
+        }
+        $bill_detail = BillDetail::where('id_bill', $id)->get();
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('user.customer_billdetail', compact('bill_detail'));
     }
     public function getSearchResult(Request $rq){
         $key = $rq->key;

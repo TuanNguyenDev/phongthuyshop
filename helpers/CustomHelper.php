@@ -1,5 +1,6 @@
 <?php 
 use App\Admin;
+use App\Models\Product;
 define('ROLE_STAFF', 100);
 define('ROLE_MOD', 500);
 define('ROLE_ADMIN', 900);
@@ -30,6 +31,24 @@ if(!function_exists('get_admin_name')){
 			return "";
 		}
 		return $admin->name;
+	}
+}
+if(!function_exists('get_product_name')){
+	function get_product_name($id){
+		$product = Product::find($id);
+		if(!$product){
+			return "";
+		}
+		return $product->ten_san_pham;
+	}
+}
+if(!function_exists('get_product_price')){
+	function get_product_price($id){
+		$product = Product::find($id);
+		if(!$product){
+			return "";
+		}
+		return $product->gia;
 	}
 }
  ?>

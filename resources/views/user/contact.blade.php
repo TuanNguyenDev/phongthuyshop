@@ -41,19 +41,31 @@
 												</div>
 											</div>
 											<div class="contact-form-group col-md-6">
-												<form method="post" action="./contact.html" id="contact_form" class="contact-form" accept-charset="UTF-8">
+												<form method="post" action="{{route('send.contact')}}" id="contact_form" class="contact-form" accept-charset="UTF-8" onSubmit="alert('Thank you for your feedback!');">
+													{{csrf_field()}}
 													<div id="contactFormWrapper">
+														
 														<p>
-															<input type="text" id="contactFormName" name="contact[name]" placeholder="Username">
+															<input type="text"  name="ten" 
+															@if (isset(Auth::user()->name))
+																value="{{Auth::user()->name}}"
+															@endif placeholder="Name" required>
 														</p>
 														<p>
-															<input type="email" id="contactFormEmail" name="contact[email]" placeholder="Email">
+															<input type="email" id="contactFormEmail" name="email" 
+															@if (isset(Auth::user()->name))
+																value="{{Auth::user()->email}}"
+															@endif placeholder="Email" required>
 														</p>
 														<p>
-															<input id="contactFormTelephone" name="contact[phone]" placeholder="Phone" >
+															<input id="contactFormTelephone" 
+															@if (isset(Auth::user()->name))
+																value="{{Auth::user()->sdt}}"
+															@endif 
+															name="sdt" placeholder="Phone" required >
 														</p>
 														<p>
-															<textarea rows="15" cols="75" id="contactFormMessage" name="contact[body]" placeholder="Your message"></textarea>
+															<textarea rows="15" cols="75" id="contactFormMessage" name="noi_dung" required placeholder="Your message"></textarea>
 														</p>
 														<p>
 															<input type="submit" id="contactFormSubmit" value="Send" class="btn">
