@@ -48,7 +48,7 @@
 												<div id="featuted-image" class="image featured">
 													<div class="image-item">
 														<a href="#" class="thumbnail" id="thumbnail-product-1" data-toggle="modal" data-target="#lightbox"> 
-															<img src="{{$product->anh}}" alt="Today's trending" data-item="1">
+															<img src="{{asset($product->anh)}}" alt="Today's trending" data-item="1">
 														</a>
 														<span class="image-title-zoom" data-zoom="thumbnail-product-1">
 															<i class="fa fa-search-plus"></i>
@@ -87,20 +87,27 @@
 											<div class="col-md-7" id="product-information">
 												<h1 itemprop="name" class="title">{{$product->ten_san_pham}}</h1>
 												<div class="description" itemprop="description">
-													{{$product->mo_ta}}
+													{!!$product->mo_ta!!}
 												</div>
 													<div class="product-options " itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
 														<meta itemprop="priceCurrency" content="USD">
 														<link itemprop="availability" href="http://schema.org/InStock">
 														<div class="vendor-type">
 															<span class="product_vendor"><span class="_title">Size:</span> {{$product->size}}</span>
+															<br>
 															<span class="product_type"><span class="_title">Trọng lượng:</span> {{$product->trong_luong}}</span>
+															<br>
 															<span class="product_sku"><span class="_title">Màu sắc: </span>{{$product->mau_sac}}</span>
+															<br>
 															<span class="product_sku"><span class="_title">Chất liệu: </span>{{$product->chat_lieu}}</span>
+															<br>
 															<span class="product_sku"><span class="_title">Ý nghĩa: </span>{{$product->y_nghia}}</span>
+															<br>
 															<span class="product_sku"><span class="_title">Kích thước: </span>{{$product->kich_thuoc}}</span>
-															<span class="product_sku"><span class="_title">Mệnh: </span>{{$product->getMenh()}}</span>
-															<span class="product_sku"><span class="_title">Danh mục: </span>{{$product->getMenh()}}</span>
+															<br>
+															<span class="product_sku"><span class="_title">Mệnh: </span>{{$product->Menh()['ten_menh']}}</span>
+															<br>
+															<span class="product_sku"><span class="_title">Danh mục: </span>{{$product->Category()['ten_danh_muc']}}</span>
 														</div>
 														{{-- <div class="rating-star">
 															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i></span><span class="spr-badge-caption">2 reviews</span>
@@ -250,7 +257,7 @@
 															<div class="preview_content">
 																<div id="shopify-product-reviews" data-id="6537875078">
 																	<div class="spr-container">
-																		<div class="spr-header">
+																		{{-- <div class="spr-header">
 																			<h2 class="spr-header-title">Customer Reviews</h2>
 																			<div class="spr-summary" itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate">
 																				<meta itemprop="itemreviewed" content="Chanel, the cheetah">
@@ -268,62 +275,49 @@
 																					<a href="#" class="spr-summary-actions-newreview" onclick="active_review_form();return false">Write a review</a>
 																				</span>
 																			</div>
-																		</div>
+																		</div> --}}
 																		<div class="spr-content">
-																			<div class="spr-form" id="form_6537875078" style="display: none;">
-																				<form method="post" action="./product.html" id="new-review-form_6537875078" class="new-review-form" onsubmit="SPR.submitForm(this);return false;"><input type="hidden" name="review[rating]"><input type="hidden" name="product_id" value="6537875078">
-																					<h3 class="spr-form-title">Write a review</h3>
-																					<fieldset class="spr-form-contact">
-																						<div class="spr-form-contact-name">
-																							<label class="spr-form-label" for="review_author_6537875078">Name</label>
-																							<input class="spr-form-input spr-form-input-text " id="review_author_6537875078" type="text" name="review[author]" value="" placeholder="Enter your name">
-																						</div>
-																						<div class="spr-form-contact-email">
-																							<label class="spr-form-label" for="review_email_6537875078">Email</label>
-																							<input class="spr-form-input spr-form-input-email " id="review_email_6537875078" type="email" name="review[email]" value="" placeholder="john.smith@example.com">
-																						</div>
-																					</fieldset>
-																					<fieldset class="spr-form-review">
-																						<div class="spr-form-review-rating">
-																							<label class="spr-form-label">Rating</label>
-																							<div class="spr-form-input spr-starrating ">
-																								<a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="1">&nbsp;</a>
-																								<a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="2">&nbsp;</a>
-																								<a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="3">&nbsp;</a>
-																								<a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="4">&nbsp;</a>
-																								<a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="5">&nbsp;</a>
+																			@if (isset(Auth::user()->name))
+																				<div class="spr-form" id="form_6537875078" >
+																					<form method="post" action="{{route('comment.product')}}"  class="new-review-form">
+																						{{csrf_field()}}
+																						<input type="hidden" name="id_khach" value="{{Auth::id()}}">
+																						<input type="hidden" name="id_san_pham" value="{{$product->id}}">
+																						<h3 class="spr-form-title">Write a review</h3>
+																						
+																						<fieldset class="spr-form-review">
+																							<div class="spr-form-review-body">
+																								<label class="spr-form-label" for="review_body_6537875078">Body of Review <span class="spr-form-review-body-charactersremaining"></span></label>
+																								<div class="spr-form-input">
+																									<textarea class="spr-form-input spr-form-input-textarea " id="review_body_6537875078" data-product-id="6537875078" name="noi_dung" rows="10" placeholder="Write your comments here" required></textarea>
+																								</div>
 																							</div>
-																						</div>
-																						<div class="spr-form-review-title">
-																							<label class="spr-form-label" for="review_title_6537875078">Review Title</label>
-																							<input class="spr-form-input spr-form-input-text " id="review_title_6537875078" type="text" name="review[title]" value="" placeholder="Give your review a title">
-																						</div>
-																						<div class="spr-form-review-body">
-																							<label class="spr-form-label" for="review_body_6537875078">Body of Review <span class="spr-form-review-body-charactersremaining">(1500)</span></label>
-																							<div class="spr-form-input">
-																								<textarea class="spr-form-input spr-form-input-textarea " id="review_body_6537875078" data-product-id="6537875078" name="review[body]" rows="10" placeholder="Write your comments here"></textarea>
-
-																							</div>
-																						</div>
-																					</fieldset>
-																					<fieldset class="spr-form-actions">
-																						<input type="submit" class="spr-button spr-button-primary button button-primary btn btn-primary" value="Submit Review">
-																					</fieldset>
-																				</form>
-																			</div>
+																						</fieldset>
+																						<fieldset class="spr-form-actions">
+																							<button type="submit" class="spr-button spr-button-primary button button-primary btn btn-primary">Bình luận</button>
+																						</fieldset>
+																					</form>
+																				</div>
+																			@else
+																				<a href="{{route('login')}}" class="btn btn-success">Đăng nhập để bình luận</a>
+																			@endif
 																			<div class="spr-reviews" id="reviews_6537875078">
-																				<div class="spr-review" id="spr-review-7003642">
-																					<div class="spr-review-header">
-																						<span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i></span>
-																						<h3 class="spr-review-header-title">FRENCH CONNECTION, SUNDAY BLISS BAG</h3>
-																						<span class="spr-review-header-byline"><strong>Jin Alkaid</strong> on <strong>Jun 10, 2017</strong></span>
+																				@foreach ($commentsp as $c)
+																					<div class="spr-review" id="spr-review-7003642">
+																						<div class="spr-review-header">
+																							<h3 class="spr-review-header-title">{{get_customer_name($c->id_khach)}}</h3>
+																							<span class="spr-review-header-byline">< on <strong>{{$c->created_at}}</strong></span>
+																						</div>
+																						<div class="spr-review-content">
+																							<p class="spr-review-content-body">{{$c->noi_dung}}</p>
+																						</div>
+																						{{-- <div class="spr-review-footer">
+																							<a href="#" class="spr-review-reportreview" onclick="SPR.reportReview(7003642);return false" id="report_7003642" data-msg="This review has been reported">Report as Inappropriate</a>
+																						</div> --}}
 																					</div>
-																					<div class="spr-review-content">
-																						<p class="spr-review-content-body">FRENCH CONNECTION, SUNDAY BLISS BAG</p>
-																					</div>
-																					<div class="spr-review-footer">
-																						<a href="#" class="spr-review-reportreview" onclick="SPR.reportReview(7003642);return false" id="report_7003642" data-msg="This review has been reported">Report as Inappropriate</a>
-																					</div>
+																				@endforeach
+																				<div class="pagination">
+																					{{$commentsp->links()}}
 																				</div>
 																			</div>
 																		</div>
@@ -347,441 +341,81 @@
 											</script>
 										</div>
 										<div class="related-products col-sm-12">
-											<div class="collection-title home-title page-title"><span>You may also like</span></div>
+											<div class="collection-title home-title page-title"><span>Sản phẩm cùng loại</span></div>
 											<div class="group-related">
 												<div class="group-related-inner">
 													<div class="rp-slider">
-														<div class="content_product">
-															<div class="row-container product list-unstyled clearfix">
-																<div class="row-left">
-																	<a href="./product.html" class="hoverBorder container_item">
-																		<div class="hoverBorderWrapper">
-																			<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Sport machine">
-																			<div class="mask"></div>
-																			<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Sport machine">
-																		</div>
-																	</a>
-																	<span class="sale_banner">
-																		<span class="sale_text">-66.67%</span>
-																	</span>
-																	<div class="hover-mask">
-																		<div class="group-mask">
-																			<div class="inner-mask">
-																				<div class="group-actionbutton">
-																					<form action="./cart.html" method="post">
-																						<div class="effect-ajax-cart">
-																							<input type="hidden" name="quantity" value="1">
-																							<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																						</div>
-																					</form>
-																					<ul class="quickview-wishlist-wrapper">
-																						<li class="quickview hidden-xs hidden-sm">
-																							<div class="product-ajax-cart">
-																								<span class="overlay_mask"></span>
-																								<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																									<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																								</div>
-																							</div>
-																						</li>
-																						<li class="wishlist hidden-xs">
-																							<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																						</li>
-																					</ul>
-																				</div>
+														@foreach ($same_pro as $p)
+															<div class="content_product">
+																<div class="row-container product list-unstyled clearfix">
+																	<div class="row-left">
+																		<a href="./product.html" class="hoverBorder container_item">
+																			<div class="hoverBorderWrapper">
+																				<img src="{{asset($p->anh)}}" class="not-rotation img-responsive front" alt="Sport machine">
+																				<div class="mask"></div>
+																				<img src="{{asset($p->anh)}}" class="rotation img-responsive" alt="Sport machine">
 																			</div>
-																			<!--inner-mask-->
-																		</div>
-																		<!--Group mask-->
-																	</div>
-																</div>
-																<div class="row-right animMix">
-																	<div class="product-title"><a class="title-5" href="./product.html">Sport machine</a></div>
-																	<div class="rating-star">
-																		<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
+																		</a>
+																		{{-- @foreach ($p->getKM() as $km)
+																		@if ($km->ngay_ket_thuc >= date('d/m/Y'))
+																		<span class="sale_banner">
+																			<span class="sale_text">-{{$km->chiet_khau}}</span>
 																		</span>
+																		@endif
+																		@endforeach --}}
+																		<div class="hover-mask">
+																			<div class="group-mask">
+																				<div class="inner-mask">
+																					<div class="group-actionbutton">
+																						<form action="./cart.html" method="post">
+																							<div class="effect-ajax-cart">
+																								<input type="hidden" name="quantity" value="1">
+																								<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
+																							</div>
+																						</form>
+																						<ul class="quickview-wishlist-wrapper">
+																							<li class="quickview hidden-xs hidden-sm">
+																								<div class="product-ajax-cart">
+																									<span class="overlay_mask"></span>
+																									<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
+																										<a class=""><i class="fa fa-search" title="Quick View"></i></a>
+																									</div>
+																								</div>
+																							</li>
+																							<li class="wishlist hidden-xs">
+																								
+																								<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
+																							</li>
+																						</ul>
+																					</div>
+																				</div>
+																				<!--inner-mask-->
+																			</div>
+																			<!--Group mask-->
+																		</div>
 																	</div>
-																	<div class="product-price">
-																		<span class="price_sale"><span class="money" data-currency-usd="$200.00">$200.00</span></span>
-																		<del class="price_compare"> <span class="money" data-currency-usd="$600.00">$600.00</span></del>
+																	<div class="row-right animMix">
+																		<div class="product-title"><a class="title-5" href="{{$p->getSlug()}}">{{$p->ten_san_pham}}</a></div>
+																		<div class="rating-star">
+																			<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
+																			</span>
+																		</div>
+																		<div class="product-price">
+																		<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia}}</span></span>
+																		
+																		{{-- @foreach ($p->getKM() as $km)
+																		@if ($km->ngay_ket_thuc >= date('d/m/Y'))
+																			<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia * $km->chiet_khau}}</span></span>
+																			<del class="price_compare"> <span class="money" data-currency-usd="$600.00">{{$p->gia}}</span></del>
+																		@else
+																		@endif
+																		@endforeach --}}
+
+																		</div>
 																	</div>
 																</div>
 															</div>
-														</div>
-														<div class="content_product">
-															<div class="row-container product list-unstyled clearfix">
-																<div class="row-left">
-																	<a href="./product.html" class="hoverBorder container_item">
-																		<div class="hoverBorderWrapper">
-																			<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Sport machine">
-																			<div class="mask"></div>
-																			<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Sport machine">
-																		</div>
-																	</a>
-																	<div class="hover-mask">
-																		<div class="group-mask">
-																			<div class="inner-mask">
-																				<div class="group-actionbutton">
-																					<form action="./cart.html" method="post">
-																						<div class="effect-ajax-cart">
-																							<input type="hidden" name="quantity" value="1">
-																							<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																						</div>
-																					</form>
-																					<ul class="quickview-wishlist-wrapper">
-																						<li class="quickview hidden-xs hidden-sm">
-																							<div class="product-ajax-cart">
-																								<span class="overlay_mask"></span>
-																								<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																									<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																								</div>
-																							</div>
-																						</li>
-																						<li class="wishlist hidden-xs">
-																							<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																			<!--inner-mask-->
-																		</div>
-																		<!--Group mask-->
-																	</div>
-																</div>
-																<div class="row-right animMix">
-																	<div class="product-title"><a class="title-5" href="./product.html">Women's Accessories</a></div>
-																	<div class="rating-star">
-																		<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-																		</span>
-																	</div>
-																	<div class="product-price">
-																		<span class="price_sale"><span class="money" data-currency-usd="$200.00">$200.00</span></span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="content_product">
-															<div class="row-container product list-unstyled clearfix">
-																<div class="row-left">
-																	<a href="./product.html" class="hoverBorder container_item">
-																		<div class="hoverBorderWrapper">
-																			<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Sport machine">
-																			<div class="mask"></div>
-																			<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Sport machine">
-																		</div>
-																	</a>
-																	<span class="sale_banner">
-																		<span class="sale_text">-33.33%</span>
-																	</span>
-																	<div class="hover-mask">
-																		<div class="group-mask">
-																			<div class="inner-mask">
-																				<div class="group-actionbutton">
-																					<form action="./cart.html" method="post">
-																						<div class="effect-ajax-cart">
-																							<input type="hidden" name="quantity" value="1">
-																							<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																						</div>
-																					</form>
-																					<ul class="quickview-wishlist-wrapper">
-																						<li class="quickview hidden-xs hidden-sm">
-																							<div class="product-ajax-cart">
-																								<span class="overlay_mask"></span>
-																								<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																									<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																								</div>
-																							</div>
-																						</li>
-																						<li class="wishlist hidden-xs">
-																							<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																			<!--inner-mask-->
-																		</div>
-																		<!--Group mask-->
-																	</div>
-																</div>
-																<div class="row-right animMix">
-																	<div class="product-title"><a class="title-5" href="./product.html">Women's Accessories</a></div>
-																	<div class="rating-star">
-																		<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-																		</span>
-																	</div>
-																	<div class="product-price">
-																		<span class="price_sale"><span class="money" data-currency-usd="$200.00">$200.00</span></span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="content_product">
-															<div class="row-container product list-unstyled clearfix">
-																<div class="row-left">
-																	<a href="./product.html" class="hoverBorder container_item">
-																		<div class="hoverBorderWrapper">
-																			<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Sport machine">
-																			<div class="mask"></div>
-																			<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Sport machine">
-																		</div>
-																	</a>
-																	<div class="hover-mask">
-																		<div class="group-mask">
-																			<div class="inner-mask">
-																				<div class="group-actionbutton">
-																					<form action="./cart.html" method="post">
-																						<div class="effect-ajax-cart">
-																							<input type="hidden" name="quantity" value="1">
-																							<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																						</div>
-																					</form>
-																					<ul class="quickview-wishlist-wrapper">
-																						<li class="quickview hidden-xs hidden-sm">
-																							<div class="product-ajax-cart">
-																								<span class="overlay_mask"></span>
-																								<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																									<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																								</div>
-																							</div>
-																						</li>
-																						<li class="wishlist hidden-xs">
-																							<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																			<!--inner-mask-->
-																		</div>
-																		<!--Group mask-->
-																	</div>
-																</div>
-																<div class="row-right animMix">
-																	<div class="product-title"><a class="title-5" href="./product.html">Sport machine</a></div>
-																	<div class="rating-star">
-																		<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-																		</span>
-																	</div>
-																	<div class="product-price">
-																		<span class="price_sale"><span class="money" data-currency-usd="$200.00">$200.00</span></span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="content_product">
-															<div class="row-container product list-unstyled clearfix">
-																<div class="row-left">
-																	<a href="./product.html" class="hoverBorder container_item">
-																		<div class="hoverBorderWrapper">
-																			<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Sport machine">
-																			<div class="mask"></div>
-																			<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Sport machine">
-																		</div>
-																	</a>
-																	<span class="sale_banner">
-																		<span class="sale_text">-33.33%</span>
-																	</span>
-																	<div class="hover-mask">
-																		<div class="group-mask">
-																			<div class="inner-mask">
-																				<div class="group-actionbutton">
-																					<form action="./cart.html" method="post">
-																						<div class="effect-ajax-cart">
-																							<input type="hidden" name="quantity" value="1">
-																							<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																						</div>
-																					</form>
-																					<ul class="quickview-wishlist-wrapper">
-																						<li class="quickview hidden-xs hidden-sm">
-																							<div class="product-ajax-cart">
-																								<span class="overlay_mask"></span>
-																								<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																									<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																								</div>
-																							</div>
-																						</li>
-																						<li class="wishlist hidden-xs">
-																							<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																			<!--inner-mask-->
-																		</div>
-																		<!--Group mask-->
-																	</div>
-																</div>
-																<div class="row-right animMix">
-																	<div class="product-title"><a class="title-5" href="./product.html">Office furniture</a></div>
-																	<div class="rating-star">
-																		<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-																		</span>
-																	</div>
-																	<div class="product-price">
-																		<span class="price_sale"><span class="money" data-currency-usd="$200.00">$200.00</span></span>
-																		<del class="price_compare"> <span class="money" data-currency-usd="$600.00">$300.00</span></del>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="content_product">
-															<div class="row-container product list-unstyled clearfix">
-																<div class="row-left">
-																	<a href="./product.html" class="hoverBorder container_item">
-																		<div class="hoverBorderWrapper">
-																			<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Sport machine">
-																			<div class="mask"></div>
-																			<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Sport machine">
-																		</div>
-																	</a>
-																	<div class="hover-mask">
-																		<div class="group-mask">
-																			<div class="inner-mask">
-																				<div class="group-actionbutton">
-																					<form action="./cart.html" method="post">
-																						<div class="effect-ajax-cart">
-																							<input type="hidden" name="quantity" value="1">
-																							<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																						</div>
-																					</form>
-																					<ul class="quickview-wishlist-wrapper">
-																						<li class="quickview hidden-xs hidden-sm">
-																							<div class="product-ajax-cart">
-																								<span class="overlay_mask"></span>
-																								<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																									<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																								</div>
-																							</div>
-																						</li>
-																						<li class="wishlist hidden-xs">
-																							<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																			<!--inner-mask-->
-																		</div>
-																		<!--Group mask-->
-																	</div>
-																</div>
-																<div class="row-right animMix">
-																	<div class="product-title"><a class="title-5" href="./product.html">Office furniture</a></div>
-																	<div class="rating-star">
-																		<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-																		</span>
-																	</div>
-																	<div class="product-price">
-																		<span class="price_sale"><span class="money" data-currency-usd="$200.00">$200.00</span></span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="content_product">
-															<div class="row-container product list-unstyled clearfix">
-																<div class="row-left">
-																	<a href="./product.html" class="hoverBorder container_item">
-																		<div class="hoverBorderWrapper">
-																			<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Sport machine">
-																			<div class="mask"></div>
-																			<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Sport machine">
-																		</div>
-																	</a>
-																	<div class="hover-mask">
-																		<div class="group-mask">
-																			<div class="inner-mask">
-																				<div class="group-actionbutton">
-																					<form action="./cart.html" method="post">
-																						<div class="effect-ajax-cart">
-																							<input type="hidden" name="quantity" value="1">
-																							<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																						</div>
-																					</form>
-																					<ul class="quickview-wishlist-wrapper">
-																						<li class="quickview hidden-xs hidden-sm">
-																							<div class="product-ajax-cart">
-																								<span class="overlay_mask"></span>
-																								<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																									<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																								</div>
-																							</div>
-																						</li>
-																						<li class="wishlist hidden-xs">
-																							<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																			<!--inner-mask-->
-																		</div>
-																		<!--Group mask-->
-																	</div>
-																</div>
-																<div class="row-right animMix">
-																	<div class="product-title"><a class="title-5" href="./product.html">Electronic equipment</a></div>
-																	<div class="rating-star">
-																		<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-																		</span>
-																	</div>
-																	<div class="product-price">
-																		<span class="price_sale"><span class="money" data-currency-usd="$200.00">$200.00</span></span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="content_product">
-															<div class="row-container product list-unstyled clearfix">
-																<div class="row-left">
-																	<a href="./product.html" class="hoverBorder container_item">
-																		<div class="hoverBorderWrapper">
-																			<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Sport machine">
-																			<div class="mask"></div>
-																			<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Sport machine">
-																		</div>
-																	</a>
-																	<span class="sale_banner">
-																		<span class="sale_text">-66.67%</span>
-																	</span>
-																	<div class="hover-mask">
-																		<div class="group-mask">
-																			<div class="inner-mask">
-																				<div class="group-actionbutton">
-																					<form action="./cart.html" method="post">
-																						<div class="effect-ajax-cart">
-																							<input type="hidden" name="quantity" value="1">
-																							<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																						</div>
-																					</form>
-																					<ul class="quickview-wishlist-wrapper">
-																						<li class="quickview hidden-xs hidden-sm">
-																							<div class="product-ajax-cart">
-																								<span class="overlay_mask"></span>
-																								<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																									<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																								</div>
-																							</div>
-																						</li>
-																						<li class="wishlist hidden-xs">
-																							<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																			<!--inner-mask-->
-																		</div>
-																		<!--Group mask-->
-																	</div>
-																</div>
-																<div class="row-right animMix">
-																	<div class="product-title"><a class="title-5" href="./product.html">Today's trending</a></div>
-																	<div class="rating-star">
-																		<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-																		</span>
-																	</div>
-																	<div class="product-price">
-																		<span class="price_sale"><span class="money" data-currency-usd="$200.00">$200.00</span></span>
-																		<del class="price_compare"> <span class="money" data-currency-usd="$600.00">$600.00</span></del>
-																	</div>
-																</div>
-															</div>
-														</div>
+														@endforeach
 													</div>
 												</div>
 											</div>
@@ -819,404 +453,26 @@
 							<div class="row">
 								<div class="collection-colpro-inner">
 									<div class="collection-colpro-content">
-										<span class="colpro_title">Recommended Based on Recent Browsing</span>
+										<span class="colpro_title">Sản phẩm mới</span>
 										<div class="colpro_content colpro_1_index-collection-product">
+											@foreach ($new_pro as $new)
 											<div class="content_product">
 												<div class="row-container product list-unstyled clearfix">
 													<div class="row-left">
 														<a href="./product.html" class="hoverBorder container_item">
 															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
+																<img src="{{asset($new->anh)}}" class="not-rotation img-responsive front" alt="Sport machine">
 																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
+																<img src="{{asset($new->anh)}}" class="rotation img-responsive" alt="Sport machine">
 															</div>
 														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Women's Accessories</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price">
-																<span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span>
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Women's Accessories</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price">
-																<span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span>
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Women's Accessories</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price">
-																<span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span>
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Office furniture</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price">
-																<span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span>
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Office furniture</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price">
-																<span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span>
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Office furniture</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price">
-																<span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span>
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Office furniture</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price">
-																<span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span>
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="collection-colpro-content">
-										<span class="colpro_title">Most-Viewed Mixers & Mixers Accessories</span>
-										<div class="colpro_content colpro_1_index-collection-product">
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
+														{{-- @foreach ($p->getKM() as $km)
+														@if ($km->ngay_ket_thuc >= date('d/m/Y'))
 														<span class="sale_banner">
-															<span class="sale_text">-66.67%</span>
+															<span class="sale_text">-{{$km->chiet_khau}}</span>
 														</span>
+														@endif
+														@endforeach --}}
 														<div class="hover-mask">
 															<div class="group-mask">
 																<div class="inner-mask">
@@ -1224,20 +480,21 @@
 																		<form action="./cart.html" method="post">
 																			<div class="effect-ajax-cart">
 																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
+																				<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
 																			</div>
 																		</form>
 																		<ul class="quickview-wishlist-wrapper">
 																			<li class="quickview hidden-xs hidden-sm">
 																				<div class="product-ajax-cart">
 																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
+																					<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
 																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
 																					</div>
 																				</div>
 																			</li>
 																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
+																				
+																				<a class="wish-list" href="{{route('addCart',$new->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
 																			</li>
 																		</ul>
 																	</div>
@@ -1248,398 +505,18 @@
 														</div>
 													</div>
 													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Digital equipment</a></div>
+														<div class="product-title"><a class="title-5" href="{{$new->getSlug()}}">{{$new->ten_san_pham}}</a></div>
 														<div class="rating-star">
 															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
 															</span>
 														</div>
 														<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span></span>
-															<del class="price_compare"> <span class="money" data-currency-usd="$600.00" data-currency="USD">$600.00</span></del>
+														<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$new->gia}}</span></span>
 														</div>
 													</div>
 												</div>
 											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<span class="sale_banner">
-															<span class="sale_text">-66.67%</span>
-														</span>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Digital equipment</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span></span>
-															<del class="price_compare"> <span class="money" data-currency-usd="$600.00" data-currency="USD">$600.00</span></del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Digital equipment</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span></span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<span class="sale_banner">
-															<span class="sale_text">-66.67%</span>
-														</span>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Digital equipment</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span></span>
-															<del class="price_compare"> <span class="money" data-currency-usd="$600.00" data-currency="USD">$600.00</span></del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<span class="sale_banner">
-															<span class="sale_text">-66.67%</span>
-														</span>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Electronic equipment</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span></span>
-															<del class="price_compare"> <span class="money" data-currency-usd="$600.00" data-currency="USD">$600.00</span></del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Electronic equipment</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span></span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Electronic equipment</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span></span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content_product">
-												<div class="row-container product list-unstyled clearfix">
-													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
-															<div class="hoverBorderWrapper">
-																<img src="./assets/images/demo_194×224.png" class="not-rotation img-responsive front" alt="Women's Accessories">
-																<div class="mask"></div>
-																<img src="./assets/images/demo_194×224.png" class="rotation img-responsive" alt="Women's Accessories">
-															</div>
-														</a>
-														<span class="sale_banner">
-															<span class="sale_text">-66.67%</span>
-														</span>
-														<div class="hover-mask">
-															<div class="group-mask">
-																<div class="inner-mask">
-																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn add-to-cart" data-parent=".parent-fly" type="submit" name="add"><i class="fa fa-shopping-bag"></i></button>
-																			</div>
-																		</form>
-																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
-																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="./wish-list.html"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<!--inner-mask-->
-															</div>
-															<!--Group mask-->
-														</div>
-													</div>
-													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="./product.html">Electronic equipment</a></div>
-														<div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
-															</span>
-														</div>
-														<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00" data-currency="USD">$200.00</span></span>
-															<del class="price_compare"> <span class="money" data-currency-usd="$600.00" data-currency="USD">$600.00</span></del>
-														</div>
-													</div>
-												</div>
-											</div>
+											@endforeach
 										</div>
 									</div>
 								</div>

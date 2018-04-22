@@ -12,7 +12,9 @@ use App\Models\BillDetail;
 use App\Models\TrinhChieu;
 use App\Models\KhuyenMai;
 use App\Models\PhanHoi;
+use App\Models\Slug;
 use App\Models\Customer;
+use App\Models\CommentSanPham;
 use App\User;
 use Illuminate\Http\Response;
 use Auth;
@@ -29,13 +31,48 @@ class IndexController extends Controller
     	$slides = TrinhChieu::all();
     	$cates = Category::all();
         $new_pro = Product::where('trang_thai', 1)->orderBy('created_at','DESC')->take(6)->get();
-        $random = Product::all()->random(6);
+        $random = Product::where('trang_thai', 1)->orderBy(DB::raw('RAND()'))->take(6)->get();
     	return view('user.index',compact('slides','slide_first','cates','new_pro','random'));
     }
 
-    public function getProductDetail($id){
-    	$product = Product::find($id);
-    	return view('user.product_detail', compact('product'));
+    // public function getProductDetail($id){
+    //     $product = Product::find($id);
+    //     if(!isset($product)){
+    //         return '403';
+    //     }
+    //     $same_pro = Product::where([
+    //                                 ['trang_thai', '=', 1],
+    //                                 ['id_danh_muc', '=', $product->id_danh_muc]
+    //     ])->orderBy('created_at','DESC')->take(8)->get();
+    //     $new_pro = Product::where('trang_thai', 1)->orderBy('created_at','DESC')->take(8)->get();
+    //     $commentsp = CommentSanPham::where('id_san_pham',$id)->paginate(10);
+    //     return view('user.product_detail', compact('product','commentsp','new_pro','same_pro'));
+    // }
+    public function getProductDetail($slug){
+    	$model = Slug::where('slug',$slug)->first();
+        if(!$model){
+            return 'not found';
+        }
+        switch ($model->entity_type) {
+            case ENTITY_TYPE_PRODUCT:
+            $product = Product::where([
+                                    ['trang_thai','=',1],
+                                    ['id','=',$model->entity_id]
+            ])->first();
+            $same_pro = Product::where([
+                                        ['trang_thai', '=', 1],
+                                        ['id_danh_muc', '=', $product->id_danh_muc]
+            ])->orderBy('created_at','DESC')->take(8)->get();
+            $new_pro = Product::where('trang_thai', 1)->orderBy('created_at','DESC')->take(8)->get();
+            $commentsp = CommentSanPham::where('id_san_pham',$product->id)->paginate(10);
+                return view('user.product_detail', compact('product','commentsp','new_pro','same_pro'));
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    	return view('user.product_detail', compact('product','commentsp','new_pro','same_pro'));
     }
     public function getAllProduct($id){
     	$count = Product::where('id_danh_muc',$id);
@@ -174,6 +211,19 @@ class IndexController extends Controller
         $contact->save();
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         return redirect(route('index'));
+    }
+    /* Thêm comment trang sản phẩm
+    return view
+    author TuanNguyen
+    22/04/2018 create new*/
+    public function commentProduct(Request $rq){
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        $model = new CommentSanPham();
+        $model->fill($rq->all());
+        $model->trang_thai = 1;
+        $model->save();
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return redirect()->back();
     }
     /* lấy thông tin chi tiết của đơn hàng
     return view

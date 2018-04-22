@@ -1,5 +1,6 @@
 <?php 
 use App\Admin;
+use App\User;
 use App\Models\Product;
 define('ROLE_STAFF', 100);
 define('ROLE_MOD', 500);
@@ -31,6 +32,15 @@ if(!function_exists('get_admin_name')){
 			return "";
 		}
 		return $admin->name;
+	}
+}
+if(!function_exists('get_customer_name')){
+	function get_customer_name($id){
+		$cus = User::find($id);
+		if(!$cus){
+			return "";
+		}
+		return $cus->name;
 	}
 }
 if(!function_exists('get_product_name')){

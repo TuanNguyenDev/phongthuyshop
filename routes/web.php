@@ -14,11 +14,12 @@
 Route::get('/','IndexController@getIndex')->name('index');
 
 
-Route::get('/product/{id}','IndexController@getProductDetail')->name('product');
+// Route::get('/product/{id}','IndexController@getProductDetail')->name('product');
+Route::get('/{slug}','IndexController@getProductDetail');
 
 Route::get('/add_cart/{id}','IndexController@addCart')->name('addCart');
 
-Route::post('updatecart/{id}/{quantity}','IndexController@updateCart')->name('updateCart');
+Route::post('updatecart','IndexController@updateCart')->name('updateCart');
 
 Route::get('/cart',function(){
 	return view('user.cart_detail');
@@ -35,6 +36,7 @@ Route::get('/tin_tuc_chi_tiet/{id}','IndexController@chitietTin')->name('tintuc.
 
 Route::get('customer/profile/{id}','IndexController@getProfile')->name('customer.profile');
 Route::get('customer/bill/detail/{id}','IndexController@getBillDetail')->name('customer.bill.detail');
+Route::post('/comment/product','IndexController@commentProduct')->name('comment.product');
 // Route::get('/login',function(){
 // 	return view('user.login');
 // });
