@@ -73,6 +73,7 @@ Route::get('testday', function(){
 	dd($int);
 
 });
+
 //gdyagshdas   
 Auth::routes();
 

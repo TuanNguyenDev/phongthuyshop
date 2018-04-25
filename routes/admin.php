@@ -80,7 +80,21 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('promotion/status/{id}','Admin\PromotionController@statusPromotion')->name('promotion.status');
 	Route::get('promotion/delete/{id}','Admin\PromotionController@delete')->name('promotion.delete');
 	/*end mã khuyến mãi*/
+	/*begin phần đơn hàng*/
+	Route::get('/bill/waitting','Admin\BillController@billWaitting')->name('bill.waitting');
+	Route::get('/bill/moving','Admin\BillController@billMoving')->name('bill.moving');
+	Route::get('/bill/accept/{id}','Admin\BillController@billAccept')->name('bill.accept');
+	Route::get('/bill/complete/{id}','Admin\BillController@billComplete')->name('bill.complete');
+	Route::get('/bill/detail/{id}/{rdr}','Admin\BillController@billDetail')->name('bill.detail');
+	Route::get('/bill/success','Admin\BillController@billSuccess')->name('bill.success');
+	/*end phần đơn hàng*/
+	/*Khách hàng*/
+	Route::get('/customer/logged', 'Admin\CustomerController@getListLogged')->name('customer.logged');
+	/*End Khách hàng*/
 });
-
+Route::get('/back/{rd}', function($rd){
+	$url = "bill.".$rd;
+	return redirect(route($url));
+})->name('return.back');
 
  ?>
