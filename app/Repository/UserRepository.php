@@ -5,7 +5,7 @@ use App\Admin;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
 use DB;
-use Hash;
+use Hash; 
 use Illuminate\Support\Facades\Auth;
 /**
 * 
@@ -22,7 +22,7 @@ class UserRepository
 		if($rq->input('keyword') != "" || $rq->input('pageSize') != ""){
 			$keyword = $rq->input("keyword");
 			$pageSize = $rq->input('pageSize');
-			$userList = Admin::where('ten_san_pham','like', "%$keyword%")->where('id','<>',Auth::user()->id)->paginate($pageSize)->withPath("keyword=$keyword&pageSize=$pageSize");
+			$userList = Admin::where('name','like', "%$keyword%")->where('id','<>',Auth::user()->id)->paginate($pageSize)->withPath("keyword=$keyword&pageSize=$pageSize");
 		Log::info('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
 		return $userList;

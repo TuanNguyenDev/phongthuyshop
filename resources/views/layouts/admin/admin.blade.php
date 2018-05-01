@@ -390,7 +390,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
-            <span>TinTức</span>
+            <span>Tin Tức</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">2</span>
             </span>
@@ -398,6 +398,72 @@
           <ul class="treeview-menu">
             <li><a href="{{route('tintuc.list')}}"><i class="fa fa-circle-o"></i> Danh sách tin tức</a></li>
             <li><a href="{{route('news.create')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Khách hàng</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('customer.logged')}}"><i class="fa fa-circle-o"></i> Khách hàng đã đăng kí</a></li>
+            <li><a href="{{route('customer.nologin')}}"><i class="fa fa-circle-o"></i> Khách hàng chưa đăng kí</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Đơn hàng</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">3</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('bill.waitting')}}"><i class="fa fa-circle-o"></i> Đơn hàng đang chờ xác nhận</a></li>
+            <li><a href="{{route('bill.moving')}}"><i class="fa fa-circle-o"></i> Đơn hàng đang giao</a></li>
+            <li><a href="{{route('bill.success')}}"><i class="fa fa-circle-o"></i> Đơn hàng đã hoàn thành</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Mã Khuyến Mãi</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('promotion.list')}}"><i class="fa fa-circle-o"></i> Danh sách mã khuyến mãi</a></li>
+            <li><a href="{{route('promotion.create')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Slide quảng cáo</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('slide.list')}}"><i class="fa fa-circle-o"></i> Danh sách slide</a></li>
+            <li><a href="{{route('slide.create')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Thông tin cửa hàng</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('info.list')}}"><i class="fa fa-circle-o"></i> Danh sách thông tin</a></li>
+            
           </ul>
         </li>
       </ul>

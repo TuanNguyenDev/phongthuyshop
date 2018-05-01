@@ -70,8 +70,9 @@ class UserController extends Controller
         }else{
             return 'Error';
         }
-    }/*
-	Xóa user
+    }
+    /*
+	Thay đổi trạng thái user
 	@author TuanNguyen
 	@return view
 	@date 7/04/2018 - create new

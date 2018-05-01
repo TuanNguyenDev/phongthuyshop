@@ -15,9 +15,13 @@ Route::get('/','IndexController@getIndex')->name('index');
 
 
 // Route::get('/product/{id}','IndexController@getProductDetail')->name('product');
-Route::get('/{slug}','IndexController@getProductDetail');
+
 
 Route::get('/add_cart/{id}','IndexController@addCart')->name('addCart');
+
+// Route::get('/add_carts/{id}/{quantity}','IndexController@addCarts')->name('addCarts');
+Route::post('/add_carts','IndexController@addCarts')->name('addCarts');
+
 
 Route::post('updatecart','IndexController@updateCart')->name('updateCart');
 
@@ -74,6 +78,7 @@ Route::get('testday', function(){
 
 });
 
+
 //gdyagshdas   
 Auth::routes();
 
@@ -84,3 +89,5 @@ Route::get('mod/login','Auth\AdminLoginController@showLoginForm')->name('admin.l
 Route::post('mod/login','Auth\AdminLoginController@login')->name('admin.login.submit');
 Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('mod/logout','Auth\AdminLoginController@logout')->name('admin.logout');
+
+Route::get('/{slug}','IndexController@getProductDetail');

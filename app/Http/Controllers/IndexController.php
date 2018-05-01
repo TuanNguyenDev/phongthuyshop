@@ -81,15 +81,27 @@ class IndexController extends Controller
     }
     public function addCart($id){
 
-    	if (isset($id)) {
-    		$sl = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
-    		$product = Product::find($id);
+        if (isset($id)) {
+            $sl = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
+            $product = Product::find($id);
             if(isset($product)){
             Cart::add($id, $product->ten_san_pham,$sl,$product->gia,['anh' => $product->anh]);
             $cart = Cart::content();
             return redirect(route('index'));
                 
             }
+    }
+}
+    public function addCarts(Request $rq){
+
+    		$sl =  $rq->quantity;
+            $id = $rq->id;
+    		$product = Product::find($id);
+            if(isset($product)){
+            Cart::add($id, $product->ten_san_pham,$sl,$product->gia,['anh' => $product->anh]);
+            $cart = Cart::content();
+            return redirect(route('index'));
+                
     }
 }
     public function updateCart(Request $rq){

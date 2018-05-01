@@ -90,6 +90,12 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	/*end phần đơn hàng*/
 	/*Khách hàng*/
 	Route::get('/customer/logged', 'Admin\CustomerController@getListLogged')->name('customer.logged');
+	Route::get('/customer/nologin', 'Admin\CustomerController@getListNoLogin')->name('customer.nologin');
+	Route::get('customer/status/{id}','Admin\CustomerController@statusCustomer')->name('customer.status');
+	Route::get('customer/delete/{id}','Admin\CustomerController@deleteCustomer')->name('customer.delete');
+	Route::get('customer/bill/{id}','Admin\CustomerController@customerBill')->name('customer.bill');
+	Route::get('customer/bill/detail/{id}','Admin\CustomerController@billDetail')->name('customer.billdetail');
+	Route::get('customer/noLogin/bill/detail/{id}','Admin\CustomerController@noLoginBillDetail')->name('customer.noLogin.billdetail');
 	/*End Khách hàng*/
 });
 Route::get('/back/{rd}', function($rd){

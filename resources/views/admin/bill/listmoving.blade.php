@@ -35,7 +35,7 @@
 			<td>Đang chờ</td>
 			<td>
 				<a href="{{route('bill.complete',['id' => $b->id])}}" class="btn btn-xs btn-success" title="">Hoàn thành hóa đơn</a>
-				<a href="{{route('bill.detail',['id' => $b->id])}}" class="btn btn-xs btn-success" title="">Chi tiết hóa đơn</a>
+				<a href="{{route('bill.detail',['id' => $b->id,'rdr' => $rdr])}}" class="btn btn-xs btn-success" title="">Chi tiết hóa đơn</a>
 			</td>
 		</tr>
 		@endforeach

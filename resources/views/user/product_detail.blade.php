@@ -119,7 +119,7 @@
 															<h2 class="price" id="price-preview"><span class="money" data-currency-usd="$200.00" data-currency="USD">{{$product->gia}}</span></h2>
 														</div>
 														<div class="purchase-section multiple">
-															<form method="POST" action="{{route('updateCart')}}" accept-charset="utf-8">
+															<form method="POST" action="{{route('addCarts')}}" accept-charset="utf-8">
 																{{csrf_field()}}
 																<div class="quantity-wrapper clearfix">
 																	<div class="wrapper">
