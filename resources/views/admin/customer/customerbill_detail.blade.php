@@ -1,4 +1,3 @@
-
 @extends('layouts.admin.admin')
 @section('title', 'Chi tiết đơn hàng')
 @section('config_title', 'Chi tiết đơn hàng')

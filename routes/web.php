@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-	
+use Illuminate\Support\Facades\Mail;
+use App\User;
+use App\Models\Bill;
 Route::get('/','IndexController@getIndex')->name('index');
 
 
@@ -89,5 +91,13 @@ Route::get('mod/login','Auth\AdminLoginController@showLoginForm')->name('admin.l
 Route::post('mod/login','Auth\AdminLoginController@login')->name('admin.login.submit');
 Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('mod/logout','Auth\AdminLoginController@logout')->name('admin.logout');
-
+Route::get('send/{customer}/{bill}', function($customer, $bill){
+	$cus = User::find($customer);
+	$bills = Bill::find($bill);
+	Mail::send('mail.cart', ['customer' => $cus, 'bill' => $bills], function($message) use ($cus){
+		$message->to($cus->email, $cus->name)->subject('Thông báo đơn đặt hàng tại shop phongthuy');
+	});
+	return redirect(route('index'));
+})->name('send.mail');
+Route::post('mail/forget/password','IndexController@sendPass')->name('mail.pass.forget');
 Route::get('/{slug}','IndexController@getProductDetail');

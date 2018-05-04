@@ -97,6 +97,10 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('customer/bill/detail/{id}','Admin\CustomerController@billDetail')->name('customer.billdetail');
 	Route::get('customer/noLogin/bill/detail/{id}','Admin\CustomerController@noLoginBillDetail')->name('customer.noLogin.billdetail');
 	/*End Khách hàng*/
+	/*Begin doanh thu*/
+	Route::get('/revenue','Admin\StatisticalController@getRevenue')->name('revenue.form');
+	Route::post('/revenue/result/manual','Admin\StatisticalController@getResultManual')->name('revenue.manual');
+	/*End doanh thu*/
 });
 Route::get('/back/{rd}', function($rd){
 	$url = "bill.".$rd;

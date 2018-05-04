@@ -195,7 +195,20 @@ class IndexController extends Controller
                 $bill_detail->save();
             }
             Cart::destroy();
-            return redirect(route('index'));
+            return redirect()->route('send.mail',['customer' => $customer, 'bill'=>$bill]);
+            // return redirect(route('index'));
+    }
+     /* trang thông tin cá nhân của khách hàng đã đăng nhập
+    return view
+    author TuanNguyen
+    04/05/2018 create new*/
+    public function sendPass(Request $rq){
+        $email = $rq->email;
+        $user = User::where('email',$email)->first();
+        if(!$user){
+            return '403';
+        }
+        $pass = $user->password;
     }
      /* trang thông tin cá nhân của khách hàng đã đăng nhập
     return view
