@@ -1,5 +1,5 @@
 <!-- Footer -->
-	<footer class="footer">
+<footer class="footer">
 		<div id="shopify-section-theme-footer-top" class="shopify-section">
 			<section class="footer_service_block">
 				<div class="footer_service_wrapper">
@@ -9,90 +9,42 @@
 								<div class="footer_service_content">
 									<div class="col-5 service_item">
 										<span class="footer-title">
-											Great Value
+											GIÁ TRỊ LỚN
 										</span>
 										<div class="service_caption">
-											Curabitur lacus turpis, pretium at vestibulum ac, gravida et mi. Donec id purus eget.
+											Các mặt hàng đảm bảo chất lượng 
 										</div>
 									</div>
 									<div class="col-5 service_item">
 										<span class="footer-title">
-											Worldwide Delivery
+											GIAO HÀNG
 										</span>
 										<div class="service_caption">
-											Donec imperdiet sed nisi eget blandit. Donec vehicula neque non efficitur vehicula.
+											Giao hàng hình thức tận nhà
 										</div>
 									</div>
 									<div class="col-5 service_item">
 										<span class="footer-title">
-											Safe Payment
+											THANH TOÁN AN TOÀN
 										</span>
 										<div class="service_caption">
-											Maecenas vulputate auctor eleifend. Aenean elementum, nulla interdum maximus.
+											Thanh toán tại nhà khi giao hàng
 										</div>
 									</div>
 									<div class="col-5 service_item">
 										<span class="footer-title">
-											Shop with Confidence
+											MUA SẮM SỰ TỰ TIN
 										</span>
 										<div class="service_caption">
-											In id fermentum sem. Aliquam facilisis nunc urna. Sed laoreet facilisis porta.
+											Dịch vụ an toàn và hoàn hảo
 										</div>
 									</div>
 									<div class="col-5 service_item">
 										<span class="footer-title">
-											24/7 Help Center
+											TRUNG TÂM TRỢ GIÚP 24/7
 										</span>
 										<div class="service_caption">
-											Integer nec velit dapibus, vestibulum lorem id, tincidunt nibh. Quisque lobortis.
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section class="footer_newsoc_block">
-				<div class="footer_newsoc_wrapper">
-					<div class="container">
-						<div class="row">
-							<div class="_line"></div>
-							<div class="footer_newsoc_inner">
-								<div class="footer_newsoc_content">
-									<div class="footer_newsletter_content">
-										<span class="footer-title">
-											Delivering the latest product trends  straight to your inbox.
-										</span>
-										<div class="newsletter_content">
-											<form action="https://codespot.us5.list-manage.com/subscribe/post?u=ed73bc2d2f8ae97778246702e&amp;id=c63b4d644d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-												<input type="email" class="form-control" value="" name="EMAIL" id="mail" placeholder="Enter your email">
-												<button type="submit" class="btn_newsletter_send btn" name="subscribe" id="subscribe">Submit</button>
-											</form>
-											<span class="newsletter_caption">
-												We’ll never share your email address with a third-party.
-											</span>
-										</div>
-									</div>
-									<div class="footer_social_content">
-										<span class="footer-title">
-											Stay Connected
-										</span>
-										<div class="social_content">
-											<a href="./index.html" title="Sarahmarket 1 on Facebook" class="icon-social facebook"><i class="fa fa-facebook"></i></a>
-											<a href="./index.html" title="Sarahmarket 1 on Twitter" class="icon-social twitter"><i class="fa fa-twitter"></i></a>
-											<a href="./index.html" title="Sarahmarket 1 on Pinterest" class="icon-social pinterest"><i class="fa fa-pinterest"></i></a>
-											<a href="./index.html" title="Sarahmarket 1 on Instagram" class="icon-social instagram"><i class="fa fa-instagram"></i></a>
-											<a href="./index.html" title="Sarahmarket 1 on Youtube" class="icon-social youtube"><i class="fa fa-youtube"></i></a>
-											<a href="./index.html" title="Sarahmarket 1 on Vimeo" class="icon-social vimeo"><i class="fa fa-vimeo"></i></a>
-										</div>
-									</div>
-									<div class="footer_shop_content">
-										<span class="footer-title">
-											Shop On-The-Go
-										</span>
-										<div class="shop_content">
-											<a href="./index.html">Download the app</a> and get the world of SarahMarket at your fingertips.
+											Trợ giúp khách hàng 24/7
 										</div>
 									</div>
 								</div>
@@ -112,91 +64,32 @@
 								<div class="footer_linklist_content">
 									<div class="col-sm-3 linklist_item">
 										<span class="footer-title">
-											About Us
+											Về chúng tôi
 										</span>
 										<div class="linklist_content">
 											<ul class="linklist_menu">
 												<li>
-													<a href="./about-us.html">About SarahMarket</a>
+													<a href="./about-us.php">Giới thiệu</a>
 												</li>
 												<li>
-													<a href="./about-us.html">About SarahMarket Group</a>
-												</li>
-												<li>
-													<a href="./contact-us.html">Sitemap</a>
+													<a href="./contact.php">Liên hệ</a>
 												</li>
 											</ul>
 										</div>
 									</div>
 									<div class="col-sm-3 linklist_item">
 										<span class="footer-title">
-											Customer Services
+											Dịch vụ khách hàng
 										</span>
 										<div class="linklist_content">
 											<ul class="linklist_menu">
 												<li>
-													<a href="./index.html">Help Center</a>
-												</li>
-												<li>
-													<a href="./index.html">Contact Us</a>
-												</li>
-												<li>
-													<a href="./index.html">Report Abuse</a>
-												</li>
-												<li>
-													<a href="./index.html">Submit a Dispute</a>
-												</li>
-												<li>
-													<a href="./index.html">Policies &amp; Rules</a>
+													<a href="./help.php">Trung tâm trợ giúp</a>
 												</li>
 											</ul>
 										</div>
 									</div>
-									<div class="col-sm-3 linklist_item">
-										<span class="footer-title">
-											How to Buy
-										</span>
-										<div class="linklist_content">
-											<ul class="linklist_menu">
-												<li>
-													<a href="./index.html">Making Payments</a>
-												</li>
-												<li>
-													<a href="./index.html">Delivery Options</a>
-												</li>
-												<li>
-													<a href="./index.html">Buyer Protection</a>
-												</li>
-												<li>
-													<a href="./index.html">New User Guide</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-sm-3 linklist_item">
-										<span class="footer-title">
-											Trade Services
-										</span>
-										<div class="linklist_content">
-											<ul class="linklist_menu">
-												<li>
-													<a href="./index.html">Trade Assurance</a>
-												</li>
-												<li>
-													<a href="./index.html">Business Identity</a>
-												</li>
-												<li>
-													<a href="./index.html">Logistics Service</a>
-												</li>
-												<li>
-													<a href="./index.html">Secure Payment</a>
-												</li>
-												<li>
-													<a href="./index.html">Inspection Service</a>
-												</li>
-											</ul>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -212,35 +105,13 @@
 								<div class="copy-right-group">
 									<div class="footer_menu">
 										<ul>
-											<li><a href="./index.html" title="Online Shopping">Online Shopping</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Promotions ">Promotions </a><span class="line">|</span></li>
-											<li><a href="./index.html" title="My Orders">My Orders</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Help">Help</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Site Map">Site Map</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Customer">Customer</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Service">Service</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Support">Support</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Most Populars">Most Populars</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Best Sellers">Best Sellers</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="New Arrivals">New Arrivals</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Special Products">Special Products</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Manufacturers">Manufacturers</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Our Stores">Our Stores</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Shipping">Shipping</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Payments">Payments</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Payments Refunds">Payments Refunds</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Terms &amp; Conditions">Terms &amp; Conditions</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Policy">Policy</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Shipping">Shipping</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Payments">Payments</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Returns">Returns</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Refunds">Refunds</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Warrantee">Warrantee</a><span class="line">|</span></li>
-											<li><a href="./index.html" title="FAQ ">FAQ </a><span class="line">|</span></li>
-											<li><a href="./index.html" title="Contact">Contact</a><span class="line">|</span></li>
+											<li><a href="./categoty.php" title="Online Shopping">Online Shopping</a><span class="line">|</span></li>
+											<li><a href="./cart.php" title="My Orders">My Orders</a><span class="line">|</span></li>
+											
+											<li><a href="./contact.php" title="Contact">Contact</a><span class="line">|</span></li>
 										</ul>
 									</div>
-									<div class="footer_copyright">Copyright © 2017 <a href="./index.html" title="">Sarahmarket 1</a>. All Rights Reserved</div>
+									<div class="footer_copyright">Copyright © 2017 <a href="./index.php" title="">Sarahmarket 1</a>. All Rights Reserved</div>
 								</div>
 							</div>
 						</div>
@@ -249,7 +120,6 @@
 			</section>
 		</div>
 	</footer>
-
 	<!-- Modal QuickView -->
 	<div id="quick-shop-modal" class="modal quick-shop" role="dialog" aria-hidden="true" tabindex="-1" data-width="800" style="display: none;">
 		<div class="modal-dialog fadeIn animated">
@@ -265,35 +135,19 @@
 								<div id="featuted-image" class="main-image featured1">
 									<img src="./assets/images/demo_269×310.png" alt="">
 								</div>
-								<div id="gallery_main_qs" class="product-image-thumb scroll scroll-mini">
-									<div class="qs-vertical-slider" style="display:block">
-										<a class="image-thumb active" href="./assets/images/demo_269×310.png" data-image="./assets/images/demo_269×310.png" data-zoom-image="./assets/images/demo_269×310.png">
-											<img src="./assets/images/demo_85×97.png" alt="">
-										</a>
-										<a class="image-thumb" href="./assets/images/demo_269×310.png" data-image="./assets/images/demo_269×310.png" data-zoom-image="./assets/images/demo_269×310.png">
-											<img src="./assets/images/demo_85×97.png" alt="">
-										</a>
-										<a class="image-thumb" href="./assets/images/demo_269×310.png" data-image="./assets/images/demo_269×310.png" data-zoom-image="./assets/images/demo_269×310.png">
-											<img src="./assets/images/demo_85×97.png" alt="">
-										</a>
-										<a class="image-thumb" href="./assets/images/demo_269×310.png" data-image="./assets/images/demo_269×310.png" data-zoom-image="./assets/images/demo_269×310.png">
-											<img src="./assets/images/demo_85×97.png" alt="">
-										</a>
-									</div>
-								</div>
 								<div class="vertical-slider"></div>
 							</div>
 						</div>
 						<div class="col-md-6 product-information">
 							<div id="quick-shop-container">
-								<h3 id="quick-shop-title"><a href="./product.html">Today's trending</a></h3>
+								<h3 id="quick-shop-title"><a href="./product.php">Today's trending</a></h3>
 								<div class="rating-star"><span class="shopify-product-reviews-badge" data-id="6537875078"></span></div>
 								<div class="description">
 									<div id="quick-shop-description" class="text-left">
 										<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet...</p>
 									</div>
 								</div>
-								<form action="./cart.html" method="post" class="variants" id="quick-shop-product-actions" enctype="multipart/form-data">
+								<form action="./cart.php" method="post" class="variants" id="quick-shop-product-actions" enctype="multipart/form-data">
 									<div id="quick-shop-price-container" class="detail-price">
 										<del class="price_compare" style="font-family:currencies">
 											<span class="money" data-currency-usd="$300.00" data-currency="USD">$300.00</span>
@@ -348,26 +202,6 @@
 	</div>
 	
 	<!-- Modal Newsletter-->
-	{{-- <div id="newsletter-popup" class="modal fade in" style="display: block; padding-right: 15px;" tabindex="-1" role="dialog" aria-hidden="false">
-		<div class="nl-wraper-popup bounceInDown animated">
-			<div class="nl-wraper-popup-inner"> 
-				<div class="popup-image">
-					<img src="./assets/images/demo_238×238.png" alt="">
-				</div>
-				<form action="https://codespot.us5.list-manage.com/subscribe/post?u=ed73bc2d2f8ae97778246702e&amp;id=c63b4d644d" method="post" name="mc-embedded-subscribe-form" target="_blank">
-					<h4>Subcribe to our monthly email</h4>    
-					Be the firtst in the know by getting special deals and offers sent directly to your inbox      
-					<div class="group_input">
-						<input class="form-control" type="email" name="EMAIL" placeholder="Enter your email">
-						<button class="btn" type="submit">Subcribe</button>
-					</div>       
-				</form>
-				<div class="nl-popup-close">
-					<span onclick="$('#newsletter-popup').modal('hide')" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"><i class="fa fa-times"></i></span>
-				</div>
-			</div>
-		</div>
-	</div> --}}
 	
 	<!-- Float right icon -->
 	<div class="float-right-icon">
@@ -379,5 +213,4 @@
 			</li>
 		</ul>
 	</div>
-	
 </body>

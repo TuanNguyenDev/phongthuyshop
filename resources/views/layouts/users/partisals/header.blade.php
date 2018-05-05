@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
@@ -659,7 +659,7 @@
 												</li>
 												@foreach ($info as $i)
 													<li class="nav-item active">
-													<a href="{{route('index')}}">
+													<a href="{{route('info',['id'=>$i->id])}}">
 														<span>{{$i->danh_muc}}</span>
 													</a>
 												</li>

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\TinTuc;
 use App\Models\Bill;
+use App\Models\Info;
 use App\Models\BillDetail;
 use App\Models\TrinhChieu;
 use App\Models\KhuyenMai;
@@ -15,6 +16,7 @@ use App\Models\PhanHoi;
 use App\Models\Slug;
 use App\Models\Customer;
 use App\Models\CommentSanPham;
+use App\Models\CommentTinTuc;
 use App\User;
 use Illuminate\Http\Response;
 use Auth;
@@ -210,7 +212,33 @@ class IndexController extends Controller
         }
         $pass = $user->password;
     }
+     /* Trả về trang chính sách cửa hàng
+    return view
+    author TuanNguyen
+    05/05/2018 create new*/
+    public function infoCuaHang($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        if($id == 1 ){
+            $chinhsach = Info::find($id);
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            return view('user.chinhsach', compact('chinhsach'));
+        }
+        if($id == 2 ){
+            $tuyendung = Info::find($id);
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            return view('user.tuyendung', compact('tuyendung'));
+        }
+        if($id == 3 ){
+            $lienhe = Info::find($id);
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            return view('user.lienhe', compact('lienhe'));
+        }
+        if($id != 1 && $id != 2 && $id != 3){
+            return '403';
+        }
+    }
      /* trang thông tin cá nhân của khách hàng đã đăng nhập
+    }
     return view
     author TuanNguyen
     19/04/2018 create new*/
@@ -244,6 +272,19 @@ class IndexController extends Controller
     public function commentProduct(Request $rq){
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         $model = new CommentSanPham();
+        $model->fill($rq->all());
+        $model->trang_thai = 1;
+        $model->save();
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return redirect()->back();
+    }
+    /* Thêm comment trang tin tức
+    return view
+    author TuanNguyen
+    05/05/2018 create new*/
+    public function commentTinTuc(Request $rq){
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        $model = new CommentTinTuc();
         $model->fill($rq->all());
         $model->trang_thai = 1;
         $model->save();
@@ -291,12 +332,12 @@ class IndexController extends Controller
     08/04/2018 create new*/
     public function chitietTin($id){
         $tin = TinTuc::find($id);
-
+        $comment_tin_tuc = CommentTinTuc::where('id_tin_tuc',$tin->id)->paginate(10);
         if(!$tin){
             return 'Error';
         }
         else{
-            return view('user.chitiettin',compact('tin'));
+            return view('user.chitiettin',compact('tin','comment_tin_tuc'));
         }
     }
 }

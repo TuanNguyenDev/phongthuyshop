@@ -43,6 +43,7 @@ Route::get('/tin_tuc_chi_tiet/{id}','IndexController@chitietTin')->name('tintuc.
 Route::get('customer/profile/{id}','IndexController@getProfile')->name('customer.profile');
 Route::get('customer/bill/detail/{id}','IndexController@getBillDetail')->name('customer.bill.detail');
 Route::post('/comment/product','IndexController@commentProduct')->name('comment.product');
+Route::post('/comment/tintuc','IndexController@commentTinTuc')->name('comment.tintuc');
 // Route::get('/login',function(){
 // 	return view('user.login');
 // });
@@ -79,7 +80,7 @@ Route::get('testday', function(){
 	dd($int);
 
 });
-
+Route::get('/info/{id}','IndexController@infoCuaHang')->name('info');
 
 //gdyagshdas   
 Auth::routes();
