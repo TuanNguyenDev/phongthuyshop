@@ -101,11 +101,21 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('/revenue','Admin\StatisticalController@getRevenue')->name('revenue.form');
 	Route::post('/revenue/result/manual','Admin\StatisticalController@getResultManual')->name('revenue.manual');
 	/*End doanh thu*/
-	/*Quản lý commemt sản phẩm*/
+	/*Quản lý commemt */
 	Route::get('comment/product/{id}','Admin\CommentProductController@getList')->name('product.comment');
 	Route::get('comment/product/status/{id}','Admin\CommentProductController@changeStatus')->name('comment.product.status');
 	Route::get('comment/delete/{id}','Admin\CommentProductController@deleteComment')->name('comment.delete');
-	/*emd quản lý comment sản phẩm*/
+	Route::get('comment/new/delete/{id}','Admin\CommentNewController@deleteComment')->name('comment.new.delete');
+	Route::get('comment/new/status/{id}','Admin\CommentNewController@changeStatus')->name('comment.new.status');
+	Route::get('comment/news/{id}','Admin\CommentNewController@getList')->name('news.comment');
+
+	Route::get('comment/product/all','Admin\CommentProductController@getAllList')->name('product.comment.all');
+	Route::get('comment/product/status/all/{id}','Admin\CommentProductController@changeStatusAll')->name('comment.product.status.all');
+	Route::get('comment/delete/all/{id}','Admin\CommentProductController@deleteCommentAll')->name('comment.delete.all');
+	Route::get('comment/news/all','Admin\CommentNewController@getAllList')->name('new.comment.all');
+	Route::get('comment/new/delete/all/{id}','Admin\CommentNewController@deleteCommentAll')->name('comment.new.delete.all');
+	Route::get('comment/new/status/all/{id}','Admin\CommentNewController@changeStatusAll')->name('comment.new.status.all');
+	/*end quản lý comment*/
 });
 Route::get('/back/{rd}', function($rd){
 	$url = "bill.".$rd;

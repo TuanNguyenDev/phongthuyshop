@@ -53,6 +53,7 @@
 			<td>
 				<a href="{{route('news.update',['id' => $n->id])}}" class="btn btn-xs btn-info" title="">Edit</a>
 				<a href="{{route('news.remove',['id' => $n->id])}}" class="btn btn-xs btn-info" title="">Remove</a>
+				<a href="{{route('news.comment',['id' => $n->id])}}" class="btn btn-xs btn-success" title="">Xem bình luận của tin </a>
 			</td>
 		</tr>
 	@endforeach

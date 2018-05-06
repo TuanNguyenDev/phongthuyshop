@@ -466,6 +466,32 @@
             
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Comment sản phẩm</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">1</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('product.comment.all')}}"><i class="fa fa-circle-o"></i> Danh sách </a></li>
+            
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Comment tin tức</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">1</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('new.comment.all')}}"><i class="fa fa-circle-o"></i> Danh sách </a></li>
+            
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
