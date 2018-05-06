@@ -82,6 +82,7 @@
 					@else
 						<a href="{{route('product.status',['id' => $p->id])}}" class="btn btn-xs btn-success" title="">Hiện sản phẩm</a>
 					@endif
+					<a href="{{route('product.comment',['id' => $p->id])}}" class="btn btn-xs btn-success" title="">Xem bình luận sản phẩm </a>
 					<a href="{{route('product.delete',['id' => $p->id])}}" class="btn btn-xs btn-success" title="">Xóa</a>
 				</td>
 			</tr>

@@ -101,6 +101,11 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('/revenue','Admin\StatisticalController@getRevenue')->name('revenue.form');
 	Route::post('/revenue/result/manual','Admin\StatisticalController@getResultManual')->name('revenue.manual');
 	/*End doanh thu*/
+	/*Quản lý commemt sản phẩm*/
+	Route::get('comment/product/{id}','Admin\CommentProductController@getList')->name('product.comment');
+	Route::get('comment/product/status/{id}','Admin\CommentProductController@changeStatus')->name('comment.product.status');
+	Route::get('comment/delete/{id}','Admin\CommentProductController@deleteComment')->name('comment.delete');
+	/*emd quản lý comment sản phẩm*/
 });
 Route::get('/back/{rd}', function($rd){
 	$url = "bill.".$rd;
