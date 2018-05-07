@@ -22,7 +22,10 @@ use Illuminate\Http\Response;
 use Auth;
 use Log;
 use DB;
+use Hash;
 use Cart;
+use App\Http\Requests\SaveCustomerProfileRequest;
+use App\Http\Requests\SaveChangePasswordRequest;
 class IndexController extends Controller
 {
 	/*
@@ -238,7 +241,6 @@ class IndexController extends Controller
         }
     }
      /* trang thông tin cá nhân của khách hàng đã đăng nhập
-    }
     return view
     author TuanNguyen
     19/04/2018 create new*/
@@ -253,6 +255,61 @@ class IndexController extends Controller
             $bills = Bill::where('id_khach_hang',$user->id)->paginate(10);
             return view('user.customer',compact('user','bills'));
     }
+     /* lưu thông tin chỉnh sửa thông tin khách hàng
+    return view
+    author TuanNguyen
+    07/05/2018 create new*/
+    public function saveProfile(SaveCustomerProfileRequest $rq){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        $model = User::find(Auth::user()->id);
+        $model->fill($rq->all());
+        $model->save();
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return redirect(route('index'));
+    }
+    /*
+    Lưu thay đổi mật khẩu
+    @author TuanNguyen
+    @return view
+    @date 08/05/2018 - create new
+     */
+    public function savechangePass(SaveChangePasswordRequest $rq){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        if(Hash::check($rq->oldPass, Auth::user()->password)){
+            $newPass = Hash::make($rq->newPass);
+            Auth::user()->password = $newPass;
+            Auth::logout();
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            return redirect(route('login'));
+        }
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return redirect(route('password.change'))->with('errMsg', 'Invalid old password');
+    }
+
+     /* chỉnh sửa password
+    return view
+    author TuanNguyen
+    08/05/2018 create new*/
+    public function changePass(){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('user.change-pwd');
+    }
+
+     /* chỉnh sửa thông tin cá nhân khách hàng
+    return view
+    author TuanNguyen
+    07/05/2018 create new*/
+    public function changeProfile($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        $user = User::find($id);
+        if(!isset($user)){
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            return '403';
+        }
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            return view('user.cus_change_profile',compact('user'));
+    }
     /* Gửi phản hồi
     return view
     author TuanNguyen
@@ -264,6 +321,35 @@ class IndexController extends Controller
         $contact->save();
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         return redirect(route('index'));
+    }
+    /* Chuyển đến trang khuyến mãi
+    return view
+    author TuanNguyen
+    07/05/2018 create new*/
+    public function getKhuyenMai(){
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        $today = date("Y-m-d");
+        $result = KhuyenMai::where('trang_thai', 1)
+                        ->where('ngay_ket_thuc', '>=', $today)->get();
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('user.khuyenmai', compact('result'));
+    }
+    /* Chuyển đến trang chi tiết khuyến mãi
+    return view
+    author TuanNguyen
+    07/05/2018 create new*/
+    public function getKhuyenMaiDetail($id){
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        $today = date("Y-m-d");
+        $km = KhuyenMai::where('id',$id)
+                        ->where('trang_thai', 1)
+                        ->where('ngay_ket_thuc', '>=', $today)->get();
+        if(!$km){
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            return '403';
+        }
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('user.khuyenmai_chitiet', compact('km'));
     }
     /* Thêm comment trang sản phẩm
     return view

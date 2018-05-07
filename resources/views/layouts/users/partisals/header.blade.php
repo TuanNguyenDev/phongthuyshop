@@ -82,7 +82,7 @@
 											<li class="toolbar-customer my-wishlist"><a href="{{route('login')}}">Login</a></li>
 											<li class="toolbar-customer log-out"><a href="{{route('register')}}"><span>/</span> Register</a></li>
 										@endif
-										<li class="currency_group hidden-xs">
+										{{-- <li class="currency_group hidden-xs">
 											<div class="currencies-switcher">
 												<div class="currency btn-group uppercase">
 													<a class="currency_wrapper dropdown-toggle" data-toggle="dropdown">
@@ -112,7 +112,7 @@
 													</ul>
 												</div>
 											</div>
-										</li>
+										</li> --}}
 									</ul>
 								</div>
 							</div>
@@ -651,6 +651,11 @@
 														</li>
 														@endforeach
 													</ul>
+												</li>
+												<li class="nav-item active">
+													<a href="{{route('khuyenmai')}}">
+														<span>Khuyến mãi</span>
+													</a>
 												</li>
 												<li class="nav-item active">
 													<a href="{{route('tin.tuc.bo.ich')}}">

@@ -43,7 +43,8 @@
 												<p>{{$user->dia_chi}}</p>
 												<p>{{$user->sdt}}</p>
 												<p>Tham gia ngày{{$user->created_at}}</p>
-												<a id="view_address" href="./addresses.html"><i class="fa fa-bookmark-o"></i><span>Sửa thông tin</span></a>
+												<a id="view_address" href="{{route('customer.change.profile',['id'=> Auth::user()->id])}}"><i class="fa fa-bookmark-o"></i><span>Sửa thông tin</span></a>
+												<a id="view_address" href="{{route('customer.change.pass')}}"><i class="fa fa-bookmark-o"></i><span>Đổi mật khẩu</span></a>
 											</div>
 										</div>
 										<!--End sb-group-account -->

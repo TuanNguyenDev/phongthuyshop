@@ -41,6 +41,14 @@ Route::get('/tin_tuc_bo_ich', 'IndexController@getNew')->name('tin.tuc.bo.ich');
 Route::get('/tin_tuc_chi_tiet/{id}','IndexController@chitietTin')->name('tintuc.chitiet');
 
 Route::get('customer/profile/{id}','IndexController@getProfile')->name('customer.profile');
+Route::get('customer/change/profile/{id}','IndexController@changeProfile')->name('customer.change.profile');
+Route::get('customer/change/pass','IndexController@changePass')->name('customer.change.pass');
+Route::post('customer/change/pass','IndexController@savechangePass');
+
+Route::post('customer/save/profile','IndexController@saveProfile')->name('save.cus.profile');
+Route::get('/khuyenmai','IndexController@getKhuyenMai')->name('khuyenmai');
+Route::get('/khuyenmai/chitiet/{id}','IndexController@getKhuyenMaiDetail')->name('khuyenmai.chitiet');
+
 Route::get('customer/bill/detail/{id}','IndexController@getBillDetail')->name('customer.bill.detail');
 Route::post('/comment/product','IndexController@commentProduct')->name('comment.product');
 Route::post('/comment/tintuc','IndexController@commentTinTuc')->name('comment.tintuc');
