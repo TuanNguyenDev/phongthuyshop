@@ -1,6 +1,6 @@
 @extends('layouts.admin.admin')
-@section('title', 'Danh sách đơn hàng đang giao')
-@section('config_title', 'Danh sách đơn hàng đang giao')
+@section('title', 'Danh sách đơn hàng không thành công')
+@section('config_title', 'Danh sách đơn hàng không thành công')
 @section('content')
 <table class="table table-hover">
 	<thead>
@@ -32,11 +32,9 @@
 				@endif
 			</td>
 			<td>{{$b->tien_thanh_toan}}</td>
-			<td>Đang chờ</td>
+			<td>Đơn hàng không thành công</td>
 			<td>
-				<a href="{{route('bill.complete',['id' => $b->id])}}" class="btn btn-xs btn-success" title="">Hoàn thành hóa đơn</a>
-				<a href="{{route('bill.cancel',['id' => $b->id])}}" class="btn btn-xs btn-success" title="">Xác nhận hóa đơn không hoàn thành</a>
-				<a href="{{route('bill.detail',['id' => $b->id,'rdr' => $rdr])}}" class="btn btn-xs btn-success" title="">Chi tiết hóa đơn</a>
+				<a href="{{route('bill.detail',['id' => $b->id, 'rdr' => $rdr])}}" class="btn btn-xs btn-success" title="">Chi tiết hóa đơn</a>
 			</td>
 		</tr>
 		@endforeach

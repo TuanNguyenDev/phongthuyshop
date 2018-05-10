@@ -2,6 +2,8 @@
 use App\Admin;
 use App\User;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Menh;
 define('ROLE_STAFF', 100);
 define('ROLE_MOD', 500);
 define('ROLE_ADMIN', 900);
@@ -50,6 +52,24 @@ if(!function_exists('get_product_name')){
 			return "";
 		}
 		return $product->ten_san_pham;
+	}
+}
+if(!function_exists('get_cate_name')){
+	function get_cate_name($id){
+		$cate = Category::find($id);
+		if(!$cate){
+			return "";
+		}
+		return $cate->ten_danh_muc;
+	}
+}
+if(!function_exists('get_menh_name')){
+	function get_menh_name($id){
+		$menh = Menh::find($id);
+		if(!$menh){
+			return "";
+		}
+		return $menh->ten_menh;
 	}
 }
 if(!function_exists('get_product_price')){

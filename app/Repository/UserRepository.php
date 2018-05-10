@@ -22,13 +22,13 @@ class UserRepository
 		if($rq->input('keyword') != "" || $rq->input('pageSize') != ""){
 			$keyword = $rq->input("keyword");
 			$pageSize = $rq->input('pageSize');
-			$userList = Admin::where('name','like', "%$keyword%")->where('id','<>',Auth::user()->id)->paginate($pageSize)->withPath("keyword=$keyword&pageSize=$pageSize");
+			$userList = Admin::where('name','like', "%$keyword%")->where('id_quyen',100)->paginate($pageSize)->withPath("keyword=$keyword&pageSize=$pageSize");
 		Log::info('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
 		return $userList;
 		}else{
 			Log::info('END ' . get_class() . ' => ' . __FUNCTION__ . '()');
-			$userList = Admin::where('id','<>',Auth::user()->id)->paginate(10);
+			$userList = Admin::where('id_quyen',100)->paginate(10);
 			return $userList;
 		}
 	}

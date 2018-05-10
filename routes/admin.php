@@ -1,9 +1,17 @@
 <?php 
 use Illuminate\Http\Request;
+use App\User;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Bill;
 Route::group(['middleware' => 'auth:admin'],function(){
 
 	Route::get('/dashboard', function(){
-		return view('admin.dashboard');
+		$countPro = Product::count();
+		$countBill = Bill::count();
+		$countCate = Category::count();
+		$countCus = User::count();
+		return view('admin.dashboard',compact('countPro','countBill','countCate','countCus'));
 	})->name('dashboard');
 	/*begin product route*/
 	Route::get('product', 'Admin\ProductController@getList')->name('product.list');
@@ -18,7 +26,18 @@ Route::group(['middleware' => 'auth:admin'],function(){
 		Route::get('category/delete/{id}','Admin\CategoryController@deleteCategory')->name('category.delete');
 		Route::get('menh/delete/{id}','Admin\MenhController@deleteMenh')->name('menh.delete');
 		Route::get('news/delete/{id}','Admin\TinTucController@deleteNew')->name('news.remove');
+		Route::get('customer/delete/{id}','Admin\CustomerController@deleteCustomer')->name('customer.delete');
+		Route::get('slide/delete/{id}','Admin\SlideController@delete')->name('slide.delete');
+		Route::get('promotion/delete/{id}','Admin\PromotionController@delete')->name('promotion.delete');
+			/*Route quản lí User*/
+		Route::get('/user','Admin\UserController@getList')->name('user.list');
+		Route::get('/user/create','Admin\UserController@create')->name('user.create');
+		Route::post('user/save','Admin\UserController@save')->name('user.save');
 		Route::get('user/delete/{id}','Admin\UserController@deleteUser')->name('user.delete');
+		Route::get('user/status/{id}','Admin\UserController@statusUser')->name('user.status');
+		Route::get('user/delete/{id}','Admin\UserController@deleteUser')->name('user.delete');
+		/*End Route quản lí User*/
+
 
 	});
 	/*Begin Category Route*/
@@ -52,13 +71,7 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('news/update/{id}','Admin\TinTucController@updateNew')->name('news.update');
 	/*Emd Tin tức route*/
 
-	/*Route quản lí User*/
-	Route::get('/user','Admin\UserController@getList')->name('user.list');
-	Route::get('/user/create','Admin\UserController@create')->name('user.create');
-	Route::post('user/save','Admin\UserController@save')->name('user.save');
-	Route::get('user/delete/{id}','Admin\UserController@deleteUser')->name('user.delete');
-	Route::get('user/status/{id}','Admin\UserController@statusUser')->name('user.status');
-	/*End Route quản lí User*/
+	
 
 	/* Thông tin của cửa hàng*/
 	Route::get('/info','Admin\InfoController@getList')->name('info.list');
@@ -71,35 +84,36 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('/slide/create','Admin\SlideController@create')->name('slide.create');
 	Route::post('slide/save','Admin\SlideController@save')->name('slide.save');
 	Route::get('slide/update/{id}','Admin\SlideController@update')->name('slide.update');
-	Route::get('slide/delete/{id}','Admin\SlideController@delete')->name('slide.delete');
 	/*end slide trang chủ*/
 	/*tạo mã khuyến mãi*/
 	Route::get('/promotion/create','Admin\PromotionController@createPromotion')->name('promotion.create');
 	Route::post('/promotion/save','Admin\PromotionController@savePromotion')->name('promotion.save');
 	Route::get('/promotion','Admin\PromotionController@getList')->name('promotion.list');
 	Route::get('promotion/status/{id}','Admin\PromotionController@statusPromotion')->name('promotion.status');
-	Route::get('promotion/delete/{id}','Admin\PromotionController@delete')->name('promotion.delete');
 	/*end mã khuyến mãi*/
 	/*begin phần đơn hàng*/
 	Route::get('/bill/waitting','Admin\BillController@billWaitting')->name('bill.waitting');
 	Route::get('/bill/moving','Admin\BillController@billMoving')->name('bill.moving');
 	Route::get('/bill/accept/{id}','Admin\BillController@billAccept')->name('bill.accept');
+	Route::get('/bill/cancel/{id}','Admin\BillController@billCancel')->name('bill.cancel');
 	Route::get('/bill/complete/{id}','Admin\BillController@billComplete')->name('bill.complete');
 	Route::get('/bill/detail/{id}/{rdr}','Admin\BillController@billDetail')->name('bill.detail');
 	Route::get('/bill/success','Admin\BillController@billSuccess')->name('bill.success');
+	Route::get('/bill/fail','Admin\BillController@billFail')->name('bill.fail');
 	/*end phần đơn hàng*/
 	/*Khách hàng*/
 	Route::get('/customer/logged', 'Admin\CustomerController@getListLogged')->name('customer.logged');
 	Route::get('/customer/nologin', 'Admin\CustomerController@getListNoLogin')->name('customer.nologin');
 	Route::get('customer/status/{id}','Admin\CustomerController@statusCustomer')->name('customer.status');
-	Route::get('customer/delete/{id}','Admin\CustomerController@deleteCustomer')->name('customer.delete');
 	Route::get('customer/bill/{id}','Admin\CustomerController@customerBill')->name('customer.bill');
 	Route::get('customer/bill/detail/{id}','Admin\CustomerController@billDetail')->name('customer.billdetail');
 	Route::get('customer/noLogin/bill/detail/{id}','Admin\CustomerController@noLoginBillDetail')->name('customer.noLogin.billdetail');
 	/*End Khách hàng*/
 	/*Begin doanh thu*/
 	Route::get('/revenue','Admin\StatisticalController@getRevenue')->name('revenue.form');
+	Route::get('top/product','Admin\StatisticalController@getTopProduct')->name('top.product');
 	Route::post('/revenue/result/manual','Admin\StatisticalController@getResultManual')->name('revenue.manual');
+	Route::post('/topproduct/result/manual','Admin\StatisticalController@getTopProductManual')->name('top.product.manual');
 	/*End doanh thu*/
 	/*Quản lý commemt */
 	Route::get('comment/product/{id}','Admin\CommentProductController@getList')->name('product.comment');

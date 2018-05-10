@@ -80,9 +80,22 @@ class IndexController extends Controller
     	return view('user.product_detail', compact('product','commentsp','new_pro','same_pro'));
     }
     public function getAllProduct($id){
-    	$count = Product::where('id_danh_muc',$id);
-    	$product = Product::where('id_danh_muc',$id)->paginate(12);
-    	return view('user.category', compact('product','count'));
+        $id_cate = $id;
+        $count = Product::where('id_danh_muc',$id)->get();
+        $product = Product::where('id_danh_muc',$id)->paginate(12);
+        return view('user.category', compact('product','count','id_cate'));
+    }
+    /*
+    lấy sản phẩm theo mệnh
+    return view 
+    author TuanNguyen
+    10/05/2018 create new
+     */
+    public function getProductByMenh($id){
+        $id_menh = $id;
+    	$count = Product::where('id_menh',$id)->get();
+    	$product = Product::where('id_menh',$id)->paginate(12);
+    	return view('user.menh', compact('product','count','id_menh'));
     }
     public function addCart($id){
 

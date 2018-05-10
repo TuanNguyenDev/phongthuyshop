@@ -76,6 +76,7 @@ Route::get('/contact',function(){
 Route::get('remove/{rowId}', 'IndexController@removeCart')->name('removeCart');
 
 Route::get('category/{id}', 'IndexController@getAllProduct')->name('category');
+Route::get('menh/{id}', 'IndexController@getProductByMenh')->name('menh');
 
 Route::get('test', 'HomeController@index')->name('home');
 Route::get('/checkout','IndexController@checkOut')->name('checkout');

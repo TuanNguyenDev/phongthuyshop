@@ -1,6 +1,6 @@
 @extends('layouts.admin.admin')
-@section('title', 'Chi tiết đơn hàng')
-@section('config_title', 'Chi tiết đơn hàng')
+@section('title', 'Chi tiết doanh thu')
+@section('config_title', 'Chi tiết doanh thu')
 @section('content')
 <div class="text-left">
 	<h2>Doanh thu từ ngày {{$begin}} đến ngày {{$end}}</h2>

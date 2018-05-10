@@ -425,6 +425,20 @@
             <li><a href="{{route('bill.waitting')}}"><i class="fa fa-circle-o"></i> Đơn hàng đang chờ xác nhận</a></li>
             <li><a href="{{route('bill.moving')}}"><i class="fa fa-circle-o"></i> Đơn hàng đang giao</a></li>
             <li><a href="{{route('bill.success')}}"><i class="fa fa-circle-o"></i> Đơn hàng đã hoàn thành</a></li>
+            <li><a href="{{route('bill.fail')}}"><i class="fa fa-circle-o"></i> Đơn hàng đã bị hủy</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Thống kê</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('revenue.form')}}"><i class="fa fa-circle-o"></i> Doanh thu</a></li>
+            <li><a href="{{route('top.product')}}"><i class="fa fa-circle-o"></i> Sản phẩm bán chạy</a></li>
           </ul>
         </li>
         <li class="treeview">

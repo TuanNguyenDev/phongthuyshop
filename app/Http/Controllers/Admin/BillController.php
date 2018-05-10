@@ -60,6 +60,22 @@ class BillController extends Controller
 		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
 		return view('admin.bill.listsuccess', compact('bills','rdr'));
 	}
+    /*
+	Lấy danh sách các bill bị hủy
+	@author TuanNguyen
+	@return view
+	@date 10/05/2018 - create new
+	 */
+	public function billFail(){
+		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+		$bills = Bill::where('trang_thai', 3)->get();
+		if(!$bills){
+			return '403';
+		}
+		$rdr = 'fail';
+		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+		return view('admin.bill.listfail', compact('bills','rdr'));
+	}
 	/*
 	Chấp nhận bill
 	@author TuanNguyen
@@ -97,6 +113,26 @@ class BillController extends Controller
 			return '403';
 		}
 		$bills->trang_thai = 2;
+		$bills->save();
+		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+		return redirect(route('bill.moving'));
+	}
+	/*
+	Xác nhận bill không hoàn thành
+	@author TuanNguyen
+	@return view
+	@date 25/04/2018 - create new
+	 */
+	public function billCancel($id){
+		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+		if(!isset($id)){
+			return '403';
+		}
+		$bills = Bill::find($id);
+		if(!$bills){
+			return '403';
+		}
+		$bills->trang_thai = 3;
 		$bills->save();
 		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
 		return redirect(route('bill.moving'));

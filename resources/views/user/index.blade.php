@@ -129,7 +129,7 @@
 												<div class="content_product col-sm-2">
 													<div class="row-container product list-unstyled clearfix">
 														<div class="row-left">
-															<a href="./product.html" class="hoverBorder container_item">
+															<a href="{{$p->getSlug()}}" class="hoverBorder container_item">
 																<div class="hoverBorderWrapper">
 																	<img src="{{$p->anh}}" class="not-rotation img-responsive front" alt="Sport machine">
 																	<div class="mask"></div>
@@ -147,21 +147,21 @@
 																<div class="group-mask">
 																	<div class="inner-mask">
 																		<div class="group-actionbutton">
-																			<form action="./cart.html" method="post">
+																			{{-- <form action="./cart.html" method="post">
 																				<div class="effect-ajax-cart">
 																					<input type="hidden" name="quantity" value="1">
 																					<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
 																				</div>
-																			</form>
+																			</form> --}}
 																			<ul class="quickview-wishlist-wrapper">
-																				<li class="quickview hidden-xs hidden-sm">
+																				{{-- <li class="quickview hidden-xs hidden-sm">
 																					<div class="product-ajax-cart">
 																						<span class="overlay_mask"></span>
 																						<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
 																							<a class=""><i class="fa fa-search" title="Quick View"></i></a>
 																						</div>
 																					</div>
-																				</li>
+																				</li> --}}
 																				<li class="wishlist hidden-xs">
 																					
 																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
@@ -224,7 +224,7 @@
 												<div class="content_product col-sm-2">
 													<div class="row-container product list-unstyled clearfix">
 														<div class="row-left">
-															<a href="./product.html" class="hoverBorder container_item">
+															<a href="{{$p->getSlug()}}" class="hoverBorder container_item">
 																<div class="hoverBorderWrapper">
 																	<img src="{{$p->anh}}" class="not-rotation img-responsive front" alt="Sport machine">
 																	<div class="mask"></div>
@@ -242,21 +242,21 @@
 																<div class="group-mask">
 																	<div class="inner-mask">
 																		<div class="group-actionbutton">
-																			<form action="./cart.html" method="post">
+																			{{-- <form action="./cart.html" method="post">
 																				<div class="effect-ajax-cart">
 																					<input type="hidden" name="quantity" value="1">
 																					<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
 																				</div>
-																			</form>
+																			</form> --}}
 																			<ul class="quickview-wishlist-wrapper">
-																				<li class="quickview hidden-xs hidden-sm">
+																				{{-- <li class="quickview hidden-xs hidden-sm">
 																					<div class="product-ajax-cart">
 																						<span class="overlay_mask"></span>
 																						<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
 																							<a class=""><i class="fa fa-search" title="Quick View"></i></a>
 																						</div>
 																					</div>
-																				</li>
+																				</li> --}}
 																				<li class="wishlist hidden-xs">
 																					
 																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
@@ -319,7 +319,7 @@
 												<div class="content_product col-sm-2">
 													<div class="row-container product list-unstyled clearfix">
 														<div class="row-left">
-															<a href="./product.html" class="hoverBorder container_item">
+															<a href="{{$p->getSlug()}}" class="hoverBorder container_item">
 																<div class="hoverBorderWrapper">
 																	<img src="{{$p->anh}}" class="not-rotation img-responsive front" alt="Sport machine">
 																	<div class="mask"></div>
@@ -337,21 +337,21 @@
 																<div class="group-mask">
 																	<div class="inner-mask">
 																		<div class="group-actionbutton">
-																			<form action="./cart.html" method="post">
+																			{{-- <form action="./cart.html" method="post">
 																				<div class="effect-ajax-cart">
 																					<input type="hidden" name="quantity" value="1">
 																					<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
 																				</div>
-																			</form>
+																			</form> --}}
 																			<ul class="quickview-wishlist-wrapper">
-																				<li class="quickview hidden-xs hidden-sm">
+																				{{-- <li class="quickview hidden-xs hidden-sm">
 																					<div class="product-ajax-cart">
 																						<span class="overlay_mask"></span>
 																						<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
 																							<a class=""><i class="fa fa-search" title="Quick View"></i></a>
 																						</div>
 																					</div>
-																				</li>
+																				</li> --}}
 																				<li class="wishlist hidden-xs">
 																					
 																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>

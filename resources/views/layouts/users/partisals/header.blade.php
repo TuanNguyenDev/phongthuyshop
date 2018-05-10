@@ -53,7 +53,7 @@
 								<div class="top-header-inner">
 									<ul class="unstyled top-menu">
 										<!-- Menu Top -->
-										<li class="nav-item active">
+										{{-- <li class="nav-item active">
 											<a href="./index.html">
 												<span>Sourcing Solutions</span>
 											</a>
@@ -72,7 +72,7 @@
 											<a href="./index.html">
 												<span>Support</span>
 											</a>
-										</li>
+										</li> --}}
 										<!-- Customer Links -->
 										@if (isset(Auth::user()->name))
 											<li class="toolbar-customer my-wishlist"><a href="{{route('customer.profile',['id' => Auth::id()])}}">{{Auth::user()->name}}</a></li>
@@ -127,7 +127,7 @@
 								<div class="main-header-inner">
 									<div class="nav-top">
 										<div class="nav-logo">
-											<a href="./index.html"><img src="./assets/images/logo.png" alt="" title="Sarahmarket 1"></a>
+											<a href="{{route('index')}}"><img src="{{ asset('images/logo_main.png') }}" alt="" title="Trang chủ"></a>
 											<h1 style="display:none"><a href="./index.html">Sarahmarket 1</a></h1>
 										</div>
 										<div class="group-search-cart">
@@ -194,7 +194,7 @@
 																
 															</div>
 															<div class="subtotal"><span>Subtotal:</span><span class="cart-total-right money" data-currency-usd="$600.00" data-currency="USD">{{$total}}</span></div>
-															<div class="action"><button class="btn" onclick="window.location='{{route('showCart')}}'">View Cart<i class="fa fa-caret-right"></i></button><button class="btn float-right" onclick="window.location='./cart.html'">CHECKOUT<i class="fa fa-caret-right"></i></button></div>
+															<div class="action"><button class="btn" onclick="window.location='{{route('showCart')}}'">View Cart<i class="fa fa-caret-right"></i></button><button class="btn float-right" onclick="window.location='{{route('checkout')}}'">CHECKOUT<i class="fa fa-caret-right"></i></button></div>
 														</div>
 													</div>
 												</div>
@@ -622,7 +622,7 @@
 												<ul class="navigation_links_left dropdown-menu" style="display: none;">
 													@foreach ($cates as $cate)
 													<li class="nav-item _icon">
-														<a href="./collections.html">
+														<a href="{{route('category',$cate->id)}}">
 															<span>{{$cate->ten_danh_muc}}</span>
 														</a>
 													</li>
@@ -639,7 +639,7 @@
 												</li>
 												<li class="nav-item dropdown navigation">
 													<a href="./blog.html" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
-														<span>Sản Phẩm Theo Mệnh</span>
+														<span>Mệnh</span>
 														<i class="fa fa-angle-down"></i>
 														<i class="sub-dropdown1  visible-sm visible-md visible-lg"></i>
 														<i class="sub-dropdown visible-sm visible-md visible-lg"></i>
@@ -647,7 +647,7 @@
 													<ul class="dropdown-menu">
 														@foreach ($menh as $m)
 														<li class="li-sub-mega">
-															<a tabindex="-1" href="./blog.html">{{$m->ten_menh}}</a>
+															<a tabindex="-1" href="{{route('menh',$m->id)}}">{{$m->ten_menh}}</a>
 														</li>
 														@endforeach
 													</ul>
