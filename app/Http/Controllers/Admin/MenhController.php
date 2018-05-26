@@ -56,7 +56,7 @@ class MenhController extends Controller
         if($result){
             return redirect(route('menh.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
 
     }
@@ -70,7 +70,7 @@ class MenhController extends Controller
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
     	$model = Menh::find($id);
         if(!$model){
-            return 'Error';
+            return view('page.404');
         }
         $modelSlug = Slug::where([
             'entity_type' => $model->entityType,
@@ -95,7 +95,7 @@ class MenhController extends Controller
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
     	$model = Menh::find($id);
     	if(!$model){
-    		return 'Error';
+    		return view('page.404');
     	}
     	if($model->trang_thai == 1){
             $model->trang_thai = 0;
@@ -134,7 +134,7 @@ class MenhController extends Controller
         }
         else
         {
-            return 'Error';
+            return view('page.notfound');
         }
     }
 }

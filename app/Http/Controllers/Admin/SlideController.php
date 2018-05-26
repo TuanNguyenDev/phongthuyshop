@@ -50,7 +50,7 @@ class SlideController extends Controller
         if($result){
             return redirect(route('slide.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
 
     }
@@ -64,7 +64,7 @@ class SlideController extends Controller
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $model = TrinhChieu::find($id);
         if(!$model){
-            return 'Error';
+            return view('page.404');
         }
         $title = 'Sửa thông tin slide';
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
@@ -83,7 +83,7 @@ class SlideController extends Controller
         if($result){
             return redirect(route('slide.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
     }
 }

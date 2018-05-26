@@ -9,7 +9,7 @@ class Product extends Model
 {
     protected $table = 'products';
     public $entityType = ENTITY_TYPE_PRODUCT;
-    public $fillable = ['ten_san_pham','size','gia','trong_luong','mau_sac','id_menh','id_danh_muc','so_luong','chat_lieu','kich_thuoc','gia_nhap','nguoi_tao'];
+    public $fillable = ['ten_san_pham','size','gia','trong_luong','mau_sac','id_menh','id_danh_muc','chat_lieu','kich_thuoc','gia_nhap','nguoi_tao'];
     public function getKM(){
     	$KM = KhuyenMai::where('id_san_pham',$this->id)->get();
     	return $KM;

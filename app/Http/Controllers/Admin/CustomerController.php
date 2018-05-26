@@ -50,7 +50,7 @@ class CustomerController extends Controller
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $model = User::find($id);
         if(!$model){
-            return 'Error';
+            return view('page.404');
         }
         if($model->trang_thai == 1){
             $model->trang_thai = 0;
@@ -92,7 +92,7 @@ class CustomerController extends Controller
         if($result){
             return redirect(route('customer.logged'));
         }else{
-            return 'Error';
+            return view('page.404');
         }
     }
 
@@ -105,11 +105,11 @@ class CustomerController extends Controller
 	public function billDetail($id){
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		if(!isset($id)){
-			return '403 id';
+			return view('page.404');
 		}
 		$bills = Bill::find($id);
 		if(!isset($bills)){
-			return '403 bill';
+			return view('page.notfound');
 		}
 		$billdetail = BillDetail::where('id_bill',$id)->get();
 		$cus = User::find($bills->id_khach_hang);
@@ -125,11 +125,11 @@ class CustomerController extends Controller
 	public function noLoginBillDetail($id){
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		if(!isset($id)){
-			return '403 id';
+			return view('page.404');
 		}
 		$cus = User::find($id);
 		if(!isset($cus)){
-			return '403 user';
+			return view('page.notfound');
 		}
 		$bills = Bill::where('id_khach_hang',$cus->id)->first();
 		$billdetail = BillDetail::where('id_bill',$bills->id)->get();

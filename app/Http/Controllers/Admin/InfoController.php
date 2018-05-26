@@ -34,7 +34,7 @@ class InfoController extends Controller
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $model = Info::find($id);
         if(!$model){
-            return 'Error';
+            return view('page.404');
         }
         $title = 'Sửa thông tin tin tức';
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
@@ -54,7 +54,7 @@ class InfoController extends Controller
         if($result){
             return redirect(route('info.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
     }
 }

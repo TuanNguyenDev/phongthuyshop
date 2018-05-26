@@ -5,6 +5,10 @@
 @php
 	$pageSize = [10, 20, 25, 30, 40]
 @endphp
+<div class="panel-body">
+	<a href="{{route('importProduct')}}" title="" class="btn btn-success">Import</a>
+	<a href="{{route('exportProduct')}}" title="" class="btn btn-success">Export</a>
+</div>
 <div class="col-sm-12">
 	<form action="{{route('product.list')}}" method="get" accept-charset="utf-8" class="form-inline col-sm-10">
 		<div class="form-group">
@@ -39,7 +43,7 @@
 			<th>Màu sắc</th>
 			<th>Mệnh</th>
 			<th>Danh mục</th>
-			<th>Số lượng</th>
+			{{-- <th>Số lượng</th> --}}
 			<th>Chất liệu</th>
 			<th>Mô tả</th>
 			<th>Trạng thái</th>
@@ -63,7 +67,7 @@
 				<td>{{$p->mau_sac}}</td>
 				<td>{{$p->Menh()['ten_menh']}}</td>
 				<td>{{$p->Category()['ten_danh_muc']}}</td>
-				<td>{{$p->so_luong}}</td>
+				{{-- <td>{{$p->so_luong}}</td> --}}
 				<td>{{$p->chat_lieu}}</td>
 				<td>{{$p->mo_ta}}</td>
 				<td>

@@ -10,7 +10,7 @@
 				<label for="name">Name</label>
 				<input value="{{old('name', $model->name)}}" type="text" id="name" name="name" class="form-control" placeholder="full name">
 			</div>
-			<div class="form-group">
+			{{-- <div class="form-group">
 				<label for="role_name">Role</label>
 				<select name="role_name" class="form-control">
 					<option value="0">--------------</option>
@@ -18,7 +18,7 @@
 						<option value="{{$value->id}}">{{$value->ten_role}}</option>
 					@endforeach
 				</select>
-			</div>
+			</div> --}}
 			<div class="form-group">
 						<label for="password">Password*</label>
 						<input type="password" name="password" class="form-control" required> 

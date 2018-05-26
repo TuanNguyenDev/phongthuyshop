@@ -26,13 +26,13 @@ class SaveProductRequest extends FormRequest
         return [
             'ten_san_pham' => 'required',
             'size' => 'required',
-            'gia' => 'required',
+            'gia' => 'required|numeric',
             'chat_lieu' => 'required',
             'mo_ta' => 'required',
-            'gia_nhap' => 'required',
-            'so_luong' => 'required',
+            'gia_nhap' => 'required|numeric',
             'trong_luong' => 'required',
-            'mau_sac' => 'required'
+            'mau_sac' => 'required',
+            'anh' => 'file|image'
         ];
     }
 }

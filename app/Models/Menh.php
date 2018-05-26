@@ -14,4 +14,15 @@ class Menh extends Model
     public function Product(){
     	return $this->hasMany('App\Models\Product','id_menh','id');
     }
+    public function getSlug(){
+    	$slug = Slug::where([
+    		'entity_type' => $this->entityType,
+    		"entity_id" => $this->id
+    	])->first();
+    	if($slug){
+    		return $slug->slug;
+    	}else{
+    		return null;
+    	}
+    }
 }

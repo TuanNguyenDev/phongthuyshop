@@ -21,16 +21,18 @@
 											  <!-- Wrapper for slides -->
 											  <div class="carousel-inner">
 											    <div class="item active">
-											      <img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="Los Angeles">
+											      <img src="{{$slide_first->anh}}" alt="{{$slide_first->alt}}">
 											    </div>
-
+											    @foreach ($slides as $s)
 											    <div class="item">
-											      <img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="Chicago">
+											      <img src="{{$s->anh}}" alt="{{$s->alt}}">
 											    </div>
+											    @endforeach
 
-											    <div class="item">
+
+											    {{-- <div class="item">
 											      <img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="New York">
-											    </div>
+											    </div> --}}
 											  </div>
 
 											  <!-- Left and right controls -->
@@ -43,67 +45,7 @@
 											    {{-- <span class="sr-only">Next</span> --}}
 											  </a>
 											</div>
-											{{-- <div class="home-slideshow">
-												<div id="home_main-slider" class="carousel slide  main-slider">
-													<ol class="carousel-indicators">
-														<li data-target="#home_main-slider" data-slide-to="0" class="carousel-1"></li>
-														<li data-target="#home_main-slider" data-slide-to="1" class="carousel-2 active"></li>
-													</ol>
-													<div class="carousel-inner">
-														
-														<div class="item image active">
-															<img src="{{$slide_first->anh}}">
-															<div class="slideshow-caption position-right">
-																<div class="slide-caption">
-																	<div class="group-caption">
-																		<div class="content">
-																			<span class="title_1">
-																				Get computer to become a
-																			</span>
-																			<span class="title_2">
-																				Pro gamer
-																			</span>
-																			<span class="caption">
-																				Aliquam sed arcu a elit porttitor mattis eu id nibh. Vestibulum ultricies nulla sed dapibus vestibulum.
-																			</span>
-																		</div>
-																		<div class="flex-action"><a class="btn" href="./collections-all.html">Shop Now</a></div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														@foreach ($slides as  $s)
-														<div class="item image ">
-															<img src="{{$s->anh}}">
-															<div class="slideshow-caption position-middle">
-																<div class="slide-caption">
-																	<div class="group-caption">
-																		<div class="content">
-																			<span class="title_1">
-																				Get computer to become a
-																			</span>
-																			<span class="title_2">
-																				Pro gamer
-																			</span>
-																			<span class="caption">
-																				Aliquam sed arcu a elit porttitor mattis eu id nibh. Vestibulum ultricies nulla sed dapibus vestibulum.
-																			</span>
-																		</div>
-																		<div class="flex-action"><a class="btn" href="./collections-all.html">Shop Now</a></div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														@endforeach
-													</div>
-													<a class="left carousel-control" href="#home_main-slider" data-slide="prev">
-														<span class="icon-prev"></span>
-													</a>
-													<a class="right carousel-control" href="#home_main-slider" data-slide="next">
-														<span class="icon-next"></span>
-													</a>
-												</div>
-											</div> --}}
+											
 										</div>
 									</div>
 								</div>
@@ -129,39 +71,18 @@
 												<div class="content_product col-sm-2">
 													<div class="row-container product list-unstyled clearfix">
 														<div class="row-left">
-															<a href="{{$p->getSlug()}}" class="hoverBorder container_item">
+															<a href="{{route('slug.url',['slug'=> $p->getSlug()])}}" class="hoverBorder container_item">
 																<div class="hoverBorderWrapper">
-																	<img src="{{$p->anh}}" class="not-rotation img-responsive front" alt="Sport machine">
+																	<img src="{{asset($p->anh)}}" height="230px" class="not-rotation thumbnail front" alt="Sport machine">
 																	<div class="mask"></div>
-																	<img src="{{$p->anh}}" class="rotation img-responsive" alt="Sport machine">
+																	<img src="{{asset($p->anh)}}"" height="230px" class="rotation thumbnail" alt="Sport machine">
 																</div>
 															</a>
-															{{-- @foreach ($p->getKM() as $km)
-															@if ($km->ngay_ket_thuc >= date('d/m/Y'))
-															<span class="sale_banner">
-																<span class="sale_text">-{{$km->chiet_khau}}</span>
-															</span>
-															@endif
-															@endforeach --}}
 															<div class="hover-mask">
 																<div class="group-mask">
 																	<div class="inner-mask">
 																		<div class="group-actionbutton">
-																			{{-- <form action="./cart.html" method="post">
-																				<div class="effect-ajax-cart">
-																					<input type="hidden" name="quantity" value="1">
-																					<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																				</div>
-																			</form> --}}
 																			<ul class="quickview-wishlist-wrapper">
-																				{{-- <li class="quickview hidden-xs hidden-sm">
-																					<div class="product-ajax-cart">
-																						<span class="overlay_mask"></span>
-																						<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																							<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																						</div>
-																					</div>
-																				</li> --}}
 																				<li class="wishlist hidden-xs">
 																					
 																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
@@ -175,23 +96,14 @@
 															</div>
 														</div>
 														<div class="row-right animMix">
-															{{-- <div class="product-title"><a class="title-5" href="{{route('product', $p->id)}}">{{$p->ten_san_pham}}</a></div> --}}
-															<div class="product-title"><a class="title-5" href="{{$p->getSlug()}}">{{$p->ten_san_pham}}</a></div>
+															
+															<div class="product-title"><a class="title-5" href="{{route('slug.url',['slug'=> $p->getSlug()])}}">{{$p->ten_san_pham}}</a></div>
 															<div class="rating-star">
 																<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
 																</span>
 															</div>
 															<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia}}</span></span>
-															
-															{{-- @foreach ($p->getKM() as $km)
-															@if ($km->ngay_ket_thuc >= date('d/m/Y'))
-																<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia * $km->chiet_khau}}</span></span>
-																<del class="price_compare"> <span class="money" data-currency-usd="$600.00">{{$p->gia}}</span></del>
-															@else
-															@endif
-															@endforeach --}}
-
+															<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia}} đ</span></span>
 															</div>
 														</div>
 													</div>
@@ -224,39 +136,18 @@
 												<div class="content_product col-sm-2">
 													<div class="row-container product list-unstyled clearfix">
 														<div class="row-left">
-															<a href="{{$p->getSlug()}}" class="hoverBorder container_item">
+															<a href="{{route('slug.url',['slug'=> $p->getSlug()])}}" class="hoverBorder container_item">
 																<div class="hoverBorderWrapper">
-																	<img src="{{$p->anh}}" class="not-rotation img-responsive front" alt="Sport machine">
+																	<img src="{{asset($p->anh)}}" class="not-rotation thumbnail front" height="230px" alt="Sport machine">
 																	<div class="mask"></div>
-																	<img src="{{$p->anh}}" class="rotation img-responsive" alt="Sport machine">
+																	<img src="{{asset($p->anh)}}" height="230px" class="rotation thumbnail" alt="Sport machine">
 																</div>
 															</a>
-															{{-- @foreach ($p->getKM() as $km)
-															@if ($km->ngay_ket_thuc >= date('d/m/Y'))
-															<span class="sale_banner">
-																<span class="sale_text">-{{$km->chiet_khau}}</span>
-															</span>
-															@endif
-															@endforeach --}}
 															<div class="hover-mask">
 																<div class="group-mask">
 																	<div class="inner-mask">
 																		<div class="group-actionbutton">
-																			{{-- <form action="./cart.html" method="post">
-																				<div class="effect-ajax-cart">
-																					<input type="hidden" name="quantity" value="1">
-																					<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																				</div>
-																			</form> --}}
 																			<ul class="quickview-wishlist-wrapper">
-																				{{-- <li class="quickview hidden-xs hidden-sm">
-																					<div class="product-ajax-cart">
-																						<span class="overlay_mask"></span>
-																						<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																							<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																						</div>
-																					</div>
-																				</li> --}}
 																				<li class="wishlist hidden-xs">
 																					
 																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
@@ -270,22 +161,13 @@
 															</div>
 														</div>
 														<div class="row-right animMix">
-															<div class="product-title"><a class="title-5" href="{{$p->getSlug()}}">{{$p->ten_san_pham}}</a></div>
+															<div class="product-title"><a class="title-5" href="{{route('slug.url',['slug'=> $p->getSlug()])}}">{{$p->ten_san_pham}}</a></div>
 															<div class="rating-star">
 																<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
 																</span>
 															</div>
 															<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia}}</span></span>
-															
-															{{-- @foreach ($p->getKM() as $km)
-															@if ($km->ngay_ket_thuc >= date('d/m/Y'))
-																<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia * $km->chiet_khau}}</span></span>
-																<del class="price_compare"> <span class="money" data-currency-usd="$600.00">{{$p->gia}}</span></del>
-															@else
-															@endif
-															@endforeach --}}
-
+															<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia}} đ</span></span>
 															</div>
 														</div>
 													</div>
@@ -319,39 +201,18 @@
 												<div class="content_product col-sm-2">
 													<div class="row-container product list-unstyled clearfix">
 														<div class="row-left">
-															<a href="{{$p->getSlug()}}" class="hoverBorder container_item">
+															<a href="{{route('slug.url',['slug'=> $p->getSlug()])}}" class="hoverBorder container_item">
 																<div class="hoverBorderWrapper">
-																	<img src="{{$p->anh}}" class="not-rotation img-responsive front" alt="Sport machine">
+																	<img src="{{asset($p->anh)}}" height="230px" class="not-rotation thumbnail front" alt="Sport machine">
 																	<div class="mask"></div>
-																	<img src="{{$p->anh}}" class="rotation img-responsive" alt="Sport machine">
+																	<img src="{{asset($p->anh)}}" height="230px" class="rotation thumbnail" alt="Sport machine">
 																</div>
 															</a>
-															{{-- @foreach ($p->getKM() as $km)
-															@if ($km->ngay_ket_thuc >= date('d/m/Y'))
-															<span class="sale_banner">
-																<span class="sale_text">-{{$km->chiet_khau}}</span>
-															</span>
-															@endif
-															@endforeach --}}
 															<div class="hover-mask">
 																<div class="group-mask">
 																	<div class="inner-mask">
 																		<div class="group-actionbutton">
-																			{{-- <form action="./cart.html" method="post">
-																				<div class="effect-ajax-cart">
-																					<input type="hidden" name="quantity" value="1">
-																					<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																				</div>
-																			</form> --}}
 																			<ul class="quickview-wishlist-wrapper">
-																				{{-- <li class="quickview hidden-xs hidden-sm">
-																					<div class="product-ajax-cart">
-																						<span class="overlay_mask"></span>
-																						<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																							<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																						</div>
-																					</div>
-																				</li> --}}
 																				<li class="wishlist hidden-xs">
 																					
 																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
@@ -365,22 +226,13 @@
 															</div>
 														</div>
 														<div class="row-right animMix">
-															<div class="product-title"><a class="title-5" href="{{$p->getSlug()}}">{{$p->ten_san_pham}}</a></div>
+															<div class="product-title"><a class="title-5" href="{{route('slug.url',['slug'=> $p->getSlug()])}}">{{$p->ten_san_pham}}</a></div>
 															<div class="rating-star">
 																<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
 																</span>
 															</div>
 															<div class="product-price">
-															<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia}}</span></span>
-															
-															{{-- @foreach ($p->getKM() as $km)
-															@if ($km->ngay_ket_thuc >= date('d/m/Y'))
-																<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia * $km->chiet_khau}}</span></span>
-																<del class="price_compare"> <span class="money" data-currency-usd="$600.00">{{$p->gia}}</span></del>
-															@else
-															@endif
-															@endforeach --}}
-
+															<span class="price_sale"><span class="money" data-currency-usd="$200.00">{{$p->gia}} đ</span></span>
 															</div>
 														</div>
 													</div>

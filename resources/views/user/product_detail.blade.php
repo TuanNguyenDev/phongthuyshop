@@ -14,11 +14,11 @@
 							</h1>
 							<div class="breadcrumb-group">
 								<div class="breadcrumb clearfix">
-									<span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="./index.html" title="Sarahmarket 1" itemprop="url"><span itemprop="title">Home</span></a>
+									<span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{route('index')}}" title="PhongThuyShop" itemprop="url"><span itemprop="title">Home</span></a>
 									</span>
 									<span class="arrow-space">></span>
 									<span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-										<a href="./collections-all.html" title="All Products" itemprop="url"><span itemprop="title">Products</span></a>
+										<a href="#" title="All Products" itemprop="url"><span itemprop="title">Products</span></a>
 									</span>
 									<span class="arrow-space">></span>
 									<strong>{{$product->ten_san_pham}}</strong>
@@ -47,48 +47,17 @@
 												</div>
 												<div id="featuted-image" class="image featured">
 													<div class="image-item">
-														<a href="#" class="thumbnail" id="thumbnail-product-1" data-toggle="modal" data-target="#lightbox"> 
-															<img src="{{asset($product->anh)}}" alt="Today's trending" data-item="1">
-														</a>
-														<span class="image-title-zoom" data-zoom="thumbnail-product-1">
-															<i class="fa fa-search-plus"></i>
-															Click to enlarge
-														</span>
+														<img src="{{asset($product->anh)}}" style="margin-left: 129px;margin-top: 64px;" class="thumbnail" alt="Today's trending" data-item="1">
+														
 													</div>
-													<div class="image-item">
-														<a href="#" class="thumbnail" id="thumbnail-product-2" data-toggle="modal" data-target="#lightbox"> 
-															<img src="./assets/images/demo_471×544.png" alt="Today's trending" data-item="2">
-														</a>
-														<span class="image-title-zoom" data-zoom="thumbnail-product-2">
-															<i class="fa fa-search-plus"></i>
-															Click to enlarge
-														</span>
-													</div>
-													<div class="image-item">
-														<a href="#" class="thumbnail" id="thumbnail-product-3" data-toggle="modal" data-target="#lightbox"> 
-															<img src="./assets/images/demo_471×544.png" alt="Today's trending" data-item="3">
-														</a>
-														<span class="image-title-zoom" data-zoom="thumbnail-product-3">
-															<i class="fa fa-search-plus"></i>
-															Click to enlarge
-														</span>
-													</div>
-													<div class="image-item">
-														<a href="#" class="thumbnail" id="thumbnail-product-4" data-toggle="modal" data-target="#lightbox"> 
-															<img src="./assets/images/demo_471×544.png" alt="Today's trending" data-item="4">
-														</a>
-														<span class="image-title-zoom" data-zoom="thumbnail-product-4">
-															<i class="fa fa-search-plus"></i>
-															Click to enlarge
-														</span>
-													</div>
+													
 												</div>
 											</div>
 											<div class="col-md-7" id="product-information">
 												<h1 itemprop="name" class="title">{{$product->ten_san_pham}}</h1>
-												<div class="description" itemprop="description">
+												{{-- <div class="description" itemprop="description">
 													{!!$product->mo_ta!!}
-												</div>
+												</div> --}}
 													<div class="product-options " itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
 														<meta itemprop="priceCurrency" content="USD">
 														<link itemprop="availability" href="http://schema.org/InStock">
@@ -109,14 +78,11 @@
 															<br>
 															<span class="product_sku"><span class="_title">Danh mục: </span>{{$product->Category()['ten_danh_muc']}}</span>
 														</div>
-														{{-- <div class="rating-star">
-															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i></span><span class="spr-badge-caption">2 reviews</span>
-															</span>
-														</div> --}}
+														
 														
 														<div class="product-price">
 															<meta itemprop="price" content="200.00">
-															<h2 class="price" id="price-preview"><span class="money" data-currency-usd="$200.00" data-currency="USD">{{$product->gia}}</span></h2>
+															<h1 class="price" id="price-preview">Giá: <span class="money" data-currency-usd="$200.00" data-currency="USD">{{$product->gia}}đ</span></h1>
 														</div>
 														<div class="purchase-section multiple">
 															<form method="POST" action="{{route('addCarts')}}" accept-charset="utf-8">
@@ -128,119 +94,25 @@
 																	</div>
 																</div>
 																<div class="purchase">
-																	<button type="submit" class="btn add-to-cart"><span class="hidden-xs"><i class="fa fa-shopping-bag"></i>Mua ngay</button>
+																	<button type="submit"     style="height: 48px;" class="btn add-to-cart"><span class="hidden-xs"><i class="fa fa-shopping-bag"></i>Mua ngay</button>
 																</div>
 														</form>
 														</div>
 													</div>
-												<div class="supports-fontface">
-													<div class="social-sharing is-clean">
-														<a target="_blank" href="./product.html" class="share-facebook">
-															<span class="icon icon-facebook"></span>
-															<span class="share-title">Share</span>     
-														</a>
-														<a target="_blank" href="./product.html" class="share-twitter">
-															<span class="icon icon-twitter"></span>
-															<span class="share-title">Tweet</span>
-														</a>
-														<a target="_blank" href="./product.html" class="share-pinterest">
-															<span class="icon icon-pinterest"></span>
-															<span class="share-title">Pin it</span>
-														</a>
-														<a target="_blank" href="./product.html" class="share-fancy">
-															<span class="icon icon-fancy"></span>
-															<span class="share-title">Fancy</span>
-														</a>
-														<a target="_blank" href="./product.html" class="share-google">
-															<!-- Cannot get Google+ share count with JS yet -->
-															<span class="icon icon-google-plus"></span>
-															<span class="share-count is-loaded">+1</span>
-														</a>
-													</div>
-												</div>
+												
 											</div>
 										</div>
 										<div id="tabs-information" class="col-md-12">
 											<div class="information_content panel panel-default">
 												<div class="panel-heading" role="tab" id="heading_des">
 													<h4 class="panel-title" data-toggle="collapse" href="#collapse_des" aria-expanded="true" aria-controls="collapse_des">
-														Description
+														Mô tả sản phẩm
 														<i class="fa-icon fa fa-angle-up"></i>
 													</h4>
 												</div>
 												<div id="collapse_des" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_des">
 													<div class="panel-body">
-														<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.</p>
-													</div>
-												</div>
-											</div>
-											<div class="information_content panel panel-default">
-												<div class="panel-heading" role="tab" id="heading_tags">
-													<h4 class="panel-title" data-toggle="collapse" href="#collapse_tags" aria-expanded="true" aria-controls="collapse_tags">
-														Product Tags
-														<i class="fa-icon fa fa-angle-up"></i>
-													</h4>
-												</div>
-												<div id="collapse_tags" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_tags">
-													<div class="panel-body">
-														<div class="relative product-detail-tag">
-															<ul class="list-unstyled">
-																<li class="tags">
-																	<span>Tags:</span>
-																	<a href="./collections-all.html">
-																		100-200<span>,</span>
-																	</a>
-																	<a href="./collections-all.html">    
-																		above-200<span>,</span>
-																	</a>
-																	<a href="./collections-all.html">
-																		best-seller<span>,</span>
-																	</a>
-																	<a href="./collections-all.html">    
-																		brown<span>,</span>      
-																	</a>
-																	<a href="./collections-all.html">
-																		chanel<span>,</span>  
-																	</a>
-																	<a href="./collections-all.html">        
-																		dior<span>,</span>    
-																	</a>
-																	<a href="./collections-all.html">        
-																		gray<span>,</span>    
-																	</a>
-																	<a href="./collections-all.html">        
-																		orange<span>,</span>      
-																	</a>
-																	<a href="./collections-all.html">        
-																		pink<span>,</span>    
-																	</a>
-																	<a href="./collections-all.html">        
-																		red<span>,</span>     
-																	</a>
-																	<a href="./collections-all.html">        
-																		s<span>,</span>        
-																	</a>
-																	<a href="./collections-all.html">
-																		sale-off<span>,</span>  
-																	</a>
-																	<a href="./collections-all.html">        
-																		silver<span>,</span>  
-																	</a>
-																	<a href="./collections-all.html">        
-																		under-100<span>,</span>
-																	</a>
-																	<a href="./collections-all.html">       
-																		vintage<span>,</span>
-																	</a>
-																	<a href="./collections-all.html">       
-																		x<span>,</span>
-																	</a>
-																	<a href="./collections-all.html">
-																		xl
-																	</a>
-																</li>
-															</ul>
-														</div>
+														<p>{!!$product->mo_ta!!}</p>
 													</div>
 												</div>
 											</div>
@@ -287,7 +159,7 @@
 																						
 																						<fieldset class="spr-form-review">
 																							<div class="spr-form-review-body">
-																								<label class="spr-form-label" for="review_body_6537875078">Body of Review <span class="spr-form-review-body-charactersremaining"></span></label>
+																								<label class="spr-form-label" for="review_body_6537875078">Viết bình luận <span class="spr-form-review-body-charactersremaining"></span></label>
 																								<div class="spr-form-input">
 																									<textarea class="spr-form-input spr-form-input-textarea " id="review_body_6537875078" data-product-id="6537875078" name="noi_dung" rows="10" placeholder="Write your comments here" required></textarea>
 																								</div>
@@ -306,14 +178,11 @@
 																					<div class="spr-review" id="spr-review-7003642">
 																						<div class="spr-review-header">
 																							<h3 class="spr-review-header-title">{{get_customer_name($c->id_khach)}}</h3>
-																							<span class="spr-review-header-byline">< on <strong>{{$c->created_at}}</strong></span>
+																							<span class="spr-review-header-byline"> on <strong>{{$c->created_at}}</strong></span>
 																						</div>
 																						<div class="spr-review-content">
 																							<p class="spr-review-content-body">{{$c->noi_dung}}</p>
 																						</div>
-																						{{-- <div class="spr-review-footer">
-																							<a href="#" class="spr-review-reportreview" onclick="SPR.reportReview(7003642);return false" id="report_7003642" data-msg="This review has been reported">Report as Inappropriate</a>
-																						</div> --}}
 																					</div>
 																				@endforeach
 																				<div class="pagination">
@@ -349,7 +218,7 @@
 															<div class="content_product">
 																<div class="row-container product list-unstyled clearfix">
 																	<div class="row-left">
-																		<a href="./product.html" class="hoverBorder container_item">
+																		<a href="{{route('slug.url',['slug'=> $p->getSlug()])}}" class="hoverBorder container_item">
 																			<div class="hoverBorderWrapper">
 																				<img src="{{asset($p->anh)}}" class="not-rotation img-responsive front" alt="Sport machine">
 																				<div class="mask"></div>
@@ -367,23 +236,8 @@
 																			<div class="group-mask">
 																				<div class="inner-mask">
 																					<div class="group-actionbutton">
-																						<form action="./cart.html" method="post">
-																							<div class="effect-ajax-cart">
-																								<input type="hidden" name="quantity" value="1">
-																								<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																							</div>
-																						</form>
 																						<ul class="quickview-wishlist-wrapper">
-																							<li class="quickview hidden-xs hidden-sm">
-																								<div class="product-ajax-cart">
-																									<span class="overlay_mask"></span>
-																									<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																										<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																									</div>
-																								</div>
-																							</li>
 																							<li class="wishlist hidden-xs">
-																								
 																								<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
 																							</li>
 																						</ul>
@@ -395,7 +249,7 @@
 																		</div>
 																	</div>
 																	<div class="row-right animMix">
-																		<div class="product-title"><a class="title-5" href="{{$p->getSlug()}}">{{$p->ten_san_pham}}</a></div>
+																		<div class="product-title"><a class="title-5" href="{{route('slug.url',['slug'=> $p->getSlug()])}}">{{$p->ten_san_pham}}</a></div>
 																		<div class="rating-star">
 																			<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
 																			</span>
@@ -459,7 +313,7 @@
 											<div class="content_product">
 												<div class="row-container product list-unstyled clearfix">
 													<div class="row-left">
-														<a href="./product.html" class="hoverBorder container_item">
+														<a href="{{route('slug.url',['slug'=> $new->getSlug()])}}" class="hoverBorder container_item">
 															<div class="hoverBorderWrapper">
 																<img src="{{asset($new->anh)}}" class="not-rotation img-responsive front" alt="Sport machine">
 																<div class="mask"></div>
@@ -477,23 +331,8 @@
 															<div class="group-mask">
 																<div class="inner-mask">
 																	<div class="group-actionbutton">
-																		<form action="./cart.html" method="post">
-																			<div class="effect-ajax-cart">
-																				<input type="hidden" name="quantity" value="1">
-																				<button class="btn select-option" type="button"><i class="fa fa-bars"></i></button>
-																			</div>
-																		</form>
 																		<ul class="quickview-wishlist-wrapper">
-																			<li class="quickview hidden-xs hidden-sm">
-																				<div class="product-ajax-cart">
-																					<span class="overlay_mask"></span>
-																					<div data-handle="neque-porro-quisquam-est-qui-dolor-ipsum-quia-11" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-																						<a class=""><i class="fa fa-search" title="Quick View"></i></a>
-																					</div>
-																				</div>
-																			</li>
 																			<li class="wishlist hidden-xs">
-																				
 																				<a class="wish-list" href="{{route('addCart',$new->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
 																			</li>
 																		</ul>
@@ -505,7 +344,7 @@
 														</div>
 													</div>
 													<div class="row-right animMix">
-														<div class="product-title"><a class="title-5" href="{{$new->getSlug()}}">{{$new->ten_san_pham}}</a></div>
+														<div class="product-title"><a class="title-5" href="{{route('slug.url',['slug'=> $new->getSlug()])}}">{{$new->ten_san_pham}}</a></div>
 														<div class="rating-star">
 															<span class="spr-badge" data-rating="0.0"><span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i><i class="spr-icon spr-icon-star-empty" style=""></i></span><span class="spr-badge-caption">No reviews</span>
 															</span>

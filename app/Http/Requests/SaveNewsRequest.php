@@ -26,7 +26,9 @@ class SaveNewsRequest extends FormRequest
         return [
             'tieu_de' => 'required',
             'noi_dung' => 'required',
-            'nguoi_tao' => 'required'
+            'nguoi_tao' => 'required',
+            'mo_ta' => 'required',
+            'anh' => 'file|image|required'
         ];
     }
 }

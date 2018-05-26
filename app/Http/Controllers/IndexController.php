@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CheckOutRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Menh;
 use App\Models\TinTuc;
 use App\Models\Bill;
 use App\Models\Info;
@@ -33,7 +34,7 @@ class IndexController extends Controller
 	 */
     public function getIndex(){
     	$slide_first = TrinhChieu::first();
-    	$slides = TrinhChieu::all();
+    	$slides = TrinhChieu::where('id','<>',$slide_first->id)->get();
     	$cates = Category::all();
         $new_pro = Product::where('trang_thai', 1)->orderBy('created_at','DESC')->take(6)->get();
         $random = Product::where('trang_thai', 1)->orderBy(DB::raw('RAND()'))->take(6)->get();
@@ -56,7 +57,7 @@ class IndexController extends Controller
     public function getProductDetail($slug){
     	$model = Slug::where('slug',$slug)->first();
         if(!$model){
-            return 'not found';
+            return view('page.404');
         }
         switch ($model->entity_type) {
             case ENTITY_TYPE_PRODUCT:
@@ -72,31 +73,62 @@ class IndexController extends Controller
             $commentsp = CommentSanPham::where('id_san_pham',$product->id)->paginate(10);
                 return view('user.product_detail', compact('product','commentsp','new_pro','same_pro'));
                 break;
-            
+            case ENTITY_TYPE_TYPE:
+            $cate = Category::where([
+                                    ['trang_thai','=',1],
+                                    ['id','=',$model->entity_id]
+            ])->first();
+            $count = Product::where([
+                                    ['trang_thai','=',1],
+                                    ['id_danh_muc', '=', $model->entity_id]
+            ])->get();
+            $product = Product::where([
+                                    ['trang_thai','=',1],
+                                    ['id_danh_muc', '=', $model->entity_id]
+            ])->paginate(12);
+            return view('user.category', compact('product','count','cate'));
+            break;
+            case ENTITY_TYPE_MENH:
+                $menh = Menh::where([
+                                    ['trang_thai','=',1],
+                                    ['id','=',$model->entity_id] 
+                ])->first();
+                $count = Product::where([
+                                        ['trang_thai','=',1],
+                                        ['id_menh', '=', $model->entity_id]
+                ])->get();
+                $product = Product::where([
+                                        ['trang_thai','=',1],
+                                        ['id_menh', '=', $model->entity_id]
+                ])->paginate(12);
+                return view('user.menh', compact('product','count','menh'));
+                break;
             default:
                 # code...
                 break;
         }
-    	return view('user.product_detail', compact('product','commentsp','new_pro','same_pro'));
+    	// return view('user.product_detail', compact('product','commentsp','new_pro','same_pro'));
     }
-    public function getAllProduct($id){
-        $id_cate = $id;
-        $count = Product::where('id_danh_muc',$id)->get();
-        $product = Product::where('id_danh_muc',$id)->paginate(12);
-        return view('user.category', compact('product','count','id_cate'));
-    }
+    // public function getAllProduct($id){
+    //     $id_cate = $id;
+    //     $cate = Category::find($id)->first();
+    //     $count = Product::where('id_danh_muc',$id)->get();
+    //     $product = Product::where('id_danh_muc',$id)->paginate(12);
+    //     return view('user.category', compact('product','count','cate'));
+    // }
     /*
     lấy sản phẩm theo mệnh
     return view 
     author TuanNguyen
     10/05/2018 create new
      */
-    public function getProductByMenh($id){
-        $id_menh = $id;
-    	$count = Product::where('id_menh',$id)->get();
-    	$product = Product::where('id_menh',$id)->paginate(12);
-    	return view('user.menh', compact('product','count','id_menh'));
-    }
+    // public function getProductByMenh($id){
+    //     $id_menh = $id;
+    //     $menh = Menh::find($id)->first();
+    // 	$count = Product::where('id_menh',$id)->get();
+    // 	$product = Product::where('id_menh',$id)->paginate(12);
+    // 	return view('user.menh', compact('product','count','menh'));
+    // }
     public function addCart($id){
 
         if (isset($id)) {
@@ -122,19 +154,23 @@ class IndexController extends Controller
                 
     }
 }
-    public function updateCart(Request $rq){
-        $id = $rq->id;
-        $qty = $rq->qty;
-        Cart::update($id, $qty);
-        return "ok";
+//     public function updateCart(Request $rq){
+//         $id = $rq->id;
+//         $qty = $rq->qty;
+//         Cart::update($id, $qty);
+//         return "ok";
 
+// }
+public function updateCart($rowId, $quantity){
+        Cart::update($rowId, $quantity);
+        return redirect()->route('showCart');
 }
     public function removeCart($rowId){
         if(isset($rowId)){
             Cart::remove($rowId);
             return redirect(route('index'));
         }else{
-            echo "Bạn vừa truy cập vào đường dẫn không tồn tại";
+            return view('page.404');
         }
     }
     /*chuyển đến trang thanh toán thanh toan
@@ -158,6 +194,9 @@ class IndexController extends Controller
         $bill = new Bill();
         if(isset(Auth::user()->name)){
             $bill->id_khach_hang = $rq->id;
+            //$customer = array('email' => Auth::user()->email, 'name' => Auth::user()->name );
+            // $customer->name = Auth::user()->name;
+            // $customer->email = Auth::user()->email;
             /*$bill->trang_thai = 0;
             $bill->dia_chi = $rq->dia_chi;
             $bill->phuong_thuc_thanh_toan = $rq->phuong_thuc_thanh_toan;
@@ -167,6 +206,10 @@ class IndexController extends Controller
         }
         else
         {
+            $check = User::where('email',$rq->email)->where('isLogin',1)->get();
+            if(count($check)>0){
+                return redirect()->route('login');
+            }
             $customer = new User();
             $customer->name = $rq->name;
             $customer->dia_chi = $rq->dia_chi;
@@ -213,6 +256,9 @@ class IndexController extends Controller
                 $bill_detail->save();
             }
             Cart::destroy();
+             if(isset(Auth::user()->name)){
+                return redirect()->route('index');
+             }
             return redirect()->route('send.mail',['customer' => $customer, 'bill'=>$bill]);
             // return redirect(route('index'));
     }
@@ -224,7 +270,7 @@ class IndexController extends Controller
         $email = $rq->email;
         $user = User::where('email',$email)->first();
         if(!$user){
-            return '403';
+            return view('page.403');
         }
         $pass = $user->password;
     }
@@ -250,7 +296,7 @@ class IndexController extends Controller
             return view('user.lienhe', compact('lienhe'));
         }
         if($id != 1 && $id != 2 && $id != 3){
-            return '403';
+            return view('page.404');
         }
     }
      /* trang thông tin cá nhân của khách hàng đã đăng nhập
@@ -262,7 +308,7 @@ class IndexController extends Controller
         $user = User::find($id);
         if(!isset($user)){
             Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-            return '403';
+            return view('page.404');
         }
             Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
             $bills = Bill::where('id_khach_hang',$user->id)->paginate(10);
@@ -318,7 +364,7 @@ class IndexController extends Controller
         $user = User::find($id);
         if(!isset($user)){
             Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-            return '403';
+            return view('page.404');
         }
             Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
             return view('user.cus_change_profile',compact('user'));
@@ -359,7 +405,7 @@ class IndexController extends Controller
                         ->where('ngay_ket_thuc', '>=', $today)->get();
         if(!$km){
             Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-            return '403';
+            return view('page.404');
         }
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         return view('user.khuyenmai_chitiet', compact('km'));
@@ -397,7 +443,7 @@ class IndexController extends Controller
     public function getBillDetail($id){
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         if(!isset($id)){
-            return '403';
+            return view('page.404');
         }
         $bill_detail = BillDetail::where('id_bill', $id)->get();
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
@@ -406,12 +452,12 @@ class IndexController extends Controller
     public function getSearchResult(Request $rq){
         $key = $rq->key;
         $cate = $rq->cate;
-        if($cate=0){
+        if($cate==0){
             $total = Product::where('ten_san_pham','like', "%$key%")->get();
             $result = Product::where('ten_san_pham','like', "%$key%")->paginate(20);
         }else{
-            $total = Product::where('ten_san_pham','like',"%$key%")->orWhere('id_danh_muc',$cate)->get();
-            $result = Product::where('ten_san_pham','like',"%$key%")->orWhere('id_danh_muc',$cate)->paginate(20);
+            $total = Product::where('ten_san_pham','like',"%$key%")->where('id_danh_muc',$cate)->get();
+            $result = Product::where('ten_san_pham','like',"%$key%")->where('id_danh_muc',$cate)->paginate(20);
         }
         return view('user.search',compact('result','key','total'));
     }
@@ -433,7 +479,7 @@ class IndexController extends Controller
         $tin = TinTuc::find($id);
         $comment_tin_tuc = CommentTinTuc::where('id_tin_tuc',$tin->id)->paginate(10);
         if(!$tin){
-            return 'Error';
+            return view('page.404');
         }
         else{
             return view('user.chitiettin',compact('tin','comment_tin_tuc'));

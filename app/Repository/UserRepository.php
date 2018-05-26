@@ -22,13 +22,13 @@ class UserRepository
 		if($rq->input('keyword') != "" || $rq->input('pageSize') != ""){
 			$keyword = $rq->input("keyword");
 			$pageSize = $rq->input('pageSize');
-			$userList = Admin::where('name','like', "%$keyword%")->where('id_quyen',100)->paginate($pageSize)->withPath("keyword=$keyword&pageSize=$pageSize");
+			$userList = Admin::where('name','like', "%$keyword%")->where('id','<>',Auth::user()->id)->paginate($pageSize)->withPath("keyword=$keyword&pageSize=$pageSize");
 		Log::info('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
 		return $userList;
 		}else{
 			Log::info('END ' . get_class() . ' => ' . __FUNCTION__ . '()');
-			$userList = Admin::where('id_quyen',100)->paginate(10);
+			$userList = Admin::where('id','<>',Auth::user()->id)->paginate(10);
 			return $userList;
 		}
 	}
@@ -56,12 +56,15 @@ class UserRepository
 				$rq->image->storeAs('uploads', $fileName);
 				$model->image = 'uploads/'.$fileName;
 			}
-			$model->id_quyen = $rq->role_name;
 			$model->save();
+			/*$admin_role = new UserRole();
+			$admin_role->id_user = $model->id;
+			$admin_role->id_role = 100;
+			$admin_role->save();*/
 			DB::table('user_role')->insert(
 	        	[
 	        		'id_user' => $model->id,
-	        		'id_role' => $rq->role_name
+	        		'id_role' => 100
 	        	]
         	);
 			

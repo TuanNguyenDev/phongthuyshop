@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="col-md-12">
-	{{$tuyendung->noi_dung}}
+	{!!$tuyendung->noi_dung!!}
 	</div>
 </div>
 @endsection

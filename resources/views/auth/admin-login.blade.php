@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.admin_app')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Admin Login</div>
+                <div class="panel-heading text-center">PhongThuyShop - Đăng nhập để vào trang quản trị</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('admin.login.submit') }}">

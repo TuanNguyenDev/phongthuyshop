@@ -38,7 +38,7 @@ class Admin extends Authenticatable
         $listRole = UserRole::where('id_user', $this->id)->get();
         $flag = false;
         for ($i=0; $i < count($listRole) ; $i++) { 
-            if($listRole[$i]->id_role >= ROLE_MOD){
+            if($listRole[$i]->id_role >= 500){
                 $flag = true;
                 break;
             }

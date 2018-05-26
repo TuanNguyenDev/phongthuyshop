@@ -47,7 +47,7 @@ class PromotionController extends Controller
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $model = KhuyenMai::find($id);
         if(!$model){
-            return 'Error';
+            return view('page.404');
         }
         if($model->trang_thai == 1){
             $model->trang_thai = 0;
@@ -71,7 +71,7 @@ class PromotionController extends Controller
         if($result){
             return redirect(route('promotion.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
     }
 	/*
@@ -87,7 +87,7 @@ class PromotionController extends Controller
         if($result){
             return redirect(route('promotion.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
 	}
 }

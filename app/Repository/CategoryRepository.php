@@ -4,6 +4,7 @@ use Log;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\SaveCategoryRequest;
 use DB;
 use Illuminate\Support\Facades\Auth;
 /**

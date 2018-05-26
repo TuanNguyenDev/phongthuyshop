@@ -25,7 +25,8 @@ class SaveCategoryRequest extends FormRequest
     {
         return [
             'ten_danh_muc' => 'required',
-            'mo_ta' => 'required'
+            'mo_ta' => 'required',
+            'anh' => 'file|image'
         ];
     }
 }

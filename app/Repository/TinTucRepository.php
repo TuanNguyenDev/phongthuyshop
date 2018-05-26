@@ -3,6 +3,7 @@ namespace App\Repository;
 use Log;
 use App\Models\TinTuc;
 use Illuminate\Http\Request;
+use App\Http\Requests\SaveNewsRequest;
 use DB;
 use Illuminate\Support\Facades\Auth;
 /**

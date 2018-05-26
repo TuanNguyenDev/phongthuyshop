@@ -27,8 +27,8 @@ class SavePromotionRequest extends FormRequest
             'noi_dung' => 'required',
             'ngay_bat_dau' => 'required',
             'ngay_ket_thuc' => 'required',
-            'so_luong' => 'required',
-            'chiet_khau' => 'required'
+            'so_luong' => 'numeric|required|min:2|max:100',
+            'chiet_khau' => 'numeric|required|min:5|max:70'
         ];
     }
 }

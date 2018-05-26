@@ -10,11 +10,11 @@
 		<input type="hidden" name="nguoi_tao" value="{{\Auth::user()->id}}">
 		<div class="form-group">
 			<label for="ten_danh_muc">Tên danh mục</label>
-			<input type="text" value="{{old('ten_danh_muc',$model->ten_danh_muc)}}" name="ten_danh_muc" id="ten_danh_muc" class="form-control" placeholder="Điền tên danh mục">
+			<input type="text" value="{{old('ten_danh_muc',$model->ten_danh_muc)}}" name="ten_danh_muc" id="ten_danh_muc" class="form-control" placeholder="Điền tên danh mục" required>
 		</div>
 		<div class="form-group">
 			<label for="mo_ta">Mô tả</label>
-			<textarea name="mo_ta" class="form-control" id="mo_ta" >
+			<textarea name="mo_ta" class="form-control" id="mo_ta" required >
 				{{old('mo_ta', $model->mo_ta)}}
 			</textarea>
 			@if (count($errors) > 0)

@@ -58,7 +58,7 @@ class CommentNewController extends Controller
 		}catch(\Exception $ex){
 		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
 		DB::rollback();
-		return '403';
+		return view('page.notfound');
 		}
 	}
     /*
@@ -85,7 +85,7 @@ class CommentNewController extends Controller
 		}catch(\Exception $ex){
 		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
 		DB::rollback();
-		return '403';
+		return view('page.notfound');
 		}
 	}
     /*
@@ -98,7 +98,7 @@ class CommentNewController extends Controller
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $model = CommentTinTuc::find($id);
         if(!$model){
-        	return 'Error';
+        	return view('page.404');
         }
         if($model->trang_thai == 1){
             $model->trang_thai = 0;
@@ -119,7 +119,7 @@ class CommentNewController extends Controller
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $model = CommentTinTuc::find($id);
         if(!$model){
-        	return 'Error';
+        	return view('page.404');
         }
         if($model->trang_thai == 1){
             $model->trang_thai = 0;

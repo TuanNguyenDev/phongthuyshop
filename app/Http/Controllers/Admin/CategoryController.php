@@ -49,13 +49,13 @@ class CategoryController extends Controller
 	@return view
 	@date 25/03/2018 - create new
 	 */
-    public function saveCate(Request $rq){
+    public function saveCate(SaveCategoryRequest $rq){
         $result = CategoryRepository::Save($rq);
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         if($result){
             return redirect(route('category.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
     }
     /*
@@ -68,7 +68,7 @@ class CategoryController extends Controller
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
     	$model = Category::find($id);
     	if(!$model){
-    		return 'Error';
+    		return view('page.404');
     	}
     	$modelSlug = Slug::where(
     		[
@@ -95,7 +95,7 @@ class CategoryController extends Controller
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
     	$model = Category::find($id);
     	if(!$model){
-    		return 'Error';
+    		return view('page.404');
     	}
     	if($model->trang_thai == 1){
             $model->trang_thai = 0;
@@ -134,7 +134,7 @@ class CategoryController extends Controller
         }
         else
         {
-            return 'Error';
+            return view('page.404');
         }
     }
 }

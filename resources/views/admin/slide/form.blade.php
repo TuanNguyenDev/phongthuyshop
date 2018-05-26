@@ -10,10 +10,16 @@
 		<div class="form-group">
 			<label for="mo_ta">Mô tả</label>
 			<input value="{{old('mo_ta', $model->mo_ta)}}" type="text" id="mo_ta" name="mo_ta" class="form-control" placeholder="alt">
+			@if (count($errors) > 0)
+				<span class="text-danger">{{$errors->first('mo_ta')}}</span>
+			@endif
 		</div>
 		<div class="form-group">
 			<label for="anh">Ảnh</label>
 			<input type="file" name="anh" class="form-control">
+			@if (count($errors) > 0)
+				<span class="text-danger">{{$errors->first('anh')}}</span>
+			@endif
 		</div>
 		<div class="text-center">
 			<button type="submit" class="btn btn-success">Tạo Mới</button>

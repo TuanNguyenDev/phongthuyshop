@@ -35,10 +35,10 @@
 												<table class="cart-items">
 													<thead>
 														<tr>
-															<th class="image text-left">Item</th>
-															<th class="price">Price</th>
-															<th class="qty">Quantity</th>
-															<th class="total">Total</th>
+															<th class="image text-left">Sản Phẩm</th>
+															<th class="price">Giá</th>
+															<th class="qty">Số lượng</th>
+															<th class="total">Tổng tiền</th>
 															<th class="remove"></th>
 														</tr>
 													</thead>
@@ -47,11 +47,13 @@
 														<tr>
 															<td class="title text-left">
 																<ul class="list-inline">
+																	@foreach ($value->options as $k => $element)
 																	<li class="image">
 																		<a href="./product.html">
-																			<img src="./assets/images/demo_139×160.png" alt="Electronic equipment">
+																			<img src="{{asset($element)}}" style="height: 70px;" alt="Electronic equipment">
 																		</a>
 																	</li>
+																	@endforeach
 																	<li class="link">
 																		<a href="./product.html">
 																			<p>{{$value->name}}</p>
@@ -60,20 +62,21 @@
 																	</li>
 																</ul>
 															</td>
-															<td class="price"><span class="money" data-currency-usd="$200.00">{{$value->price}}</span></td>
+															<td class="price"><span class="money" data-currency-usd="$200.00">{{$value->price}} đ</span></td>
 															<td class="qty">
 																<div class="quantity-wrapper">
 																	<div class="wrapper">
 																		<input type="text" size="4" name="updates[]" value="{{$value->qty}}" class="tc item-quantity">
+																		{{-- <input type="hidden" name="rowId" value="{{$value->rowId}}"> --}}
 																		<input type="hidden" name="rowId" value="{{$value->rowId}}">
 																	</div>
 																	<!--End wrapper-->
 																</div>
 																<!--End quantily wrapper-->
 															</td>
-															<td class="total title-1"><span class="money" data-currency-usd="$200.00">{{($value->qty * $value->price)}}</span></td>
+															<td class="total title-1"><span class="money" data-currency-usd="$200.00">{{($value->qty * $value->price)}} đ</span></td>
 															<td class="remove">
-																<a href="{{route('removeCart',$value->rowId)}} class="cart"><i class="fa fa-trash"></i></a>
+																<a href="{{route('removeCart',['rowID' => $value->rowId])}}" class="cart"><i class="fa fa-trash"></i></a>
 																<a href="#" class="updateCart" id="{{$value->rowId}}"><i class="fa fa-refresh"></i></a>
 															</td>
 														</tr>
@@ -82,10 +85,10 @@
 													<tfoot>
 														<tr class="summary">
 															<td class="total-action" colspan="4">
-																<input type="submit" id="update-cart" class="btn btn-success" name="update" value="Update cart">
+																
 															</td>
 															<td class="price" colspan="1">
-																<span class="total"><strong><span class="money" data-currency-usd="$510.00">{{$total}}</span></strong>
+																<span class="total"><strong><span class="money" data-currency-usd="$510.00">{{$total}} đ</span></strong>
 																</span>
 															</td>
 														</tr>
@@ -102,6 +105,11 @@
 													<a href="{{route('checkout')}}" class="btn btn-success" title="">Check Out</a>
 												</div>
 											</div>
+											<div class=" cart-buttons">
+												<div class="buttons clearfix">
+													<a href="{{route('index')}}" class="btn btn-success" title="">Tiếp tục mua hàng</a>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -115,23 +123,34 @@
 @endsection
 @section('user_js')
 <script type="text/javascript">
+	// $(document).ready(function(){
+	// 	$(".updateCart").click(function(){
+	// 		var rowID = $(this).attr('id');
+	// 		var quantity = $(this).parent().parent().find(".item-quantity").val();
+	// 		console.log(rowID);
+	// 		var token = $("input[name='_token']").val();
+	// 		$.ajax({
+	// 			url:'updatecart/'+rowID+'/'+quantity,
+	// 			type:'POST',
+	// 			cache:false,
+	// 			data:{"_token":token, "id":rowID,"qty":quantity},
+	// 			success:function(data){
+	// 				if(data == "ok"){
+	// 					window.location = "cart";
+	// 				}
+					
+	// 			}
+	// 		});
+	// 	});
+	// });
 	$(document).ready(function(){
 		$(".updateCart").click(function(){
+			$(".updateCart").removeAttr("href");
 			var rowID = $(this).attr('id');
 			var quantity = $(this).parent().parent().find(".item-quantity").val();
-			var token = $("input[name='_token']").val();
-			$.ajax({
-				url:'updatecart/'+rowID+'/'+quantity,
-				type:'POST',
-				cache:false,
-				data:{"_token":token, "id":rowID,"qty":quantity},
-				success:function(data){
-					if(data == "ok"){
-						window.location = "cart";
-					}
-					
-				}
-			});
+			console.log(quantity);
+			window.location = "updatecart/"+rowID+"/"+quantity;
+			// $(".updateCart").attr("href","updatecart/"+rowID+"/"+quantity);
 		});
 	});
 </script>

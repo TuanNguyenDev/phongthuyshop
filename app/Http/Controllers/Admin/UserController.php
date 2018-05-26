@@ -52,7 +52,7 @@ class UserController extends Controller
         if($result){
             return redirect(route('user.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
     }
     /*
@@ -68,7 +68,7 @@ class UserController extends Controller
         if($result){
             return redirect(route('user.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
     }
     /*
@@ -81,7 +81,7 @@ class UserController extends Controller
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $model = Admin::find($id);
         if(!$model){
-            return 'Error';
+            return view('page.404');
         }
         if($model->trang_thai == 1){
             $model->trang_thai = 0;

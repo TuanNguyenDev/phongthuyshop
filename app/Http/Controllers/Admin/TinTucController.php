@@ -47,14 +47,14 @@ class TinTucController extends Controller
 	@return view
 	@date 02/04/2018 - create new
 	 */
-    public function saveNew(SaveNewsRequest $rq){
+    public function saveNew(Request $rq){
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $result = TinTucRepository::Save($rq);
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         if($result){
             return redirect(route('tintuc.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
     }
     /*
@@ -67,7 +67,7 @@ class TinTucController extends Controller
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $model = TinTuc::find($id);
         if(!$model){
-            return 'Error';
+            return view('page.404');
         }
         $modelSlug = Slug::where([
             'entity_type' => $model->entityType,
@@ -95,7 +95,7 @@ class TinTucController extends Controller
         if($result){
             return redirect(route('tintuc.list'));
         }else{
-            return 'Error';
+            return view('page.notfound');
         }
     }
 }

@@ -1,3 +1,4 @@
+
  <!DOCTYPE html>
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
@@ -52,28 +53,11 @@
 							<div class="row">
 								<div class="top-header-inner">
 									<ul class="unstyled top-menu">
-										<!-- Menu Top -->
-										{{-- <li class="nav-item active">
-											<a href="./index.html">
-												<span>Sourcing Solutions</span>
+										<li class="nav-item active">
+											<a href="{{route('contact.user')}}">
+												<span>Phản Hồi</span>
 											</a>
 										</li>
-										<li class="nav-item active">
-											<a href="./index.html">
-												<span>Services &amp; Membership</span>
-											</a>
-										</li>
-										<li class="nav-item active">
-											<a href="./index.html">
-												<span>Help</span>
-											</a>
-										</li>
-										<li class="nav-item active">
-											<a href="./index.html">
-												<span>Support</span>
-											</a>
-										</li> --}}
-										<!-- Customer Links -->
 										@if (isset(Auth::user()->name))
 											<li class="toolbar-customer my-wishlist"><a href="{{route('customer.profile',['id' => Auth::id()])}}">{{Auth::user()->name}}</a></li>
 											<li class="toolbar-customer log-out"><a href="{{route('user.logout')}}"><span>/</span> Logout</a></li>
@@ -82,37 +66,7 @@
 											<li class="toolbar-customer my-wishlist"><a href="{{route('login')}}">Login</a></li>
 											<li class="toolbar-customer log-out"><a href="{{route('register')}}"><span>/</span> Register</a></li>
 										@endif
-										{{-- <li class="currency_group hidden-xs">
-											<div class="currencies-switcher">
-												<div class="currency btn-group uppercase">
-													<a class="currency_wrapper dropdown-toggle" data-toggle="dropdown">
-														<i class="sub-dropdown1 visible-sm visible-md visible-lg"></i>
-														<i class="sub-dropdown visible-sm visible-md visible-lg"></i>
-														<span class="currency_code heading hidden-xs">USD</span>
-														<span class="currency_code visible-xs">USD</span>
-														<i class="fa fa-angle-down"></i>
-													</a>
-													<ul class="currencies dropdown-menu text-left">
-														<li class="currency-USD active">
-															<a href="javascript:;">USD</a>
-															<input type="hidden" value="USD">
-														</li>
-														<li class="currency-GBP">
-															<a href="javascript:;">GBP</a>
-															<input type="hidden" value="GBP">
-														</li>
-														<li class="currency-AUD">
-															<a href="javascript:;">AUD</a>
-															<input type="hidden" value="AUD">
-														</li>
-														<li class="currency-EUR">
-															<a href="javascript:;">EUR</a>
-															<input type="hidden" value="EUR">
-														</li>
-													</ul>
-												</div>
-											</div>
-										</li> --}}
+										
 									</ul>
 								</div>
 							</div>
@@ -134,7 +88,7 @@
 											<div class="nav-search">
 												<form class="search" action="{{route('search_normal')}}" method="get">
 													<input type="hidden" name="type" value="product">
-													<input type="text" name="key" class="search_box" placeholder="Enter your keyword ..." value="">
+													<input type="text" name="key" class="search_box" placeholder="Nhập từ khóa..." value="">
 													<div class="collections-selector">
 														<select class="single-option-selector" data-option="collection-option" id="collection-option" name="cate">
 														<option value="0">Tất cả danh mục</option>
@@ -174,10 +128,10 @@
 																		<a class="cart-close" title="Remove" href="{{route('removeCart',$element->rowId)}}">
 																			<i class="fa fa-times"></i>
 																		</a>
-																		@foreach ($element as $k => $img)
+																		@foreach ($element->options as $k => $img)
 																		<div class="cart-left">
 																			<a class="cart-image" href="./product.html">
-																				<img src="{{$img}}" alt="" title="">
+																				<img src="{{asset($img)}}" alt="" title="">
 																			</a>
 																		</div>
 																		@endforeach
@@ -622,7 +576,7 @@
 												<ul class="navigation_links_left dropdown-menu" style="display: none;">
 													@foreach ($cates as $cate)
 													<li class="nav-item _icon">
-														<a href="{{route('category',$cate->id)}}">
+														<a href="{{route('slug.url',['slug'=> $cate->getSlug()])}}">
 															<span>{{$cate->ten_danh_muc}}</span>
 														</a>
 													</li>
@@ -647,7 +601,7 @@
 													<ul class="dropdown-menu">
 														@foreach ($menh as $m)
 														<li class="li-sub-mega">
-															<a tabindex="-1" href="{{route('menh',$m->id)}}">{{$m->ten_menh}}</a>
+															<a tabindex="-1" href="{{route('slug.url',['slug'=> $m->getSlug()])}}">{{$m->ten_menh}}</a>
 														</li>
 														@endforeach
 													</ul>
@@ -669,21 +623,7 @@
 													</a>
 												</li>
 												@endforeach
-												{{-- <li class="nav-item active">
-													<a href="{{route('index')}}">
-														<span>Chính Sách</span>
-													</a>
-												</li>
-												<li class="nav-item active">
-													<a href="{{route('index')}}">
-														<span>Tuyển Dụng</span>
-													</a>
-												</li>
-												<li class="nav-item active">
-													<a href="{{route('index')}}">
-														<span>Liên Hệ</span>
-													</a>
-												</li> --}}
+												
 												
 											</ul>
 										</div>

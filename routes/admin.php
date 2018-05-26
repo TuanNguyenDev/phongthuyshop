@@ -37,6 +37,17 @@ Route::group(['middleware' => 'auth:admin'],function(){
 		Route::get('user/status/{id}','Admin\UserController@statusUser')->name('user.status');
 		Route::get('user/delete/{id}','Admin\UserController@deleteUser')->name('user.delete');
 		/*End Route quản lí User*/
+		/*Excel*/
+		Route::get('/getImport', 'Admin\ExcelController@getImport')->name('importProduct');
+		Route::get('/getExport', 'Admin\ExcelController@getExport')->name('exportProduct');
+		Route::post('/getImport', 'Admin\ExcelController@postImport');
+		/*End excel*/
+		/*Begin doanh thu*/
+		Route::get('/revenue','Admin\StatisticalController@getRevenue')->name('revenue.form');
+		Route::get('top/product','Admin\StatisticalController@getTopProduct')->name('top.product');
+		Route::post('/revenue/result/manual','Admin\StatisticalController@getResultManual')->name('revenue.manual');
+		Route::post('/topproduct/result/manual','Admin\StatisticalController@getTopProductManual')->name('top.product.manual');
+		/*End doanh thu*/
 
 
 	});
@@ -109,12 +120,7 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('customer/bill/detail/{id}','Admin\CustomerController@billDetail')->name('customer.billdetail');
 	Route::get('customer/noLogin/bill/detail/{id}','Admin\CustomerController@noLoginBillDetail')->name('customer.noLogin.billdetail');
 	/*End Khách hàng*/
-	/*Begin doanh thu*/
-	Route::get('/revenue','Admin\StatisticalController@getRevenue')->name('revenue.form');
-	Route::get('top/product','Admin\StatisticalController@getTopProduct')->name('top.product');
-	Route::post('/revenue/result/manual','Admin\StatisticalController@getResultManual')->name('revenue.manual');
-	Route::post('/topproduct/result/manual','Admin\StatisticalController@getTopProductManual')->name('top.product.manual');
-	/*End doanh thu*/
+	
 	/*Quản lý commemt */
 	Route::get('comment/product/{id}','Admin\CommentProductController@getList')->name('product.comment');
 	Route::get('comment/product/status/{id}','Admin\CommentProductController@changeStatus')->name('comment.product.status');
@@ -130,6 +136,21 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('comment/new/delete/all/{id}','Admin\CommentNewController@deleteCommentAll')->name('comment.new.delete.all');
 	Route::get('comment/new/status/all/{id}','Admin\CommentNewController@changeStatusAll')->name('comment.new.status.all');
 	/*end quản lý comment*/
+	/*Begin Quản lý phản hồi*/
+	Route::get('/feedback','Admin\FeedbackController@getList')->name('feedback.list');
+	Route::get('feedback/delete/{id}','Admin\FeedbackController@deleteFeedback')->name('feedback.delete');
+	Route::get('feedback/mail/{mail}/{name}', 'Admin\FeedbackController@returnFromMail')->name('feedback.mail');
+	Route::get('feedback/sendmail', function(Request $rq){
+		$name = $rq->name;
+		$email = $rq->email;
+		$noi_dung = $rq->noi_dung;
+		Mail::send('mail.feedback',['name' => $name, 'email' => $email,'noi_dung'=> $noi_dung], function($message) use($email, $name) {
+			$message->to($email,$name)->subject('Trả lời của shop về phản hồi của quý khách');
+		});
+		return redirect()->route('feedback.list');
+	})->name('send.mail.feedback');
+	/*End quản lý phản hồi*/
+	
 });
 Route::get('/back/{rd}', function($rd){
 	$url = "bill.".$rd;
@@ -137,3 +158,4 @@ Route::get('/back/{rd}', function($rd){
 })->name('return.back');
 
  ?>
+ 

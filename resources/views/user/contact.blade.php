@@ -1,5 +1,5 @@
 @extends('layouts.users.main')
-@section('title','Product')
+@section('title','Phản Hồi')
 @section('content')
 
 	<div class="page-container" id="PageContainer">
@@ -8,11 +8,11 @@
 				<div class="container">
 					<div class="row">
 						<div class="collection-wrapper">
-							<h1 class="collection-title"><span>Contact</span></h1>
+							<h1 class="collection-title"><span>Phản Hồi</span></h1>
 							<div class="breadcrumb-group">
 								<div class="breadcrumb clearfix">
 									<span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-										<a href="./index.html" title="Sarahmarket 1" itemprop="url"><span itemprop="title">Home</span></a>
+										<a href="{{route('index')}}" title="Sarahmarket 1" itemprop="url"><span itemprop="title">Home</span></a>
 									</span>
 									<span class="arrow-space">></span>
 									<span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
@@ -36,39 +36,41 @@
 												<div class="google-maps-wrapper">
 													<div class="google-maps-inner">
 														<div id="contact_map" class="map">
+															<p>Hãy phản hồi cho chúng tôi những ý kiến của bạn để shop ngày một hoàn thiện hơn!</p>
+															<h1>Cám ơn bạn rất nhiều vì đã tin tưởng Shop</h1>
 														</div>
 													</div>
 												</div>
 											</div>
-											<div class="contact-form-group col-md-6">
+											<div class="contact-form-group col-md-12">
 												<form method="post" action="{{route('send.contact')}}" id="contact_form" class="contact-form" accept-charset="UTF-8" onSubmit="alert('Thank you for your feedback!');">
 													{{csrf_field()}}
 													<div id="contactFormWrapper">
 														
 														<p>
-															<input type="text"  name="ten" 
+															<input type="text" id="ten"  name="ten" 
 															@if (isset(Auth::user()->name))
 																value="{{Auth::user()->name}}"
 															@endif placeholder="Name" required>
 														</p>
 														<p>
-															<input type="email" id="contactFormEmail" name="email" 
+															<input type="email" id="email" name="email" 
 															@if (isset(Auth::user()->name))
 																value="{{Auth::user()->email}}"
 															@endif placeholder="Email" required>
 														</p>
 														<p>
-															<input id="contactFormTelephone" 
+															<input id="sdt" 
 															@if (isset(Auth::user()->name))
 																value="{{Auth::user()->sdt}}"
 															@endif 
 															name="sdt" placeholder="Phone" required >
 														</p>
 														<p>
-															<textarea rows="15" cols="75" id="contactFormMessage" name="noi_dung" required placeholder="Your message"></textarea>
+															<textarea rows="15" cols="75" id="noi_dung" name="noi_dung" required placeholder="Your message"></textarea>
 														</p>
 														<p>
-															<input type="submit" id="contactFormSubmit" value="Send" class="btn">
+															<input type="submit" id="contactFormSubmit" onclick="return validate()" value="Send" class="btn">
 														</p>
 													</div>
 												</form>
@@ -101,4 +103,30 @@
 		</main>
 	</div>
 
+@endsection
+@section('user_js')
+<script type="text/javascript">
+	function validate(){
+		var name = document.getElementById("ten").value;
+		var noi_dung = document.getElementById("noi_dung").value;
+		var sdt = document.getElementById("sdt").value;
+		var email = document.getElementById("email").value;
+		if(name == ""){
+			alert("Hãy nhập tên");
+			return false;
+		}
+		if(noi_dung == ""){
+			alert("Hãy nhập nội dung phản hồi");
+			return false;
+		}
+		if(sdt == ""){
+			alert("Hãy nhập số điện thoại");
+			return false;
+		}
+		if(email == ""){
+			alert("Hãy nhập email");
+			return false;
+		}
+	}
+</script>
 @endsection

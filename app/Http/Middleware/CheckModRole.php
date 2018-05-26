@@ -15,6 +15,7 @@ class CheckModRole
      */
     public function handle($request, Closure $next)
     {
+        // dd(Auth::user()->checkMod());
         if(!Auth::user()->checkMod()){
             echo '403 forbidden!';
             die;

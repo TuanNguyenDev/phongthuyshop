@@ -22,7 +22,7 @@ class BillController extends Controller
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		$bills = Bill::where('trang_thai', 0)->get();
 		if(!$bills){
-			return '403';
+			return view('page.notfound');
 		}
 		$rdr = 'waitting';
 		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
@@ -38,7 +38,7 @@ class BillController extends Controller
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		$bills = Bill::where('trang_thai', 1)->get();
 		if(!$bills){
-			return '403';
+			return view('page.notfound');
 		}
 		$rdr = 'moving';
 		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
@@ -54,7 +54,7 @@ class BillController extends Controller
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		$bills = Bill::where('trang_thai', 2)->get();
 		if(!$bills){
-			return '403';
+			return view('page.notfound');
 		}
 		$rdr = 'success';
 		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
@@ -70,7 +70,7 @@ class BillController extends Controller
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		$bills = Bill::where('trang_thai', 3)->get();
 		if(!$bills){
-			return '403';
+			return view('page.notfound');
 		}
 		$rdr = 'fail';
 		Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
@@ -85,11 +85,11 @@ class BillController extends Controller
 	public function billAccept($id){
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		if(!isset($id)){
-			return '403';
+			return view('page.404');
 		}
 		$bills = Bill::find($id);
 		if(!$bills){
-			return '403';
+			return view('page.404');
 		}
 		$bills->trang_thai = 1;
 		$bills->nguoi_lap = Auth::id();
@@ -106,11 +106,11 @@ class BillController extends Controller
 	public function billComplete($id){
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		if(!isset($id)){
-			return '403';
+			return view('page.404');
 		}
 		$bills = Bill::find($id);
 		if(!$bills){
-			return '403';
+			return view('page.404');
 		}
 		$bills->trang_thai = 2;
 		$bills->save();
@@ -126,11 +126,11 @@ class BillController extends Controller
 	public function billCancel($id){
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		if(!isset($id)){
-			return '403';
+			return view('page.404');
 		}
 		$bills = Bill::find($id);
 		if(!$bills){
-			return '403';
+			return view('page.404');
 		}
 		$bills->trang_thai = 3;
 		$bills->save();
@@ -146,11 +146,11 @@ class BillController extends Controller
 	public function billDetail($id, $rdr){
 		Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 		if(!isset($id)){
-			return '403 id';
+			return view('page.404');
 		}
 		$bills = Bill::find($id);
 		if(!isset($bills)){
-			return '403 bill';
+			return view('page.404');
 		}
 		$rd = $rdr;
 		$billdetail = BillDetail::where('id_bill',$id)->get();

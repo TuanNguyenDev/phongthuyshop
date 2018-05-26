@@ -72,13 +72,13 @@
 				<span class="text-danger">{{$errors->first('mau_sac')}}</span>
 			@endif
 		</div>
-		<div class="form-group">
+		{{-- <div class="form-group">
 			<label for="so_luong">Số lượng</label>
 			<input type="text" id="so_luong" name="so_luong" value="{{old('so_luong',$model->so_luong)}}" class="form-control" placeholder="Số lượng">
 			@if (count($errors) > 0)
 				<span class="text-danger">{{$errors->first('so_luong')}}</span>
 			@endif
-		</div>
+		</div> --}}
 		<div class="form-group">
 			<label for="chat_lieu">Chất liệu</label>
 			<input type="text" id="chat_lieu" name="chat_lieu" value="{{old('chat_lieu',$model->chat_lieu)}}" class="form-control" placeholder="Chất liệu">

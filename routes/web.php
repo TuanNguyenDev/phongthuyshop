@@ -17,7 +17,15 @@ Route::get('/','IndexController@getIndex')->name('index');
 
 
 // Route::get('/product/{id}','IndexController@getProductDetail')->name('product');
+Route::group(['middleware' => 'auth'],function(){
+	Route::get('/khuyenmai/chitiet/{id}','IndexController@getKhuyenMaiDetail')->name('khuyenmai.chitiet');
+	Route::get('customer/profile/{id}','IndexController@getProfile')->name('customer.profile');
+	Route::get('customer/change/profile/{id}','IndexController@changeProfile')->name('customer.change.profile');
+	Route::get('customer/change/pass','IndexController@changePass')->name('customer.change.pass');
+	Route::post('customer/change/pass','IndexController@savechangePass');
 
+	Route::post('customer/save/profile','IndexController@saveProfile')->name('save.cus.profile');
+	});
 
 Route::get('/add_cart/{id}','IndexController@addCart')->name('addCart');
 
@@ -25,7 +33,8 @@ Route::get('/add_cart/{id}','IndexController@addCart')->name('addCart');
 Route::post('/add_carts','IndexController@addCarts')->name('addCarts');
 
 
-Route::post('updatecart','IndexController@updateCart')->name('updateCart');
+// Route::post('updatecart','IndexController@updateCart')->name('updateCart');
+Route::get('updatecart/{rowId}/{quantity}','IndexController@updateCart')->name('updateCart');
 
 Route::get('/cart',function(){
 	return view('user.cart_detail');
@@ -40,14 +49,9 @@ Route::get('/customer',function(){
 Route::get('/tin_tuc_bo_ich', 'IndexController@getNew')->name('tin.tuc.bo.ich');
 Route::get('/tin_tuc_chi_tiet/{id}','IndexController@chitietTin')->name('tintuc.chitiet');
 
-Route::get('customer/profile/{id}','IndexController@getProfile')->name('customer.profile');
-Route::get('customer/change/profile/{id}','IndexController@changeProfile')->name('customer.change.profile');
-Route::get('customer/change/pass','IndexController@changePass')->name('customer.change.pass');
-Route::post('customer/change/pass','IndexController@savechangePass');
 
-Route::post('customer/save/profile','IndexController@saveProfile')->name('save.cus.profile');
 Route::get('/khuyenmai','IndexController@getKhuyenMai')->name('khuyenmai');
-Route::get('/khuyenmai/chitiet/{id}','IndexController@getKhuyenMaiDetail')->name('khuyenmai.chitiet');
+
 
 Route::get('customer/bill/detail/{id}','IndexController@getBillDetail')->name('customer.bill.detail');
 Route::post('/comment/product','IndexController@commentProduct')->name('comment.product');
@@ -72,7 +76,7 @@ Route::get('/news',function(){
 
 Route::get('/contact',function(){
 	return view('user.contact');
-});
+})->name('contact.user');
 Route::get('remove/{rowId}', 'IndexController@removeCart')->name('removeCart');
 
 Route::get('category/{id}', 'IndexController@getAllProduct')->name('category');
@@ -110,4 +114,16 @@ Route::get('send/{customer}/{bill}', function($customer, $bill){
 	return redirect(route('index'));
 })->name('send.mail');
 Route::post('mail/forget/password','IndexController@sendPass')->name('mail.pass.forget');
-Route::get('/{slug}','IndexController@getProductDetail');
+
+Route::get('/404/error',function(){
+	return view('page.404');
+})->name('404.error');
+
+Route::get('/403/error',function(){
+	return view('page.403');
+})->name('403.error');
+
+Route::get('back/return', function(){
+	return redirect()->back();
+})->name('back.url');
+Route::get('/{slug}','IndexController@getProductDetail')->name('slug.url');
