@@ -147,7 +147,7 @@
 																@endif
 																
 															</div>
-															<div class="subtotal"><span>Subtotal:</span><span class="cart-total-right money" data-currency-usd="$600.00" data-currency="USD">{{$total}}</span></div>
+															<div class="subtotal"><span>Tổng tiền:</span><span class="cart-total-right money" data-currency-usd="$600.00" data-currency="USD">{{$total}} Đ</span></div>
 															<div class="action"><button class="btn" onclick="window.location='{{route('showCart')}}'">View Cart<i class="fa fa-caret-right"></i></button><button class="btn float-right" onclick="window.location='{{route('checkout')}}'">CHECKOUT<i class="fa fa-caret-right"></i></button></div>
 														</div>
 													</div>
@@ -167,7 +167,7 @@
 													<i class="sub-dropdown visible-sm visible-md visible-lg"></i> 
 													<div class="num-items-in-cart">
 														<div class="items-cart-left">
-															<img class="cart_img" src="./assets/images/bg-cart.png" alt="Image Cart" title="Image Cart">
+															<img class="cart_img" src="{{ asset('images/bg-cart.png') }}" alt="Image Cart" title="Image Cart">
 															<span class="cart_text icon"><span class="number">
 																@php
 																	$total = count($cart);
@@ -636,7 +636,7 @@
 															<i class="sub-dropdown visible-sm visible-md visible-lg"></i> 
 															<div class="num-items-in-cart">
 																<div class="items-cart-left">
-																	<img class="cart_img" src="./assets/images/bg-cart.png" alt="Image Cart" title="Image Cart">
+																	<img class="cart_img" src="{{ asset('images/bg-cart.png') }}" alt="Image Cart" title="Image Cart">
 																	<span class="cart_text icon"><span class="number">
 																		@php
 																			$countCart = count($cart);
@@ -669,7 +669,7 @@
 																	@endif
 																	
 																</div>
-																<div class="subtotal"><span>Subtotal:</span><span class="cart-total-right money" data-currency-usd="$600.00" data-currency="USD">$600.00</span></div>
+																<div class="subtotal"><span>Tổng Tiền:</span><span class="cart-total-right money" data-currency-usd="$600.00" data-currency="USD">{{$total}} Đ</span></div>
 																<div class="action"><button class="btn" onclick="window.location='{{route('showCart')}}'">View Cart<i class="fa fa-caret-right"></i></button><button class="btn float-right" onclick="window.location='./cart.html'">CHECKOUT<i class="fa fa-caret-right"></i></button></div>
 															</div>
 														</div>

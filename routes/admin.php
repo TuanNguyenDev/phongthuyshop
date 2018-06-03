@@ -3,6 +3,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\CommentSanPham;
+use App\Models\CommentTinTuc;
 use App\Models\Bill;
 Route::group(['middleware' => 'auth:admin'],function(){
 
@@ -129,10 +131,18 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('comment/new/status/{id}','Admin\CommentNewController@changeStatus')->name('comment.new.status');
 	Route::get('comment/news/{id}','Admin\CommentNewController@getList')->name('news.comment');
 
-	Route::get('comment/product/all','Admin\CommentProductController@getAllList')->name('product.comment.all');
+	// Route::get('comment/product/all','Admin\CommentProductController@getAllList')->name('product.comment.all');
+	Route::get('comment/sp',function(){
+		$commentsp = CommentSanPham::paginate(20);
+		return view('admin.comment.list_product', compact('commentsp'));
+	})->name('product.comment.all');
 	Route::get('comment/product/status/all/{id}','Admin\CommentProductController@changeStatusAll')->name('comment.product.status.all');
 	Route::get('comment/delete/all/{id}','Admin\CommentProductController@deleteCommentAll')->name('comment.delete.all');
-	Route::get('comment/news/all','Admin\CommentNewController@getAllList')->name('new.comment.all');
+	// Route::get('comment/news/all','Admin\CommentNewController@getAllList')->name('new.comment.all');
+	Route::get('comment/tt',function(){
+		$commentnew = CommentTinTuc::paginate(20);
+		return view('admin.comment.list_new', compact('commentnew'));
+	})->name('new.comment.all');
 	Route::get('comment/new/delete/all/{id}','Admin\CommentNewController@deleteCommentAll')->name('comment.new.delete.all');
 	Route::get('comment/new/status/all/{id}','Admin\CommentNewController@changeStatusAll')->name('comment.new.status.all');
 	/*end quản lý comment*/

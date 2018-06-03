@@ -85,7 +85,7 @@
 																			<ul class="quickview-wishlist-wrapper">
 																				<li class="wishlist hidden-xs">
 																					
-																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
+																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-cart-plus" title="Wishlist"></i></span></a>
 																				</li>
 																			</ul>
 																		</div>
@@ -150,7 +150,7 @@
 																			<ul class="quickview-wishlist-wrapper">
 																				<li class="wishlist hidden-xs">
 																					
-																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
+																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-cart-plus" title="Wishlist"></i></span></a>
 																				</li>
 																			</ul>
 																		</div>
@@ -193,7 +193,7 @@
 									<div class="prosli_group">
 										<div class="page-title">
 											<h2>{{$cate->ten_danh_muc}}</h2>
-											<a href="{{route('category',$cate->id)}}" class="prosli_action">Xem tất cả</a>
+											<a href="{{route('slug.url',['slug'=> $cate->getSlug()])}}" class="prosli_action">Xem tất cả</a>
 										</div>
 										<div class="home_prosli_inner">
 											<div class="home_prosli_content">
@@ -215,7 +215,7 @@
 																			<ul class="quickview-wishlist-wrapper">
 																				<li class="wishlist hidden-xs">
 																					
-																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
+																					<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-cart-plus" title="Wishlist"></i></span></a>
 																				</li>
 																			</ul>
 																		</div>

@@ -16,7 +16,7 @@
 		@foreach ($pro as $key => $p)
 			<tr>
 				<td>{{++$loop->index}}</td>
-				<td>{{get_product_name($key)}}</td>
+				<td>{{(get_product_name($key))}}</td>
 				<td>{{$p}} sản phẩm</td>
 			</tr>
 		@endforeach

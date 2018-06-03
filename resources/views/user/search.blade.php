@@ -49,7 +49,7 @@
 																<div class="group-actionbutton">
 																	<ul class="quickview-wishlist-wrapper">
 																		<li class="wishlist hidden-xs">
-																			<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
+																			<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-cart-plus" title="Wishlist"></i></span></a>
 																		</li>
 																	</ul>
 																</div>

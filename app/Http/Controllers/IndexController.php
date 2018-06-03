@@ -101,7 +101,7 @@ class IndexController extends Controller
                                         ['trang_thai','=',1],
                                         ['id_menh', '=', $model->entity_id]
                 ])->paginate(12);
-                return view('user.menh', compact('product','count','menh'));
+                return view('user.menh2', compact('product','count','menh'));
                 break;
             default:
                 # code...

@@ -129,25 +129,6 @@
 															<div class="preview_content">
 																<div id="shopify-product-reviews" data-id="6537875078">
 																	<div class="spr-container">
-																		{{-- <div class="spr-header">
-																			<h2 class="spr-header-title">Customer Reviews</h2>
-																			<div class="spr-summary" itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate">
-																				<meta itemprop="itemreviewed" content="Chanel, the cheetah">
-																				<meta itemprop="votes" content="1">
-																				<span itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating" class="spr-starrating spr-summary-starrating">
-																					<meta itemprop="average" content="5.0">
-																					<meta itemprop="best" content="5">
-																					<meta itemprop="worst" content="1">
-																					<i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i><i class="spr-icon spr-icon-star" style=""></i>
-																				</span>
-																				<span class="spr-summary-caption">
-																					<span class="spr-summary-actions-togglereviews">Based on 1 review</span>
-																				</span>
-																				<span class="spr-summary-actions">
-																					<a href="#" class="spr-summary-actions-newreview" onclick="active_review_form();return false">Write a review</a>
-																				</span>
-																			</div>
-																		</div> --}}
 																		<div class="spr-content">
 																			@if (isset(Auth::user()->name))
 																				<div class="spr-form" id="form_6537875078" >
@@ -225,20 +206,14 @@
 																				<img src="{{asset($p->anh)}}" class="rotation img-responsive" alt="Sport machine">
 																			</div>
 																		</a>
-																		{{-- @foreach ($p->getKM() as $km)
-																		@if ($km->ngay_ket_thuc >= date('d/m/Y'))
-																		<span class="sale_banner">
-																			<span class="sale_text">-{{$km->chiet_khau}}</span>
-																		</span>
-																		@endif
-																		@endforeach --}}
+																		
 																		<div class="hover-mask">
 																			<div class="group-mask">
 																				<div class="inner-mask">
 																					<div class="group-actionbutton">
 																						<ul class="quickview-wishlist-wrapper">
 																							<li class="wishlist hidden-xs">
-																								<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
+																								<a class="wish-list" href="{{route('addCart',$p->id)}}"><span class="hidden-xs"><i class="fa fa-cart-plus" title="Wishlist"></i></span></a>
 																							</li>
 																						</ul>
 																					</div>
@@ -333,7 +308,7 @@
 																	<div class="group-actionbutton">
 																		<ul class="quickview-wishlist-wrapper">
 																			<li class="wishlist hidden-xs">
-																				<a class="wish-list" href="{{route('addCart',$new->id)}}"><span class="hidden-xs"><i class="fa fa-heart" title="Wishlist"></i></span></a>
+																				<a class="wish-list" href="{{route('addCart',$new->id)}}"><span class="hidden-xs"><i class="fa fa-cart-plus" title="Wishlist"></i></span></a>
 																			</li>
 																		</ul>
 																	</div>

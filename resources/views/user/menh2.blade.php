@@ -1,5 +1,5 @@
 @extends('layouts.users.main')
-@section('title','Category')
+@section('title','Mệnh')
 @section('content')
 <div class="page-container" id="PageContainer">
 		<main class="main-content" id="MainContent" role="main">
@@ -7,13 +7,13 @@
 					<div class="container">
 						<div class="row">
 								<div class="text-center col-md-12">
-									<p style="font-size: 28px;">Danh Mục {{$cate->ten_danh_muc}}</p>
+									<p style="font-size: 28px;">{{$menh->ten_menh}}</p>
 								</div>
 								<div class="col-md-4">
-									<img src="{{asset($cate->anh)}}" alt="">
+									{{-- <img src="{{asset($menh->anh)}}" alt=""> --}}
 								</div>
 								<div class="col-md-8">
-									<p>{!!$cate->mo_ta!!}</p>
+									<p>{!!$menh->mo_ta!!}</p>
 								</div>
 						</div>
 					</div>
@@ -32,7 +32,7 @@
 									<span class="arrow-space">></span>
 									<span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
 										<a href="./search.html" title="Search for:  'Electronic equipment'" itemprop="url">
-											<span itemprop="title">Danh mục {{$cate->ten_danh_muc}}</span>
+											<span itemprop="title">Danh mục {{$menh->ten_menh}}</span>
 										</a>
 									</span>
 								</div>

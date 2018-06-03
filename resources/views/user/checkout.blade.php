@@ -27,7 +27,7 @@
 														@foreach ($value->options as $k => $element)
 															<li class="image">
 																<a href="#">
-																	<img src="{{asset($element)}}" alt="Electronic equipment">
+																	<img style="height: 70px" src="{{asset($element)}}" alt="Electronic equipment">
 																</a>
 															</li>
 															@endforeach

@@ -30,7 +30,7 @@ class CommentNewController extends Controller
 	 */
     public function getAllList(){
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
-    	$commentnew = CommentSanPham::paginate(20)->orderBy('created_at', 'desc');
+    	$commentnew = CommentTinTuc::paginate(20)->orderBy('created_at', 'desc');
     	Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
     	return view('admin.comment.list_new', compact('commentnew'));
     }
