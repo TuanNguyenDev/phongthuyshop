@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth:admin'],function(){
 	Route::get('product/update/{id}','Admin\ProductController@updateProduct')->name('product.update');
 	Route::get('product/status/{id}','Admin\ProductController@statusProduct')->name('product.status');
 	Route::get('product/status/{id}/{name}','Admin\ProductController@statusProduct')->name('product.status');
-	//abc
+	//abc dde
 	/*End Product Route*/
 	Route::group(['middleware' => 'check-mod'], function(){
 		Route::get('product/delete/{id}','Admin\ProductController@deleteProduct')->name('product.delete');
