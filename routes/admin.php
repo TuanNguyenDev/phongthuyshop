@@ -52,7 +52,8 @@ Route::group(['middleware' => 'auth:admin'],function(){
 		Route::post('/revenue/result/manual','Admin\StatisticalController@getResultManual')->name('revenue.manual');
 		Route::post('/topproduct/result/manual','Admin\StatisticalController@getTopProductManual')->name('top.product.manual');
 		/*End doanh thu*/
-
+		//tuan test
+		Route::get('/abc');
 
 	});
 	/*Begin Category Route*/
