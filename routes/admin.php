@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth:admin'],function(){
 		/*End doanh thu*/
 		//tuan test
 		Route::get('/abc');
+		Route::get('/def');
 
 	});
 	/*Begin Category Route*/
