@@ -53,12 +53,7 @@ Route::group(['middleware' => 'auth:admin'],function(){
 		Route::post('/topproduct/result/manual','Admin\StatisticalController@getTopProductManual')->name('top.product.manual');
 		/*End doanh thu*/
 		//tuan test
-<<<<<<< HEAD
-		Route::get('def');
-=======
-		Route::get('/dfe');
->>>>>>> 5ce55f5080d467f6665dea80e704f0103dbe451b
-		Route::get('/abc');
+
 
 	});
 	/*Begin Category Route*/
